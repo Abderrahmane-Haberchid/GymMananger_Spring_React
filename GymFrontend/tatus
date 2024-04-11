@@ -1,0 +1,122 @@
+[33mcommit fbbb883b5a75aea453cac5b2332ffa326860cbf1[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Wed Oct 25 01:10:21 2023 +0100
+
+    package.json setup
+
+[33mcommit 63de1575f2a9e4e0cfc6a56cfa7078f1e3049fc1[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Tue Oct 24 21:33:39 2023 +0100
+
+    css update for responsive/ statis+usercard+sdebar
+
+[33mcommit c00f74da519bbe90ba01698bd88c56e411a7b4cf[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 86a5a88 eb39ea6
+Author: Abderrahmane-Haberchid <145846157+Abderrahmane-Haberchid@users.noreply.github.com>
+Date:   Tue Oct 24 00:11:33 2023 +0100
+
+    Merge pull request #2 from Abderrahmane-Haberchid/update-design
+    
+    connected to local spring api/ responsive statis and home updated
+
+[33mcommit eb39ea6748b2e048dcff3d12e1cad9d932c9d246[m[33m ([m[1;31morigin/update-design[m[33m)[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Tue Oct 24 00:05:52 2023 +0100
+
+    connected to local spring api/ responsive statis and home updated
+
+[33mcommit 86a5a887e685aa87a0dc721937150c8cf4f28982[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Sat Oct 21 18:17:59 2023 +0100
+
+    package.json upgrade react-scripts
+
+[33mcommit 66578c56db356d70fe145c5f7034a54c8c986f21[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Fri Oct 20 23:36:49 2023 +0100
+
+    update responsive
+
+[33mcommit 07d0bd32507db46126df7a06ff92b51a1da9afca[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Fri Oct 20 18:44:36 2023 +0100
+
+    package.json update
+
+[33mcommit a304e33ebcf9b877cf461ec5cf49f9feeccc23cb[m
+Merge: cf5f517 49c6ebd
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Fri Oct 20 18:10:24 2023 +0100
+
+    Merge branch 'master' of https://github.com/Abderrahmane-Haberchid/gym-dashboard
+
+[33mcommit cf5f5179592afeebd14bc3ef79e51dfa08361f63[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Fri Oct 20 18:08:56 2023 +0100
+
+    deploy to gh pages
+
+[33mcommit 49c6ebdc878c35aa1fa02e507dcfcf3389931b45[m
+Merge: 0ebac1c c627916
+Author: Abderrahmane-Haberchid <145846157+Abderrahmane-Haberchid@users.noreply.github.com>
+Date:   Fri Oct 20 17:24:42 2023 +0100
+
+    Merge pull request #1 from Abderrahmane-Haberchid/design-responsive-statis
+    
+    Getting the backend file out of frontend directory
+
+[33mcommit c627916c8128c0c8ddde692fe4a9c45ba2262bd1[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Fri Oct 20 17:20:26 2023 +0100
+
+    Getting the backend file out of frontend directory
+
+[33mcommit 0ebac1cb1bd7ffcb9f54777140c45a8d41f12254[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 22:32:04 2023 +0100
+
+    responsive home done
+
+[33mcommit b93612bbcb485ee152110ba0de41f204d6bb6efa[m[33m ([m[1;31morigin/fixing-loader[m[33m)[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 21:46:29 2023 +0100
+
+    loader for home fixed
+
+[33mcommit 0e76ce6033a492d523c879ad6b87792fb3723178[m[33m ([m[1;31morigin/bug-statis-background-css[m[33m)[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 20:50:47 2023 +0100
+
+    bug fixed
+
+[33mcommit bbfe6329b2676e16d258c2d710cedec2d1341298[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 20:41:52 2023 +0100
+
+    bug fixed
+
+[33mcommit fa7c6bd847b4afe23dbc98f6adb67c125b11d553[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 18:24:22 2023 +0100
+
+    statis height update
+
+[33mcommit e51bec69193a6641f551632710c8c9d2ab827d41[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 18:20:01 2023 +0100
+
+    updating css of statis
+
+[33mcommit f3bbc955d338c28753749e7564f3d32a4eb4b574[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 18:16:04 2023 +0100
+
+    css update
+    
+    fixing back ground css in statis page
+
+[33mcommit a0174ae66e164587bec389b9a24276a23a15aa69[m
+Author: Abderrahmane-Haberchid <jhonsnowstark2@gmail.com>
+Date:   Thu Oct 19 18:00:17 2023 +0100
+
+    first commit

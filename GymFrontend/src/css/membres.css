@@ -1,0 +1,100 @@
+
+
+.table-header{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height:100vh;
+    width: auto;
+}
+.add-btn{
+    margin-left:155px;
+    justify-content: left;
+}
+.add-btn button{
+    background: var(--primary-dark-color);
+    border: 0;
+}
+.add-btn button:hover{
+    animation-duration: 0.5s;
+       animation-direction: reverse;
+       transition: 0.5s;
+       background-color: var(--primary-color);
+}
+.sorting-option{
+    justify-content: right;
+    margin-right: 55px;
+}
+.sorting-option span{
+    color: var(--text-color);
+    font-size: 18px;
+    margin-right: 20px;
+}
+.sorting-list{
+    width: 150px;
+    background: var(--sidebar-color);
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-right: 10px;
+    border: 1px solid var(--toggle-color);
+    color: var(--text-color);
+}
+
+/*------Add Member Form-----*/
+
+
+.compte-container{  
+    background: var(--sidebar-color);
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+.form-container form{
+    background: var(--sidebar-color);
+}
+.form-container input{
+    color: var(--text-color);
+    background-color: transparent;
+    
+}
+.nomInput{
+    margin-left: 10px;
+}
+.form-container input:focus{
+    color: var(--text-color);
+    background-color: transparent;
+}
+.form-container input::placeholder {
+    color: var(--text-color);
+  }
+
+.submit-btn button{
+    width: 100%;
+    background: var(--primary-dark-color);
+}
+.submit-btn button:hover{
+    background: var(--primary-color);
+}
+
+@media (max-width: 700px) {
+    .table-header{
+        flex-direction: column;
+    }
+    .add-btn{
+        margin-bottom: 30px;
+        margin-top: 30px;
+        justify-content: center;
+    }
+    .sorting-option{
+        display: flexbox;
+        justify-content: center;
+        margin-left: 60px;
+    }
+  }

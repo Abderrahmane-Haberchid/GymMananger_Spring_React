@@ -1,0 +1,144 @@
+
+
+/*------User card -------------*/
+
+.usercard-list{
+    position:relative;
+    margin-top: 30px;
+    left: 250px;
+    width: 80%;
+    height: 100vh;
+    display: flex;    
+    flex-wrap: wrap;
+    gap:1rem;
+    transition: var(--tran-03);
+    background: var(--body-color);
+}
+@media all and (min-width: 320px) and (max-width: 480px){ 
+    .usercard-list {
+        width: auto;
+        left: 30px;
+        gap:1.3rem;
+    }
+    .usercard{    
+        width: 200px;
+        height: 120px;
+       }
+       .img-fluid{
+        width: 60px;
+       }
+       
+  }  
+  @media all and (min-width: 480px) and (max-width: 768px){     
+    .usercard-list {
+        width: auto;
+        left: 30px;
+        gap:1.5rem;
+    }
+    .usercard{    
+        width: 220px;
+        height: 230px;
+        overflow-x: hidden;
+       }
+       .img-fluid{
+        width: 60px;
+       }
+  }  
+  @media all and (min-width: 780px) and (max-width: 1024px) {
+    .usercard-list {
+        width: auto;
+        gap:1.5rem;
+    }
+    .usercard{    
+        width: 220px;
+        height: 230px;
+        overflow-x: hidden;
+       }
+       .img-fluid{
+        width: 60px;
+       }
+  }
+.usercard{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 170px;
+    background: var(--sidebar-color);
+    border-radius: 10px;
+    padding-top: 10px;
+    transition: 0.3s linear;
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: inset -1px 3px 8px 5px #1F87FF, 2px 5px 16px 0px #0B325E, 8px 5px 29px 5px rgba(0,0,0,0);   
+}
+.usercard:hover{    
+    cursor: pointer;
+    background: var(--primary-color);
+    color: white;
+}
+.card-title{
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+}
+.card-subtitle{
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 400;
+}
+.sidebar.hide ~ .usercard-list{
+    left: 165px;
+}
+.list-iems-card{
+    list-style: none;
+    display: flexbox;
+    justify-content: center;
+    margin-left: -13px;
+}
+
+.payment-state-ok{
+    color: green;
+    margin-left: 32px;
+}
+.payment-state-nok{
+    color: red;
+    margin-left: 32px;
+    top: -20px;
+}
+
+.search-container{
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+}
+.membreCounter-container{
+    margin-left: 20%;
+}
+.membreCounter-text{
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: -20px;
+}
+.search-input{
+    width: 300px;
+    height: 40px;
+    padding: 15px;
+    padding-left: 40px;
+    border: 0;
+    margin-left: 20px;
+    background: var(--secondary-color);
+    border-radius: 10px;
+    color: var(--text-color);
+    outline: none;
+    transition: var(--tran-02);
+}
+.search-icon{
+    margin-right: -50px;
+    margin-left: 50px;
+    position: relative;
+    z-index: 1;
+}
+

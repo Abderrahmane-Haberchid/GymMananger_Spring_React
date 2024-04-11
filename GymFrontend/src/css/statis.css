@@ -1,0 +1,274 @@
+
+/* ----Google font import  --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+:root{
+    --body-color: #E4E9F7;    
+    --sidebar-color: #FFF;
+    --primary-color: #695CFE;
+    --secondary-color: #F6F5FF;
+    --third-color: ##fefeff;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    --tran-01: all 0.1s ease;
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+.statis-container{
+    position: relative;
+    max-width: 1075px;
+    height: 180vh;
+    display: flexblock;
+    justify-content: center; 
+    flex-wrap: wrap;
+    left: 250px;
+    margin-top: 30px;
+}
+.header-container{
+    max-width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+    gap:2rem;
+    transition: var(--tran-03);
+}
+.chart2{
+    height: 320px;
+    width: 320px;
+}
+@media all and (min-width: 320px) and (max-width: 480px){ 
+    .statis-container{
+        display: flex;
+        width: auto;
+        justify-content: center;
+        left: 0;
+    }
+    .money-monthly{
+        height: 400px;
+        width: 400px;
+    }
+    .header-container{
+        display: block;
+        width: auto;        
+    }
+    .membre-card{
+        margin-bottom: 10px;
+        width: 400px;
+        height: 30px;
+    }
+    .body-container{
+        width: auto;
+        margin-top: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;    
+        flex-direction: column;
+        gap:1rem;
+        transition: var(--tran-03);
+    }
+
+    .ajoutecemois-card{
+        margin-bottom: 10px;
+    }
+    .desactive-card{
+        margin-bottom: 10px;
+    }
+    .payment-card{
+        margin-bottom: 10px;
+    }
+    
+    .money-monthly{
+        position: relative;
+        margin: auto;
+    }
+    .first-chart{
+    }
+  }
+  @media all and (min-width: 480px) and (max-width: 768px){  
+    .statis-container{
+        display: block;
+        width: 100%;
+        left: 20px;
+        justify-content: center;
+    }
+  }
+  @media all and (min-width: 780px) and (max-width: 1024px) {
+
+  }
+.membre-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#2193b0, #6dd5ed);
+    color: var(--sidebar-color);
+    font-weight: 400;
+    max-width: 220px;
+    min-height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    cursor: pointer;
+}
+.ajoutecemois-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#614385 , #516395);
+    color: var(--sidebar-color);
+    font-weight: 400;
+    max-width: 220px;
+    min-height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    cursor: pointer;
+}
+.desactive-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#cc2b5e, #753a88);
+    color: var(--sidebar-color);
+    font-weight: 400;
+    max-width: 220px;
+    min-height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    cursor: pointer;
+}
+.payment-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#4568dc , #b06ab3);
+    color: var(--sidebar-color);
+    font-weight: 400;
+    max-width: 220px;
+    min-height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    cursor: pointer;
+}
+.body-container{
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;    
+    gap:1rem;
+    transition: var(--tran-03);
+}
+.added-member-monthly{
+    min-width: 340px;
+    min-height: 320px;
+    border-radius: 10px;
+    background: var(--sidebar-color);
+    justify-content: center;
+    align-items: center;
+}
+.added-member-monthly p{
+    margin-top: 25px;
+    margin-left: 20px;
+    color: var(--text-color);
+    left: 0;
+    font-weight: 500;
+}
+.money-monthly p{
+    margin-top: 25px;
+    margin-left: 20px;
+    color: var(--text-color);
+    left: 0;
+    font-weight: 500;
+}
+.total-money-monthly p{
+    margin-top: 25px;
+    margin-left: 20px;
+    color: var(--text-color);
+    left: 0;
+    font-weight: 500;
+}
+.added-payments-monthly p{
+    color: var(--text-color);
+    margin-left: 20px;
+    left: 0;
+    font-weight: 500;
+}
+.general-view p{
+    color: var(--text-color);
+    left: 0;
+    font-weight: 500;
+}
+.added-payments-monthly{
+    min-width: 340px;
+    min-height: 320px;
+    border-radius: 10px;
+    background: var(--sidebar-color);
+    padding: 30px;
+}
+
+.general-view{
+    min-width: 340px;
+    min-height: 320px;
+    border-radius: 10px;
+    background: var(--sidebar-color);
+    padding: 20px;
+}
+.money-monthly{
+    min-width: 715px;
+    min-height: 320px;
+    border-radius: 10px;
+    background: var(--sidebar-color);
+    
+}
+.total-money-monthly{
+    min-width: 340px;
+    min-height: 320px;
+    border-radius: 10px;
+    background: var(--sidebar-color);
+    padding: 0px;
+}
+.payments-history{
+    min-width: 340px;
+    min-height: 320px;
+    border-radius: 10px;
+    background: var(--sidebar-color);
+    padding: 0px;
+}
+#payments-history-p{
+    margin-top: 25px;
+    margin-left: 20px;
+    color: var(--text-color);
+    left: 0;
+    font-weight: 500;
+}
+#totalPayment{
+    margin-top: 25px;
+    margin-left: 20px;
+    color: var(--text-color);
+    left: 0;
+    font-weight: 500;
+}
+.history-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20px;
+    margin-top: -25px;
+    margin-bottom: 30px;
+}
+.wrapperClass{
+    margin-top: 15px;
+    background: var(--body-color);
+}
+.datePicker{
+    width: 150px;
+    z-index: 1;
+    margin-top: -3px;
+}

@@ -1,0 +1,143 @@
+/* ----Google font import  --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+/*-------Carte du membre*/
+.compte-container{
+    color: var(--text-color);
+    background: var(--sidebar-color);
+    display: block;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+.compte-container-header{
+    display: flexbox;
+    justify-content: center;
+}
+
+/*---------boutons de la carte profile, acions, payments*/
+.compte-container-body-btn{
+    display: inline-flex;
+    justify-content: start;
+    gap: 10px;  
+    margin-left: 20px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+.profile-btn{ 
+    background: var(--secondary-color);
+    padding: 7px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 10px;
+    transition: var(--tran-03);
+}
+.profile-btn:hover{
+    background: var(--text-color);
+    color: var(--toggle-color);
+}
+.payments-btn{ 
+    background: var(--secondary-color);
+    padding: 7px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 10px;
+    transition: var(--tran-03);
+}
+.payments-btn:hover{
+    background: var(--text-color);
+    color: var(--toggle-color);
+}
+.actions-btn{ 
+    background: var(--secondary-color);
+    padding: 7px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 10px;
+    transition: var(--tran-03);
+}
+.actions-btn:hover{
+    background: var(--text-color);
+    color: var(--toggle-color);
+}
+.profile-btn:focus{
+    background: var(--text-color);
+    padding: 7px;
+    text-decoration: none;
+    color: var(--sidebar-color);
+    border-radius: 10px;
+}
+.actions-btn:focus{
+    background: var(--text-color);
+    padding: 7px;
+    text-decoration: none;
+    color: var(--sidebar-color);
+    border-radius: 10px;
+}
+.payments-btn:focus{
+    background: var(--text-color);
+    padding: 7px;
+    text-decoration: none;
+    color: var(--sidebar-color);
+    border-radius: 10px;
+}
+.compte-container-body{
+    display: block;
+    justify-content: center;
+    padding: 20px;
+}
+
+/*-----------Détail du compte--*/
+
+.profile-content {
+    margin-top: -30px;
+}
+.profile-content table{
+    height: 40vh;
+    width: 100%;
+    font-size: 13px;
+    justify-content: center;
+}
+#td-payment-nok{
+    background-color: #990000;
+    background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 500;
+    width: 80px;
+    padding:5px;
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+#td-payment{
+    background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 500;
+    width: 80px;
+    padding:5px;
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.actions-content{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.btn-profile{
+    margin: 15px;
+}
+.btn-profile button{
+    width: 90px;
+    font-size: 14px;
+}
+
+.spiner{
+    display: flex;
+    justify-content: center;
+    float: center;
+}

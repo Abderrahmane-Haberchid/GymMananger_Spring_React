@@ -1,0 +1,21 @@
+
+/* ----Google font import  --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.payments-table{
+    transition: var(--tran-03);
+    margin-top: -30px;
+    
+}
+.datatable{
+    transition: var(--tran-05);
+    background: var(--body-color);
+    height: 100%;
+    width: 100%;
+    margin-top: -30px;    
+    font-size: 13px;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
