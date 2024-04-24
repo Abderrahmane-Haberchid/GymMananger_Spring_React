@@ -4,7 +4,7 @@ import DataTable from 'react-data-table-component'
 import axios from 'axios'
 import LoaderTablePayments from '../LoaderTablePayments'
 import deleteIcon from './deleteIcon.png'
-import ModalConfirmation from './ModalConfirmation'
+import ModalPaymentDetail from './ModalPaymentDetail'
 
 
 function PaymentsContent(props) {
@@ -20,10 +20,10 @@ function PaymentsContent(props) {
     const handleClose = () => setShowModal(false);
     
     // Handling the show action and getting payments ID to delete
-    const handleShow = (id) => {
+    const showPaymentDetails = (id) => {
         setShowModal(true)
         setPaymentId(id)
-    }
+    }  
 
     const id = props.membreId
 
@@ -70,7 +70,7 @@ function PaymentsContent(props) {
                                 data-bs-toggle="modal" 
                                 src={deleteIcon} 
                                 style={{height: '22px', width: '22px', cursor: 'pointer'}}
-                                onClick={() => handleShow(row.id)}
+                                onClick={() => showPaymentDetails(row.id)}
                                  />,
             width: "60px"
         },
@@ -111,11 +111,12 @@ function PaymentsContent(props) {
 
     <div className='payments-table'>
 
-        <ModalConfirmation 
+        <ModalPaymentDetail 
                     show={showModal} 
                     onHide={handleClose} 
                     handleClose={handleClose} 
                     paymentId={paymentId}
+                    membreId={id}
              /> 
         <center>    
        
@@ -127,6 +128,11 @@ function PaymentsContent(props) {
          progressComponent={<LoaderTablePayments />}
          fixedHeaderScrollHeight="350px"   
          customStyles={customStyles} 
+
+        responsive
+        highlightOnHover
+        onRowClicked={showPaymentDetails}
+        Clicked
         />
         
        </center>  

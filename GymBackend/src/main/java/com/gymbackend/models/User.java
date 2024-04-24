@@ -42,10 +42,10 @@ public class User implements UserDetails {
     Set<Supplements> suppSet = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    Set<Sale> saleSet = new HashSet<>();
+    Set<Sale> saleSet;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    Set<Paiements> paiementsSet = new HashSet<>();
+    Set<Paiements> paiementsSet;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

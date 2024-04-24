@@ -32,7 +32,7 @@ public class Membre {
     private String state;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    Set<Paiements> paiementsSet = new HashSet<>();
+    Set<Paiements> paiementsSet;
 
 
 }

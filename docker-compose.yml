@@ -1,0 +1,27 @@
+version: '1'
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5431:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=gym_db
+
+  gymbackend:
+      build:
+        context: ./gymbackend
+        dockerfile: Dockerfile
+      ports:
+        - "8082:8081"
+      platform: linux/amd64  
+
+  gymfrontend:
+      build:
+        context: ./gymfrontend
+        dockerfile: Dockerfile
+      ports:
+        - "3001:3000"

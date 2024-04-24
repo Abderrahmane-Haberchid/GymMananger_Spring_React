@@ -24,11 +24,11 @@ public class UserDto {
     @Enumerated(EnumType.STRING)
     private Role authorities;
 
-    private Set<Membre> membreSet = new HashSet<>();
+    private Set<Membre> membreSet;
 
-    private Set<Supplements> suppSet = new HashSet<>();
+    private Set<Supplements> suppSet;
 
-    private Set<Sale> saleSet = new HashSet<>();
+    private Set<Sale> saleSet;
 
-    private Set<Paiements> paiementsSet = new HashSet<>();
+    private Set<Paiements> paiementsSet;
 }
