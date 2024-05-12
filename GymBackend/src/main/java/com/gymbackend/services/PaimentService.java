@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface PaimentService {
     Optional<Paiements> findById(Long id);
     Optional<List<Paiements>> findAll();
-    PaimentDto deletePayments(Long id);
+    boolean deletePayments(Long id);
 }

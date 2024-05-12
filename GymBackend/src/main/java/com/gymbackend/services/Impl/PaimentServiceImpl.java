@@ -28,16 +28,13 @@ public class PaimentServiceImpl implements PaimentService {
     }
 
     @Override
-    public PaimentDto deletePayments(Long id) {
-        Paiements paiements = paimentsRepository.findById(id).orElseThrow(()
-                                -> new UsernameNotFoundException("Not Found Payment"));
-        paimentsRepository.delete(paiements);
-        return (PaimentDto) PaimentDto.builder()
-                .membre(paiements.getMembre())
-                .prix(paiements.getPrix())
-                .type_abonnement(paiements.getType_abonnement())
-                .date_expiration(paiements.getDate_expiration())
-                .build();
+    public boolean deletePayments(Long id) {
+        paimentsRepository.deleteById(id);
+        Paiements paiements = paimentsRepository.findById(id).get();
+        if (paiements == null)
+            return true;
+        else
+            return false;
     }
 
 

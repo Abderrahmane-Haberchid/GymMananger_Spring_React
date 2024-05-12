@@ -4,10 +4,7 @@ import com.gymbackend.dto.UserDto;
 import com.gymbackend.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -19,5 +16,15 @@ public class UserController {
     @GetMapping("/{email}")
     public ResponseEntity<UserDto> findById(@PathVariable String email){
             return ResponseEntity.ok(userService.findUserByEmail(email));
+    }
+
+    @DeleteMapping("/deletePayment/id/{id}/email/{email}/membreId/{membreId}")
+    public  ResponseEntity<Boolean> deletePayment(
+            @PathVariable("id") Long id,
+            @PathVariable("email") String email,
+            @PathVariable("membreId") Long membreId){
+
+        System.out.println("============="+id+"===================="+email);
+        return ResponseEntity.ok(userService.deletePaymentById(id, email, membreId));
     }
 }

@@ -14,4 +14,6 @@ public interface PaimentsRepository extends JpaRepository<Paiements, Long> {
                    "ORDER BY p.date_expiration DESC"
     , nativeQuery = true)
      List<Paiements> findExpiredPayments(Date date);
+
+    void deleteById(Long id);
 }

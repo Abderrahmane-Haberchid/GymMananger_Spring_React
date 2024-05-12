@@ -74,6 +74,7 @@ public class MembreServiceImpl implements MembreService {
 
     @Override
     public Optional<List<Membre>> findByName(String name) {
+
         return membreRepository.findByNom(name);
     }
 

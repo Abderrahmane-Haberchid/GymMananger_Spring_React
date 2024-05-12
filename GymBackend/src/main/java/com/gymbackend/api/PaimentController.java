@@ -1,11 +1,9 @@
 package com.gymbackend.api;
 
 
-import com.gymbackend.dto.PaimentDto;
 import com.gymbackend.models.Paiements;
 import com.gymbackend.services.PaimentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +17,6 @@ public class PaimentController {
 
     private final PaimentService paimentService;
 
-
     @GetMapping("all/{id}")
     public ResponseEntity<Optional<Paiements>> findById(@PathVariable Long id) {
 
@@ -31,7 +28,7 @@ public class PaimentController {
         return ResponseEntity.ok(paimentService.findAll());
     }
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<PaimentDto> deletePayment(@PathVariable Long id){
+    public ResponseEntity<Boolean> deletePayment(@PathVariable Long id){
 
             return ResponseEntity.ok(paimentService.deletePayments(id));
     }

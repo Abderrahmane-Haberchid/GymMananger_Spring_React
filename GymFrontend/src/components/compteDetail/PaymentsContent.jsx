@@ -101,7 +101,7 @@ function PaymentsContent(props) {
               color: 'var(--text-color)',
               fontSize: '11px',
               transition: 'var(--tran-03)',
-              
+              cursor: 'pointer' 
           }
       }
       
@@ -131,8 +131,8 @@ function PaymentsContent(props) {
 
         responsive
         highlightOnHover
-        onRowClicked={showPaymentDetails}
-        Clicked
+       // onRowClicked={showPaymentDetails}
+      
         />
         
        </center>  
