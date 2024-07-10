@@ -40,7 +40,6 @@ function ModalPaymentDetail(props) {
     }
 
     const deletePaymentById = async () => {
-        console.log("delete buttin clicked")
         await axios.delete(`http://localhost:8081/api/v1/user/deletePayment/id/${pId}/email/${decodedToken.sub}/membreId/${membreId}`,
             {
                 headers:{
@@ -49,8 +48,13 @@ function ModalPaymentDetail(props) {
                 }
             }
         )
-        .then(res => 
+        .then(res => {
             res.status === 200 && toast.success("Paiement Supprimé !")
+            setTimeout(() => {
+                window.location.reload()
+            }, 3000)
+            
+        } 
         )
         .catch(err =>
             toast.error(`Une erreur est générée ! ${err.status}`)

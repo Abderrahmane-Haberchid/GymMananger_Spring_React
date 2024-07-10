@@ -1,8 +1,10 @@
 package com.gymbackend.services;
 
 import com.gymbackend.dto.UserDto;
+import com.gymbackend.models.Membre;
 
 public interface UserService {
     UserDto findUserByEmail(String email);
-    boolean deletePaymentById(Long id, String email, Long membreId);
+    boolean deletePaymentFromUserAndMembre(Long id, String email, Long membreId);
+    void checkMembreStatus(Membre membre);
 }

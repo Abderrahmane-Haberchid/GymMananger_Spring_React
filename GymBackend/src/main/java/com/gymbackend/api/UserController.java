@@ -24,7 +24,6 @@ public class UserController {
             @PathVariable("email") String email,
             @PathVariable("membreId") Long membreId){
 
-        System.out.println("============="+id+"===================="+email);
-        return ResponseEntity.ok(userService.deletePaymentById(id, email, membreId));
+        return ResponseEntity.ok(userService.deletePaymentFromUserAndMembre(id, email, membreId));
     }
 }

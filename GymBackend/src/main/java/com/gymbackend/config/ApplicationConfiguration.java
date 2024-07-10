@@ -23,8 +23,6 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ApplicationConfiguration {
         private final UserRepository userRepository;
-        private final PaimentsRepository paimentsRepository;
-        private final MembreRepository membreRepository;
         @Bean
         UserDetailsService userDetailsService() {
             return username -> userRepository.findByEmail(username)

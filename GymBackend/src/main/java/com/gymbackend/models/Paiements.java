@@ -24,6 +24,7 @@ public class Paiements {
     private Double prix;
     private String type_abonnement;
     private String type_paiement;
+
     @ManyToOne
     @JoinColumn(name = "id_membre")
     @JsonIgnore

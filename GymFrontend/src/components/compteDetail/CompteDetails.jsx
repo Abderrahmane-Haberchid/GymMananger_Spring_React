@@ -172,9 +172,8 @@ function CompteDetails(props) {
                  <Link to=""
                      className="payments-btn"
                      onClick={changePayments}
-                     >Historique
+                     >Historique ({membre?.paiementsSet?.length})
                  </Link>
-                 
                 
              </div>
              <hr />
