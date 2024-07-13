@@ -19,9 +19,8 @@ export default function Login() {
 
   const onSubmitLogin = (dataLogin) => {
 
-    const loginData = JSON.stringify(dataLogin)
     axios.post("http://localhost:8081/api/v1/auth/login", 
-              loginData,
+              dataLogin,
               {
                 headers: 
                 {'content-Type': 'application/json'}
@@ -41,7 +40,7 @@ export default function Login() {
                     
           })
           .catch(errors => {
-            errors.response.status === 403 && toast.error("Login or Password incorrect !")
+            errors.response.status === 403 ? toast.error("Login or Password incorrect !") : toast.error("An error has occured ! "+ errors.response.status) 
           })
 }
 

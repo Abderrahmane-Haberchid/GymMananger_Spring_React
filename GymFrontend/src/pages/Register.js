@@ -15,11 +15,8 @@ function Register() {
 
     const onSubmitRegister = (dataRegister) => {
 
-        const resgiterData = JSON.stringify(dataRegister)
-       // const signIn = useSignIn()
-
         axios.post("http://localhost:8081/api/v1/auth/register", 
-                  resgiterData,
+                  dataRegister,
                   {headers: {'content-Type': 'application/json'}}
                   )
               .then(res => {

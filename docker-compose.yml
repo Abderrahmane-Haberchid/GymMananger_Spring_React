@@ -1,16 +1,19 @@
-version: '1'
+version: '2'
 services:
-  database-postgres:
+  database:
     image: postgres:14-alpine
+    container_name: database
     ports:
       - 5432:5432
     volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
+      - /Users/abderahman/Developer/postgres_datapart:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=root123
-      - POSTGRES_USER=postgres
       - POSTGRES_DB=gym_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
     platform: linux/amd64
+    restart: always
+
 
   gym-backend:
       build:
@@ -19,6 +22,8 @@ services:
       ports:
         - "8081:8081"
       platform: linux/amd64
+      depends_on:
+        - database
 
   gym-frontend:
       build:
@@ -27,3 +32,10 @@ services:
       ports:
         - "3000:3000"
       platform: linux/amd64  
+      depends_on:
+        - gymbackend
+
+
+
+
+
