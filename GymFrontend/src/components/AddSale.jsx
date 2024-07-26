@@ -1,5 +1,5 @@
 
-import { React } from 'react'
+import { React, useContext } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
@@ -7,16 +7,20 @@ import toast from 'react-hot-toast'
 import { useState } from 'react'
 import { decodeToken } from 'react-jwt'
 import '../css/supplements.css';
+import SharedState from '../context/MembreContext'
 
 function AddSale(props) {
 
+    const { setSaleAdded } = useContext(SharedState)
+
     const [listItem, setListItem] = useState("")
     const [itemType, setItemType] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const supplementsList = ["Proteines", "Gainer", "Vitamines", "Créatine", "Pré-Workout"]
     const proteinType = ["Whey", "Whey ISO", "Whey Hydro", "Caséine"]
     const gainerType = ["Mass Gainer", "Vitargo", "Max Gainer", "CARBS"]
-    const vitamineType = ["MuultiVitamine", "Omega 3", "Vitamine A", "Zinc", "Vitamine E"]
+    const vitamineType = ["MultiVitamine", "Omega 3", "Vitamine A", "Zinc", "Vitamine E"]
     const creatineType = ["Monohydrate", "Monohydrate Micronized", "Normal"]
     const preworkoutType = ["C4", "MAX POWER", "5000MG", "HULK"]
     const marque = ["BIOTECH USA", "MUSCLE TECH", "ISO 100", "GOLD STANDARD", "MUSCLETECH Platinum"]
@@ -24,7 +28,6 @@ function AddSale(props) {
     const {
         register,
         handleSubmit,
-        reset,
         formState: {errors}
       } = useForm()
 
@@ -44,8 +47,8 @@ function AddSale(props) {
      const decoded = decodeToken(token)
 
      const onSubmit = async (dataset) =>{
-
-           await axios.post(`http://localhost:8081/api/v1/sale/add/${decoded.sub}`, dataset,
+        setLoading(true)
+           await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/sale/add/${decoded.sub}`, dataset,
                          {
                             headers: {
                                 'Content-Type': 'application/json',
@@ -54,12 +57,9 @@ function AddSale(props) {
                         }
                         )
                         .then(response => {
-
                         response.status === 200 && toast.success("Vente Validée !") 
-
-                              setTimeout(() => {
-                                window.location.reload()
-                              }, 2000)  
+                        setSaleAdded(prevState => !prevState)    
+                        setLoading(false)
                        })             
                        .catch(err => {
                             toast.error("Une erreur s'est produite") 
@@ -169,7 +169,9 @@ function AddSale(props) {
         </div>
     </div>
         <div className='col mb-3'>
-                 <button className='btn btn-success valide-sale-btn'>Valider la vente</button>
+                 <button className='btn btn-success valide-sale-btn'>
+                    {loading ? '... Loading' : 'Valider ma vente'}
+                </button>
         </div>
     
         </form> 

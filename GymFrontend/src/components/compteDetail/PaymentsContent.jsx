@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './payment.css'
 import DataTable from 'react-data-table-component'
 import axios from 'axios'
 import LoaderTablePayments from '../LoaderTablePayments'
 import deleteIcon from './deleteIcon.png'
 import ModalPaymentDetail from './ModalPaymentDetail'
+import SharedState from '../../context/MembreContext'
 
 
 function PaymentsContent(props) {
+
+    const {membreUpdated} = useContext(SharedState)
 
     const token = localStorage.getItem('token')
 
@@ -23,13 +26,14 @@ function PaymentsContent(props) {
     const showPaymentDetails = (id) => {
         setShowModal(true)
         setPaymentId(id)
+        console.log(showModal)
     }  
 
     const id = props.membreId
 
 
     const fetchdata = async () =>{
-        await axios.get(`http://localhost:8081/api/v1/membres/id/${id}`,
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/id/${id}`,
                         {
                             headers: {
                                 'Content-Type': 'Application/json',
@@ -45,8 +49,9 @@ function PaymentsContent(props) {
 
     useEffect(() => {            
        fetchdata()        
-    }, [])
-    
+    }, [membreUpdated])
+
+    console.log(membreUpdated)
     
     const columns = [
         {
@@ -128,11 +133,8 @@ function PaymentsContent(props) {
          progressComponent={<LoaderTablePayments />}
          fixedHeaderScrollHeight="350px"   
          customStyles={customStyles} 
-
         responsive
         highlightOnHover
-       // onRowClicked={showPaymentDetails}
-      
         />
         
        </center>  

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './actionsContent.css';
 
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import toast from 'react-hot-toast';
+import SharedState from '../../context/MembreContext';
 
 function ActionsContent(props) {
+
+    const { setMembreUpdated, membreUpdated } = useContext(SharedState)
 
     const [membre, setMembre] = useState([])
     const [pending, setPending] = useState(true)
@@ -16,7 +19,7 @@ function ActionsContent(props) {
     const loadMembre = async () => {
         const token = localStorage.getItem("token")
 
-        await axios.get(`http://localhost:8081/api/v1/membres/id/${id}`,
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/id/${id}`,
                         {
                         headers: {
                             "Content-Type": "Application/json",
@@ -32,7 +35,7 @@ function ActionsContent(props) {
 
     useEffect(() => {
         loadMembre()
-    }, [])
+    }, [membreUpdated])
     
         
     const {
@@ -46,7 +49,7 @@ function ActionsContent(props) {
             const jsonData = JSON.stringify(data)
             const token = localStorage.getItem('token')
             
-            await axios.put(`http://localhost:8081/api/v1/membres/edit/${id}`, 
+            await axios.put(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/edit/${id}`, 
                                 jsonData, 
                                 {
                                     headers: {
@@ -56,9 +59,7 @@ function ActionsContent(props) {
                                 })       
                     .then(response => {
                         response.status === 200 && toast.success('Membre modifié!')  
-                        setTimeout(() => {
-                            window.location.reload()
-                        }, 1000)                         
+                        setMembreUpdated(prevState => !prevState)                       
                     })
                     .catch(errors => {
                         errors.data && toast.error("Une erreur s'est produite."+ errors.response.status)

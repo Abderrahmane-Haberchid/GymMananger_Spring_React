@@ -1,6 +1,6 @@
 import '../css/usercard.css';
 import '../css/compte.css';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import avatar from '../img/avatar.jpg'
 import Loader from './Loader';
@@ -8,8 +8,11 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import CompteDetails from './compteDetail/CompteDetails';
 import { decodeToken } from "react-jwt";
+import SharedState from '../context/MembreContext';
 
 function UserCard() {
+
+    const { membreUpdated } = useContext(SharedState)
 
     const [users, setUsers] = useState({})
     const [showCompte, setShowCompte] = useState(false)
@@ -32,7 +35,7 @@ function UserCard() {
 
       const dataLoader = async () => {
 
-              await axios.get(`http://localhost:8081/api/v1/user/${decoded.sub}`,
+              await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decoded.sub}`,
                               {
                                 headers: {
                                 'Content-Type': 'application/json',
@@ -55,7 +58,9 @@ function UserCard() {
       useEffect(() => {
           dataLoader()
         
-      }, [])
+      }, [membreUpdated])
+
+
       const handleSearch = (e) => {
         setSearch(e.target.value)         
        }

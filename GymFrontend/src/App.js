@@ -8,22 +8,37 @@ import Sidebar from './components/Sidebar'
 import Statis from './pages/Statis';
 import Membres from './pages/Membres';
 import Supplements from './pages/Supplemets';
+import Sales from './pages/Sales';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Register from './pages/Register';
 import PrivateRoutes from './utils/PrivateRoutes';
 import CheckRoute from './utils/CheckRoute';
+import SharedState from './context/MembreContext';
+import { useState } from 'react';
 
 function App() {
   
   const token = localStorage.getItem("token")
 
-  return (
+  const [membreAdded, setMembreAdded] = useState(false)
+  const [membreUpdated, setMembreUpdated] = useState(false)
+  const [productAdded, setProductAdded] = useState(false)
+  const [saleAdded, setSaleAdded] = useState(false)
 
-    
+  return (
 <>
-      <div><Toaster/></div>
       
+<SharedState.Provider value={{
+        membreAdded,
+        setMembreAdded,
+        membreUpdated,
+        setMembreUpdated,
+        productAdded,
+        setProductAdded,
+        saleAdded,
+        setSaleAdded
+}}>
 
     <Router>
 
@@ -44,12 +59,17 @@ function App() {
               <Route path="/statistiques" element={<Statis />} />
               <Route path="/membres" element={<Membres />} />
               <Route path="/supplements" element={<Supplements />} />
+              <Route path="/sales" element={<Sales />} />
               <Route path="/admin" element={<Admin />} />
         </Route> 
         
       </Routes>
       </div>
     </Router>  
+
+</SharedState.Provider>
+
+    <div><Toaster/></div>
     </>
   );
 }

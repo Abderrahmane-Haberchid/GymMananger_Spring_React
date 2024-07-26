@@ -80,10 +80,6 @@ function Sidebar() {
     } 
 
 
-    
-
-    
-
   return (
     <>
     <div className="sidebar" id="sidebarid">
@@ -107,6 +103,27 @@ function Sidebar() {
                         <span className='text'>Acceuil</span>
                     </Link>
                 </li>
+
+                <li>
+                    <Link to='/membres' className='links'>        
+                        <i className='bx bx-user-pin bx-sm icon'></i>    
+                        <span className='text'>Membres</span>
+                    </Link>
+                </li>
+
+                <li>
+                    <Link to='/supplements' className='links'>
+                        <i className='bx bx-baguette bx-sm icon'></i>    
+                        <span className='text'>Suppléments</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/sales' className='links'>
+                        <i className='bx bx-baguette bx-sm icon'></i>    
+                        <span className='text'>Ventes</span>
+                    </Link>
+                </li>
+
                 <li>
                 
                     <Link to='/statistiques' className='links'>
@@ -114,18 +131,7 @@ function Sidebar() {
                         <span className='text'>Statistique</span>
                     </Link>
                 </li>
-                <li>
-                    <Link to='/membres' className='links'>        
-                        <i className='bx bx-user-pin bx-sm icon'></i>    
-                        <span className='text'>Membres</span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/supplements' className='links'>
-                        <i className='bx bx-baguette bx-sm icon'></i>    
-                        <span className='text'>Suppléments</span>
-                    </Link>
-                </li>
+                
                 <li>
                     <Link to='/admin' className='links'>
                         <i className='bx bx-lock-alt  bx-sm icon'></i>    

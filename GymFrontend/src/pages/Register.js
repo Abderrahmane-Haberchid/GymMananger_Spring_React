@@ -15,7 +15,7 @@ function Register() {
 
     const onSubmitRegister = (dataRegister) => {
 
-        axios.post("http://localhost:8081/api/v1/auth/register", 
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/register`, 
                   dataRegister,
                   {headers: {'content-Type': 'application/json'}}
                   )

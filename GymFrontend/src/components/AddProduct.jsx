@@ -1,5 +1,5 @@
 
-import { React } from 'react'
+import { React, useContext } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
@@ -7,12 +7,15 @@ import toast from 'react-hot-toast'
 import { useState } from 'react'
 import { decodeToken } from 'react-jwt'
 import '../css/supplements.css';
+import SharedState from '../context/MembreContext'
 
 function AddProducts(props) {
 
+    const { setProductAdded } = useContext(SharedState)
+
     const [listItem, setListItem] = useState("")
     const [itemType, setItemType] = useState("")
-    const [quantity, setQuantity] = useState(1)
+    const [loading, setLoading] = useState(false)
 
     const supplementsList = ["Protéines", "Gainer", "Vitamines", "Créatine", "Pré-Workout"]
     const proteinType = ["Whey", "Whey ISO", "Whey Hydro", "Caséine"]
@@ -39,9 +42,6 @@ function AddProducts(props) {
      const handleSelectedType = (e) => {
         setItemType(e.target.value)
      }
-     const handleQuantityChange = (e) => {
-        setQuantity(e.target.value)
-     }
 
      // Getting user email from jwt
      const token = localStorage.getItem("token")
@@ -49,8 +49,9 @@ function AddProducts(props) {
 
      //submitting form
      const submitForm = async (data) => {
-        console.log(data)
-           await axios.post(`http://localhost:8081/api/v1/supplements/add/${decodedToken.sub}`, data,
+           setLoading(true) 
+
+           await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/supplements/add/${decodedToken.sub}`, data,
                         {
                             headers: {
                                 "Content-Type" : "application/json" ,
@@ -60,9 +61,8 @@ function AddProducts(props) {
                     ).then((res) =>{
 
                             res.status === 200 && toast.success("Produit ajouté au stock !")
-                            setTimeout(() => {
-                                    window.location.reload()
-                            }, 2000) 
+                            setProductAdded(prevState => !prevState)
+                            setLoading(false)
                     })
                     .catch((error) => {
                             toast.error("Une erreur est génerée ! Verifier votre internet")
@@ -159,7 +159,6 @@ function AddProducts(props) {
         <div className="col">
             <label for="quantite" className='col-form-label'> Quantité: </label>
              <input {...register("quantity", {required: "Quantité Requise"})}
-                    onChange={handleQuantityChange}
                     type='number' 
                     className='form-control'
                     id="quantite"
@@ -188,9 +187,11 @@ function AddProducts(props) {
         </div>
     </div>
         <div className='submit-btn mt-4 mb-4'>
-                 <button className='btn btn-outline-primary' style={{color: "white"}}>
-                    {quantity == 1 && "Ajouter Ce Produit"}
-                     {quantity > 1 && "Ajouter Ces Produits"}
+                 <button 
+                        className='btn btn-outline-primary' 
+                        style={{color: "white"}}
+                        disabled={loading}>
+                     {loading ? '...Loading' : 'Ajouter Produit'}
                  </button>
         </div>
         </form> 

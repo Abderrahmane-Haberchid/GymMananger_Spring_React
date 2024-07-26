@@ -1,4 +1,4 @@
-version: '2'
+#version: '2.28.1'
 services:
   database:
     image: postgres:14-alpine
@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - /Users/abderahman/Developer/postgres_datapart:/var/lib/postgresql/data
+      - /home/ec2-user/postgres_datapart:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gym_db
       - POSTGRES_USER=postgres
@@ -17,7 +17,7 @@ services:
 
   gym-backend:
       build:
-        context: ./gymbackend
+        context: ./GymBackend
         dockerfile: Dockerfile
       ports:
         - "8081:8081"
@@ -27,13 +27,13 @@ services:
 
   gym-frontend:
       build:
-        context: ./gymfrontend
+        context: ./GymFrontend
         dockerfile: Dockerfile
       ports:
-        - "3000:3000"
+        - "8000:80"
       platform: linux/amd64  
       depends_on:
-        - gymbackend
+        - gym-backend
 
 
 

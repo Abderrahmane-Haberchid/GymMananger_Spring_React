@@ -14,7 +14,7 @@ function ProfileContent(props) {
 
     const fetchUser = async () => {
 
-        await axios.get(`http://localhost:8081/api/v1/membres/id/${id}`,
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/id/${id}`,
                           {
                             headers: {
                               'Content-Type': 'Application/json',

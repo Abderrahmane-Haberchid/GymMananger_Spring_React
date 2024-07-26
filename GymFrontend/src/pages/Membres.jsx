@@ -1,6 +1,6 @@
 import '../css/membres.css'
 
-import { useState, useEffect, React } from 'react'
+import { useState, useEffect, React, useContext } from 'react'
 import DataTable from 'react-data-table-component'        
 import axios from 'axios'
 import TableLoader from '../components/TableLoader'
@@ -9,8 +9,11 @@ import CompteDetails from '../components/compteDetail/CompteDetails'
 import AddMembreForm from '../components/AddMembreForm'
 import toast from 'react-hot-toast'
 import { decodeToken } from "react-jwt";
+import SharedState from '../context/MembreContext'
 
 function Membres() {    
+
+    const { membreAdded, membreUpdated } = useContext(SharedState)
 
     const [rows, setRows] = useState([])
     const [pending, setPending] = useState(true)
@@ -45,7 +48,7 @@ function Membres() {
 
         const decoded = decodeToken(token)
 
-        await axios.get(`http://localhost:8081/api/v1/user/${decoded.sub}`, config)
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decoded.sub}`, config)
                     .then(res =>{
                         setRows(res.data.membreSet.sort((a, b) => b.id_membre - a.id_membre))  
                         setPending(false)
@@ -73,7 +76,7 @@ function Membres() {
 
     useEffect(() => {           
        fetchdata() 
-    }, [])
+    }, [membreAdded, membreUpdated])
 
     
     {/*----------displaying add Form ------------*/}  

@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './actionsContent.css'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { decodeToken } from 'react-jwt'
+import SharedState from '../../context/MembreContext'
 
 function AddPayment(props) {
+
+    const {setMembreUpdated} = useContext(SharedState)
 
     const [payments, setPayments] = useState(false)
 
@@ -24,7 +27,7 @@ function AddPayment(props) {
     const onSubmit = async (data) => {
         const jsonData = JSON.stringify(data)
         
-        await axios.post(`http://localhost:8081/api/v1/membres/add_payment/${id}/${decodedToken.sub}`,
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/add_payment/${id}/${decodedToken.sub}`,
                                  jsonData, 
                                  {
                                     headers: {
@@ -35,9 +38,7 @@ function AddPayment(props) {
                 .then(response => {
                     response.status === 200 && toast.success("Paiement validé!")
                     console.log(data)
-                    setTimeout(() => {
-                        window.location.reload(true)
-                    }, 1000)
+                    setMembreUpdated(prevState => !prevState)
                 })
                 .catch(errors => {
                     errors.response.status === 400 && toast.error("Une erreur s'est produite!")
@@ -46,7 +47,7 @@ function AddPayment(props) {
     // Checking if this is a new membre 
    
     const isNewMembre = async () => {
-         await axios.get(`http://localhost:8081/api/v1/membres/id/${id}`, 
+         await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/id/${id}`, 
                        {
                         headers: {
                             'Content-Type': 'Application/json',

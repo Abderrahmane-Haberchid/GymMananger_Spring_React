@@ -1,4 +1,4 @@
-import { useState, React, useEffect } from 'react'
+import { useState, React, useEffect, useContext } from 'react'
 import axios from 'axios'
 import ProfileContent from './ProfileContent'
 import ActionsContent from './ActionsContent'
@@ -10,8 +10,12 @@ import { Link } from 'react-router-dom'
 import Dropzone from 'react-dropzone'
 import toast from 'react-hot-toast'
 import { ProgressBar } from 'react-bootstrap'
+import SharedState from '../../context/MembreContext'
 
 function CompteDetails(props) {
+
+    const {membreUpdated} = useContext(SharedState)
+
     const [progress, setProgress] = useState({started: false, pc: 0})
     
     const [membre, setMembre] = useState([])
@@ -65,7 +69,7 @@ function CompteDetails(props) {
         formData.append("file", image)
         setProgress((prevState) => ({...prevState, started: true}))
 
-            await axios.post(`http://localhost:8081/api/v1/membres/upload/${id}`, formData, 
+            await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/upload/${id}`, formData, 
             {
                 onUploadProgress: (eventProgress) => setProgress((prevState) => {
                     return {...prevState, pc: eventProgress.progress*100}
@@ -88,7 +92,7 @@ function CompteDetails(props) {
 
       const loadMembre = async () => {
                 
-        await axios.get(`http://localhost:8081/api/v1/membres/id/${id}`, 
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/id/${id}`, 
                     {
                         headers: {
                             "Content-Type": "Application/json",
@@ -111,7 +115,7 @@ function CompteDetails(props) {
             return {...previousState, started: false}
           })
 
-      }, [id])
+      }, [id, membreUpdated])
 
   return (
 

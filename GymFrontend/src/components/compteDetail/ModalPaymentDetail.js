@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import './actionsContent.css'
 import axios from 'axios'
@@ -6,8 +6,11 @@ import toast from 'react-hot-toast'
 import Spinner from 'react-bootstrap/Spinner';
 import { Button } from 'react-bootstrap';
 import { decodeToken } from 'react-jwt';
+import SharedState from '../../context/MembreContext';
 
 function ModalPaymentDetail(props) {
+
+    const { setMembreUpdated } = useContext(SharedState)
 
     const token = localStorage.getItem("token")
     const decodedToken = decodeToken(token)
@@ -15,14 +18,15 @@ function ModalPaymentDetail(props) {
 
     const [paymentDetail, setPaymentDetail] = useState({})
 
+    //Disabling Supprimer button after deleting the payment
+    const [disableBtn, setDisableBtn] = useState(false)
+
     let pId = props.paymentId == "" ? "" : props.paymentId
     let membreId = props.membreId
 
-    console.log(membreId)
-
     // Fetching payment By ID
     const fetchPaymentById = async () => {
-        await axios.get(`http://localhost:8081/api/v1/payments/all/${pId}`, 
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/payments/all/${pId}`, 
                 {
                     headers:{
                         "Content-Type": "Application/json",
@@ -40,7 +44,7 @@ function ModalPaymentDetail(props) {
     }
 
     const deletePaymentById = async () => {
-        await axios.delete(`http://localhost:8081/api/v1/user/deletePayment/id/${pId}/email/${decodedToken.sub}/membreId/${membreId}`,
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/user/deletePayment/id/${pId}/email/${decodedToken.sub}/membreId/${membreId}`,
             {
                 headers:{
                     "Content-Type": "Application/json",
@@ -50,10 +54,8 @@ function ModalPaymentDetail(props) {
         )
         .then(res => {
             res.status === 200 && toast.success("Paiement Supprimé !")
-            setTimeout(() => {
-                window.location.reload()
-            }, 3000)
-            
+            setMembreUpdated(prevState => !prevState)
+            setDisableBtn(true)
         } 
         )
         .catch(err =>
@@ -93,14 +95,14 @@ function ModalPaymentDetail(props) {
                             <input 
                                     type='text'
                                     className='abtInput-text'
-                                    value={paymentDetail.type_abonnement}
+                                    value={paymentDetail?.type_abonnement}
                                     disabled
                             />
                         </div>
                         
                         <div className='abtInput'>
                             <input type='text'
-                                   value={paymentDetail.type_paiement} 
+                                   value={paymentDetail?.type_paiement} 
                                    className='abtInput-text'
                                    disabled
                             />
@@ -108,7 +110,7 @@ function ModalPaymentDetail(props) {
                         <div className='abtInput'>
                             <input 
                                 type='text' 
-                                value={paymentDetail.prix}
+                                value={paymentDetail?.prix}
                                 className='abtInput-text' 
                                 disabled
                                 />    
@@ -119,7 +121,13 @@ function ModalPaymentDetail(props) {
             </div>
     </Modal.Body>
     <Modal.Footer>
-      <Button className='btn btn-danger' onClick={deletePaymentById}>Supprimer</Button>  
+      <Button 
+        className='btn btn-danger' 
+        onClick={deletePaymentById}
+        disabled = {disableBtn}
+        >
+            Supprimer
+        </Button>  
       <Button onClick={props.onHide}>Fermer</Button>
     </Modal.Footer>
   </Modal>

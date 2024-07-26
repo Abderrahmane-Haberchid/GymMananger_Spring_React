@@ -1,12 +1,15 @@
 
-import { React, useCallback, useState } from 'react'
+import { React,useContext } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { decodeToken } from "react-jwt"
+import SharedState from '../context/MembreContext'
 
 function AddMembreForm(props) {
+
+    const {setMembreAdded} = useContext(SharedState)
 
     const {
         register,
@@ -21,7 +24,7 @@ function AddMembreForm(props) {
         const decoded = decodeToken(token)
         const jsondata = JSON.stringify(data)
 
-        await axios.post(`http://localhost:8081/api/v1/membres/save/${decoded.sub}`, jsondata, 
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/save/${decoded.sub}`, jsondata, 
                          {
                             headers: {
                                     "Content-Type": "Application/json",
@@ -32,10 +35,13 @@ function AddMembreForm(props) {
 
                     .then(response =>{
                         response?.status === 200 && toast.success('Membre ajouté')
-                        reset()                        
-                        setTimeout(() => {
-                              window.location.reload()  
-                        }, 1500)
+                        reset()  
+
+                        // setTimeout(() => {
+                        //       window.location.reload()  
+                        // }, 1500)
+
+                        setMembreAdded(prevValue => !prevValue)
                     })  
                     .catch(errors => {
                         errors?.response?.status === 400 && toast.error("Adresse mail déjà existante !")
