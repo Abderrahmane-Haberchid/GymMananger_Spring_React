@@ -25,6 +25,8 @@ function App() {
   const [membreUpdated, setMembreUpdated] = useState(false)
   const [productAdded, setProductAdded] = useState(false)
   const [saleAdded, setSaleAdded] = useState(false)
+  const [saleDeleted, setSaleDeleted] = useState(false)
+  const [productDeleted, setProductDeleted] = useState(false)
 
   return (
 <>
@@ -37,7 +39,11 @@ function App() {
         productAdded,
         setProductAdded,
         saleAdded,
-        setSaleAdded
+        setSaleAdded,
+        productDeleted,
+        setProductDeleted,
+        saleDeleted,
+        setSaleDeleted
 }}>
 
     <Router>

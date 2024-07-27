@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Modal from 'react-bootstrap/Modal';
-import './actionsContent.css'
+import '../css/actionsContent.css'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import Spinner from 'react-bootstrap/Spinner';
 import { Button } from 'react-bootstrap';
 import { decodeToken } from 'react-jwt';
-import SharedState from '../../context/MembreContext';
+import SharedState from '../context/MembreContext';
 
-function ModalPaymentDetail(props) {
+function ModalDeletePayment(props) {
 
     const { setMembreUpdated } = useContext(SharedState)
 
@@ -37,13 +37,13 @@ function ModalPaymentDetail(props) {
                 setPaymentDetail(res.data)
                 setPending(false)
             }
-                   
             ).catch(err =>
                     toast.error(err.response.status)
             )
     }
 
     const deletePaymentById = async () => {
+        setDisableBtn(true)
         await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/user/deletePayment/id/${pId}/email/${decodedToken.sub}/membreId/${membreId}`,
             {
                 headers:{
@@ -55,7 +55,7 @@ function ModalPaymentDetail(props) {
         .then(res => {
             res.status === 200 && toast.success("Paiement Supprimé !")
             setMembreUpdated(prevState => !prevState)
-            setDisableBtn(true)
+            setDisableBtn(false)
         } 
         )
         .catch(err =>
@@ -126,7 +126,7 @@ function ModalPaymentDetail(props) {
         onClick={deletePaymentById}
         disabled = {disableBtn}
         >
-            Supprimer
+            {disableBtn ? '... Loading' : 'Supprimer'}
         </Button>  
       <Button onClick={props.onHide}>Fermer</Button>
     </Modal.Footer>
@@ -134,5 +134,5 @@ function ModalPaymentDetail(props) {
   )
 }
 
-export default ModalPaymentDetail
+export default ModalDeletePayment
 

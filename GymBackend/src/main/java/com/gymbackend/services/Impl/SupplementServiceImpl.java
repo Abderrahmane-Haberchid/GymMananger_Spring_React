@@ -48,4 +48,14 @@ public class SupplementServiceImpl implements SupplementService {
         return supplementsDto;
     }
 
+    @Override
+    public boolean deleteProduct(long id, String userEmail) {
+        var user = userRepository.findByEmail(userEmail).get();
+        Supplements supplements = supplementsRepository.findById(id).get();
+        user.getSuppSet().remove(supplements);
+        userRepository.save(user);
+
+        return !user.getSuppSet().contains(supplements);
+    }
+
 }

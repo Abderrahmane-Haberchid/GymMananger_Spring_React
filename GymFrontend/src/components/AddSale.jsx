@@ -69,7 +69,7 @@ function AddSale(props) {
 
   return (
    
-     <Offcanvas show={props.display} onHide={closeForm} placement='end' scroll="true" backdrop="true" className="offCanvas"> 
+     <Offcanvas show={props.display} onHide={closeForm} placement='end' scroll="true" className="offCanvas offCanvas-end"> 
      <div className='compte-container'>
          <Offcanvas.Header closeButton>
            <Offcanvas.Title>Valider une vente</Offcanvas.Title>

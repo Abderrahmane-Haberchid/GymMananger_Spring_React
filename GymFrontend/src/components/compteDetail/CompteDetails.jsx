@@ -5,7 +5,7 @@ import ActionsContent from './ActionsContent'
 import PaymentsContent from './PaymentsContent'
 import AddPayment from './AddPayment'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import avatar from './avatar.jpg'
+import avatar from '../../img/avatar.jpg'
 import { Link } from 'react-router-dom'
 import Dropzone from 'react-dropzone'
 import toast from 'react-hot-toast'
@@ -27,11 +27,7 @@ function CompteDetails(props) {
     const [showProfile, setShowProfile] = useState(true);
     const [showActions, setShowActions] = useState(false);
     const [showPayments, setShowPayments] = useState(false);
-    const [addPayment, setAddPayment] = useState(false);
-    
-    // const handleClose = () => {
-    //     props.setDisplay(false)
-    // }       
+    const [addPayment, setAddPayment] = useState(false);    
     
     
     const changeProfile = () => {
@@ -59,7 +55,7 @@ function CompteDetails(props) {
         setShowPayments(false)  
       }
       
-      let id = props.idmembre
+      let id = props?.idmembre
       const token = localStorage.getItem("token")
 
       
@@ -81,12 +77,10 @@ function CompteDetails(props) {
             }
             ).then(res => {
                 toast.success("Image chargé !")
-                setTimeout(() =>{
-                  //  window.refresh()
-                }, 3000)
+               
             })
             .catch(errors => {
-                toast.error(errors?.response?.status)
+                toast.error('An error has occured' + errors?.response?.status)
             })
       }
 
@@ -104,7 +98,7 @@ function CompteDetails(props) {
                     setMembre(response.data)
                })
                .catch(errors =>{
-                  //  toast.error(errors?.response?.status +" "+ errors?.response?.message)
+                  // toast.error('Une erreur a été générée : ' + errors?.response?.status)
                })
 }
 
@@ -119,8 +113,7 @@ function CompteDetails(props) {
 
   return (
 
-     <Offcanvas {...props} placement='end'
-                className="offCanvas offCanvas-end">
+     <Offcanvas {...props} placement='end' className="offCanvas offCanvas-end">
         
      <div className='compte-container'>
      {progress.started && <ProgressBar now={progress.pc} label={progress.pc} />}

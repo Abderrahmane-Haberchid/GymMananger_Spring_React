@@ -9,4 +9,6 @@ public interface SupplementService {
      List<Supplements> findByType(String type);
 
      SupplementsDto addProduct(String email, SupplementsDto supplementsDto);
+
+    boolean deleteProduct(long id, String userEmail);
 }

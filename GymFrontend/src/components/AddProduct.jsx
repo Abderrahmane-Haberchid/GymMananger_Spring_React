@@ -31,11 +31,6 @@ function AddProducts(props) {
         formState: {errors}
       } = useForm()
 
-
-     const closeForm = () =>{
-        props.setDisplay(false)
-     }
-
      const handleSelectedItem = (e) => {
         setListItem(e.target.value)
      }
@@ -75,11 +70,12 @@ function AddProducts(props) {
      
   return (
    
-     <Offcanvas show={props.display} onHide={closeForm} placement='end' scroll="true" backdrop="true" className="offCanvas"> 
+     <Offcanvas {...props} placement='end' scroll="true"  className="offCanvas offCanvas-end"> 
      <div className='compte-container'>
          <Offcanvas.Header closeButton>
            <Offcanvas.Title>Ajouter des produits</Offcanvas.Title>
          </Offcanvas.Header>
+         <Offcanvas.Body>
         <div className="form-container">
 
         <form onSubmit={handleSubmit(submitForm)}>
@@ -196,7 +192,7 @@ function AddProducts(props) {
         </div>
         </form> 
         </div>       
-           
+        </Offcanvas.Body>     
      </div>        
      </Offcanvas>
   )

@@ -10,23 +10,38 @@ import DataTable from 'react-data-table-component'
 import axios from 'axios'
 import SharedState from '../context/MembreContext';
 import deleteIcon from '../img/deleteIcon.png'
+import ModalDeleteProduct from '../modals/ModalDeleteProduct';
 
 function Supplements() {
 
-  const {productAdded} = useContext(SharedState)
+  const {productAdded, productDeleted} = useContext(SharedState)
 
-  const [showAddProductForm, setShowAddProductForm] = useState(false)
+  // Modal Confirmation to delete product, show, close
+  const [showModal, setShowModal] = useState(false);
+  const [product, setProduct] = useState({
+    id: '', 
+    nom: ''
+  });
+
+  const handleDeleteProduct = (id, product) => {
+      setShowModal(true)
+      setProduct({
+        id: id,
+        nom: product
+      })
+  }
+  const handleCloseModal = () => setShowModal(false);
+
+  // ===================================================
+
   const [supps, setSupps] = useState([])
   const [filter, setFilter] = useState('')
   const [pending, setPending] = useState(true)
+  const [show, setShow] = useState(false);
 
-  let proteineCount, gainerCount, vitamineCount, creatineCount
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-  // Handling add products button
-
-  const handleAddProduct = () => {
-    setShowAddProductForm(true)
-}
   
 // Getting the token ready to send 
   const token = localStorage.getItem("token")
@@ -50,24 +65,26 @@ function Supplements() {
             toast.error("Une erreur s'est produite")
         })
   }
-// Counting how many item we got for each type of supps
-proteineCount = supps.filter((sup) => {
-  return sup.nom.includes("Protéines")
-})  
-gainerCount = supps.filter((sup) => {
-  return sup.nom.includes("Gainer")
-}) 
-creatineCount = supps.filter((sup) => {
-  return sup.nom.includes("Créatine")
-}) 
-vitamineCount = supps.filter((sup) => {
-  return sup.nom.includes("Vitamine")
-}) 
+
+
+      // Counting how many item we got for each type of supps
+      const proteineCount = supps.filter((sup) => {
+        return sup.nom.includes("Protéines")
+      })  
+      const gainerCount = supps.filter((sup) => {
+        return sup.nom.includes("Gainer")
+      }) 
+      const creatineCount = supps.filter((sup) => {
+        return sup.nom.includes("Créatine")
+      }) 
+      const vitamineCount = supps.filter((sup) => {
+        return sup.nom.includes("Vitamine")
+      }) 
 
 
   useEffect(() =>{
     fetchSupp()
-  }, [productAdded])
+  }, [productAdded, productDeleted])
 
   // Filtering products in table depending on user's selection Proteine, Vitamine, Gainer or Creatine
   const filteredProducts = 
@@ -127,7 +144,7 @@ vitamineCount = supps.filter((sup) => {
                           data-bs-toggle="modal" 
                           src={deleteIcon} 
                           style={{height: '22px', width: '22px', cursor: 'pointer'}}
-                          onClick={() => {}}
+                          onClick={() => {handleDeleteProduct(row.id, row.nom)}}
                         />,
     }
     
@@ -307,7 +324,7 @@ const setProductsTable = () => {
     <div className='wrapperS'>
 
     <div className='sup-div'>
-            <button className='btn btn-outline-primary' onClick={handleAddProduct}>
+            <button className='btn btn-outline-primary' style={{color:'var(--text-color)', borderBlockStyle: '2px white'}} onClick={handleShow}>
                 <i class="fa-solid fa-plus md-3 fa-sm"></i>  Ajouter Produit
             </button>
     </div>
@@ -389,9 +406,13 @@ const setProductsTable = () => {
                 Clicked
                 />
       </div>
-    <AddProduct display={showAddProductForm} setDisplay={setShowAddProductForm} />
+    <AddProduct show={show} onHide={handleClose} />
     
-
+    <ModalDeleteProduct
+        product= {product}
+        show= {showModal}
+        close= {handleCloseModal}
+    />
     </div>  
 
     

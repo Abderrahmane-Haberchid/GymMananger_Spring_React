@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './payment.css'
+import '../../css/payment.css'
 import DataTable from 'react-data-table-component'
 import axios from 'axios'
 import LoaderTablePayments from '../LoaderTablePayments'
-import deleteIcon from './deleteIcon.png'
-import ModalPaymentDetail from './ModalPaymentDetail'
+import deleteIcon from '../../img/deleteIcon.png'
+import ModalDeletePayment from '../../modals/ModalDeletePayment'
 import SharedState from '../../context/MembreContext'
 
 
@@ -116,7 +116,7 @@ function PaymentsContent(props) {
 
     <div className='payments-table'>
 
-        <ModalPaymentDetail 
+        <ModalDeletePayment 
                     show={showModal} 
                     onHide={handleClose} 
                     handleClose={handleClose} 

@@ -9,7 +9,11 @@ const SharedState = createContext({
     productAdded: false,
     setProductAdded: () => {},
     saleAdded: false,
-    setSaleAdded: () => {}
+    setSaleAdded: () => {},
+    productDeleted: '',
+    setProductDeleted: () => {},
+    saleDeleted: '',
+    setSaleDeleted: () => {}
 })
 
 export default SharedState;

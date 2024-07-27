@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './actionsContent.css'
+import '../../css/actionsContent.css'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'

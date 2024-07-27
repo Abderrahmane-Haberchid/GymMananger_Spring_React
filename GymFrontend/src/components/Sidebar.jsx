@@ -119,7 +119,7 @@ function Sidebar() {
                 </li>
                 <li>
                     <Link to='/sales' className='links'>
-                        <i className='bx bx-baguette bx-sm icon'></i>    
+                        <i className='bx bx-money-withdraw bx-sm icon'></i>  
                         <span className='text'>Ventes</span>
                     </Link>
                 </li>

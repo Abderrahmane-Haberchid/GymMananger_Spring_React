@@ -102,9 +102,8 @@
     justify-content: center;
 }
 #td-payment-nok{
-    background-color: #990000;
-    background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);
-    color: var(--text-color);
+    background: rgba(242, 38, 19, 0.9);
+    color: white;
     font-size: 15px;
     font-weight: 500;
     width: 80px;
@@ -114,8 +113,8 @@
     padding-right: 8px;
 }
 #td-payment{
-    background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
-    color: var(--text-color);
+    background: rgba(63, 195, 128, 0.9);
+    color: white;
     font-size: 15px;
     font-weight: 500;
     width: 80px;
