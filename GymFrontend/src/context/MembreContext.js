@@ -6,6 +6,8 @@ const SharedState = createContext({
     setMembreAdded: () => {},
     membreUpdated:false,
     setMembreUpdated: () => {}, 
+    membreDeleted:false,
+    setMembreDeleted: () => {}, 
     productAdded: false,
     setProductAdded: () => {},
     saleAdded: false,

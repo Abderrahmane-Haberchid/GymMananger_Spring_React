@@ -27,6 +27,7 @@ function App() {
   const [saleAdded, setSaleAdded] = useState(false)
   const [saleDeleted, setSaleDeleted] = useState(false)
   const [productDeleted, setProductDeleted] = useState(false)
+  const [membreDeleted, setMembreDeleted] = useState(false)
 
   return (
 <>
@@ -36,6 +37,8 @@ function App() {
         setMembreAdded,
         membreUpdated,
         setMembreUpdated,
+        membreDeleted,
+        setMembreDeleted,
         productAdded,
         setProductAdded,
         saleAdded,

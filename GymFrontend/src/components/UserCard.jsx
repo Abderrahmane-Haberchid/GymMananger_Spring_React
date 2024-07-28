@@ -12,7 +12,7 @@ import SharedState from '../context/MembreContext';
 
 function UserCard() {
 
-    const { membreUpdated } = useContext(SharedState)
+    const { membreUpdated, membreDeleted } = useContext(SharedState)
 
     const [users, setUsers] = useState({})
     const [showCompte, setShowCompte] = useState(false)
@@ -58,7 +58,7 @@ function UserCard() {
       useEffect(() => {
           dataLoader()
         
-      }, [membreUpdated])
+      }, [membreUpdated, membreDeleted])
 
 
       const handleSearch = (e) => {
@@ -108,8 +108,14 @@ function UserCard() {
                             />
                     {user.statut === "Paid" && <i className='bx bx-checkbox-checked bx-md payment-state-ok' ></i>}
                     {user.statut === "Unpaid" && <i className="fa-solid fa-triangle-exclamation bx-sm payment-state-nok"></i>}
+
+                    {user.state === "Deleted" && user.statut === "Bundled" &&
+                          <i className="fa-solid fa-trash-can fa-xl payment-state-nok"></i>}
                     
-                    {user.statut === "Bundled" && <i className="fa-solid fa-ban fa-lg payment-state-nok"></i>}
+                    {user.state === "Actif" && user.statut === "Bundled" && 
+                          <i className="fa-solid fa-ban fa-lg payment-state-nok"></i> 
+                    }
+                
                 </li>
                 
                 <li>

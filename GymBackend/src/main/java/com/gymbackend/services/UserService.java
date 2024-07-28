@@ -7,4 +7,8 @@ public interface UserService {
     UserDto findUserByEmail(String email);
     boolean deletePaymentFromUserAndMembre(Long id, String email, Long membreId);
     void checkMembreStatus(Membre membre);
+
+    boolean deleteMembre(String membreEmail);
+
+    boolean activateMembre(String membreEmail);
 }

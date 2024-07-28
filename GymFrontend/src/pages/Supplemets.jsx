@@ -97,6 +97,11 @@ function Supplements() {
   const columns = [
         
     {
+        name: '',
+        selector: row => row.id,
+        sortable: true
+    },
+    {
         name: "Nom",
         selector: row => row.nom,    
         sortable: true,
@@ -412,6 +417,7 @@ const setProductsTable = () => {
         product= {product}
         show= {showModal}
         close= {handleCloseModal}
+        setShow = {setShowModal}
     />
     </div>  
 

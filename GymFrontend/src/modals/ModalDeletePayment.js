@@ -3,8 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import '../css/actionsContent.css'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import Spinner from 'react-bootstrap/Spinner';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { decodeToken } from 'react-jwt';
 import SharedState from '../context/MembreContext';
 
@@ -126,7 +125,9 @@ function ModalDeletePayment(props) {
         onClick={deletePaymentById}
         disabled = {disableBtn}
         >
-            {disableBtn ? '... Loading' : 'Supprimer'}
+            {disableBtn ? 
+                <div> <Spinner animation="border" size="sm" as="span" /> <span>Loading...</span> </div> 
+                : 'Supprimer'}
         </Button>  
       <Button onClick={props.onHide}>Fermer</Button>
     </Modal.Footer>

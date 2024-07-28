@@ -79,6 +79,21 @@ public class UserServiceImpl implements UserService {
         membreRepository.save(membre);
 
     }
+    @Override
+    public boolean deleteMembre(String membreEmail) {
+        Membre membre = membreRepository.findByEmail(membreEmail).get();
+        membre.setState("Deleted");
+        membre.setStatut("Bundled");
+        membreRepository.save(membre);
+        return true;
+    }
+    @Override
+    public boolean activateMembre(String membreEmail) {
+        Membre membre = membreRepository.findByEmail(membreEmail).get();
+        membre.setState("Actif");
+        membreRepository.save(membre);
+        return true;
+    }
 
 
 }

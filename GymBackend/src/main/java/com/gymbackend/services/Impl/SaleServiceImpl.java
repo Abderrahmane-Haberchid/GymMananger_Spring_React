@@ -36,4 +36,16 @@ public class SaleServiceImpl implements SaleService {
         userRepository.save(user);
         return saleDto;
     }
+
+    @Override
+    public boolean deleteSale(long id, String userEmail) {
+
+        User user = userRepository.findByEmail(userEmail).get();
+        Sale sale = saleRepository.findById(id).get();
+
+        user.getSaleSet().remove(sale);
+        userRepository.save(user);
+
+        return !user.getSaleSet().contains(sale);
+    }
 }

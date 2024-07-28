@@ -1,30 +1,33 @@
 
-import { React,useContext } from 'react'
+import { React,useContext, useState } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { decodeToken } from "react-jwt"
 import SharedState from '../context/MembreContext'
+import { Spinner } from 'react-bootstrap'
 
 function AddMembreForm(props) {
 
     const {setMembreAdded} = useContext(SharedState)
+    const [isLoading, setIsLoading] = useState(false)
 
     const {
         register,
         handleSubmit,
         reset,
-        formState: {isLoading, errors}
+        formState: {errors}
       } = useForm()
 
      const onSubmit = async (data) => {   
+
+        setIsLoading(true)
         
         const token = localStorage.getItem("token")
         const decoded = decodeToken(token)
-        const jsondata = JSON.stringify(data)
 
-        await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/save/${decoded.sub}`, jsondata, 
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/save/${decoded.sub}`, data, 
                          {
                             headers: {
                                     "Content-Type": "Application/json",
@@ -35,29 +38,27 @@ function AddMembreForm(props) {
 
                     .then(response =>{
                         response?.status === 200 && toast.success('Membre ajouté')
-                        reset()  
-
-                        // setTimeout(() => {
-                        //       window.location.reload()  
-                        // }, 1500)
-
+                        reset()
                         setMembreAdded(prevValue => !prevValue)
+                        setIsLoading(false)
+                        props?.setDisplay(false)
                     })  
                     .catch(errors => {
-                        errors?.response?.status === 400 && toast.error("Adresse mail déjà existante !")
-                        toast.error(errors?.message)
+                        errors?.response?.status === 502 ? toast.error("Adresse mail déjà existante !")
+                        : toast.error(errors?.message)
+                        setIsLoading(false)
                     })
      }
 
      const closeForm = () =>{
-        props.setDisplay(false)
+        props?.setDisplay(false)
      }
 
   return (
 
     
    
-     <Offcanvas show={props.display} onHide={closeForm} placement='end' scroll="true" backdrop="true" className="offCanvas"> 
+     <Offcanvas show={props?.display} onHide={closeForm} placement='end' scroll="true" className="offCanvas"> 
      <div className='compte-container'>
          <Offcanvas.Header closeButton>
            <Offcanvas.Title>Créer un Membre</Offcanvas.Title>
@@ -78,7 +79,7 @@ function AddMembreForm(props) {
                     <label for="lname" className='form-label nomInput'>
                         Nom
                     </label>        
-                    {errors.nom && <p className='text text-danger mt-2'>{errors.nom.message}</p>}        
+                    {errors.nom && <p className='text text-danger mt-2'>{errors?.nom?.message}</p>}        
              </div>
 
              <div className='col form-floating'>  
@@ -88,7 +89,7 @@ function AddMembreForm(props) {
                             className='form-control' 
                             placeholder="Veuillez écrire le prénom..." 
                             id="fname" />
-                    {errors.prenom && <p className='text text-danger mt-2'>{errors.prenom.message}</p>}   
+                    {errors.prenom && <p className='text text-danger mt-2'>{errors?.prenom?.message}</p>}   
                     <label for="fname" className='form-label nomInput'>
                         Prénom
                     </label>      
@@ -101,7 +102,7 @@ function AddMembreForm(props) {
                             className='form-control' 
                             placeholder="Adresse email..." 
                             id="email" />
-                    {errors.email && <p className='text text-danger mt-2'>{errors.email.message}</p>}  
+                    {errors.email && <p className='text text-danger mt-2'>{errors?.email?.message}</p>}  
                     <label for="email" className='form-label'>
                         E-mail Adresse
                     </label>       
@@ -109,7 +110,7 @@ function AddMembreForm(props) {
              <div className='row mb-3'>
                 <div className='col form-floating'>
                     
-                    <input type='number' 
+                    <input type='text' 
                             {...register('telephone')}
                             className='form-control' 
                             placeholder="Téléphone..."
@@ -121,7 +122,7 @@ function AddMembreForm(props) {
                 <div className='col form-floating'>
              
                     
-                    <input type='number' 
+                    <input type='text' 
                             {...register('age')}
                             className='form-control' 
                             placeholder="age..."
@@ -149,7 +150,11 @@ function AddMembreForm(props) {
                  <button 
                      className='btn btn-success'
                      disabled={isLoading}>
-                     Valider</button>
+                     
+                     {isLoading ? 
+                     <div><Spinner animation='border' size='sm' as="span" /> <span> Loading...</span></div>
+                     : 'Ajouter membre'}
+                     </button>
              </div>
         </form> 
         </div>       

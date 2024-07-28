@@ -13,7 +13,7 @@ import SharedState from '../context/MembreContext'
 
 function Membres() {    
 
-    const { membreAdded, membreUpdated } = useContext(SharedState)
+    const { membreAdded, membreUpdated, membreDeleted } = useContext(SharedState)
 
     const [rows, setRows] = useState([])
     const [pending, setPending] = useState(true)
@@ -76,7 +76,7 @@ function Membres() {
 
     useEffect(() => {           
        fetchdata() 
-    }, [membreAdded, membreUpdated])
+    }, [membreAdded, membreUpdated, membreDeleted])
 
     
     {/*----------displaying add Form ------------*/}  

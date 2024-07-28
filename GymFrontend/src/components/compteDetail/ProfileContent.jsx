@@ -1,10 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../css/compte.css';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import toast from 'react-hot-toast';
+import ModalDeleteMembre from '../../modals/ModalDeleteMembre';
+import ModalActivateMembre from '../../modals/ModalActivateMembre';
+import SharedState from '../../context/MembreContext';
 
 function ProfileContent(props) {
+
+  const { membreUpdated, membreDeleted } = useContext(SharedState)
+
+  // Show Modal confirmation to delete membre, sending membre info to the modal
+
+    const [mbr, setMbr] = useState({
+      nom: '',
+      email: ''
+    })
+
+    const [showModal, setShowModal] = useState(false)
+
+    const handleDeleteMembre = (nom, email) => {
+      setMbr({
+        nom: nom,
+        email: email
+      })
+      setShowModal(true)
+    }
+
+    const handleCloseModal = () => setShowModal(false)
+
+    //===========================================
+
+     // Show Modal confirmation to activate membre, sending membre info to the modal
+
+     const [mbrToAct, setMbrToAct] = useState({
+      nom: '',
+      email: ''
+    })
+
+    const [showModalActivation, setShowModalActivation] = useState(false)
+
+    const handleActivateMembre = (nom, email) => {
+      setMbrToAct({
+        nom: nom,
+        email: email
+      })
+      setShowModalActivation(true)
+    }
+
+    const handleCloseModalActivation = () => setShowModalActivation(false)
+
+    //===========================================
+
 
     const [membre, setMembre] = useState([])
     const [spiner, setSpiner] = useState(true)
@@ -33,7 +81,7 @@ function ProfileContent(props) {
 
     useEffect(() => {         
         fetchUser()
-    }, [])
+    }, [membreUpdated, membreDeleted])
 
     //checking payment state
     const cssStatut = membre.statut === "Paid" ? "td-payment" : "td-payment-nok"
@@ -41,11 +89,11 @@ function ProfileContent(props) {
   return (
     <div className='profile-content'>
                     
-                    <center>{ spiner === true && <Spinner animation="grow" className='spiner' /> }</center>
-                      { spiner === false &&       
+                    { spiner ? <center><Spinner animation="grow" className='spiner' /></center> 
+                      :
                         <table>
                                 <tr>
-                                  <td><b>Etat du compte</b></td>
+                                  <td><b>Etat financier</b></td>
                                   <td><p id={cssStatut}>{membre.statut}</p></td>
                                 </tr>
                                 <tr>
@@ -73,6 +121,11 @@ function ProfileContent(props) {
                                     <td><b>Age</b></td>
                                     <td>{membre.age}ans</td>
                                 </tr>
+                                {membre.state === "deleted" && 
+                                <tr>
+                                  <td colSpan={2}><h2 className='text text-danger h4'>Ce Compte est désactivé !</h2></td>
+                                </tr>
+                                }
                                
                         </table>
 
@@ -80,8 +133,37 @@ function ProfileContent(props) {
                     
                     <br />
                         <div className='btn-desactiver'> 
-                        <button className='btn btn-danger'>Supprimer ce membre</button>    
+
+                        {membre.state === "Actif" &&   
+                        <button 
+                            className='btn btn-danger'
+                            onClick={() => handleDeleteMembre(membre.nom, membre.email)}  
+                            >
+                              
+                              Supprimer ce membre</button>    
+                        }      
+                        {membre.state === "Deleted" &&   
+                        <button 
+                            className='btn btn-primary'
+                            onClick={() => handleActivateMembre(membre.nom, membre.email)}  
+                            >
+                              
+                              Activer ce membre</button>
+                         }             
                         </div>
+
+        <ModalDeleteMembre
+            membre= {mbr}
+            show= {showModal}
+            close= {handleCloseModal}
+            setShow = {setShowModal}
+        />       
+         <ModalActivateMembre
+            membre= {mbrToAct}
+            show= {showModalActivation}
+            close= {handleCloseModalActivation}
+            setShow = {setShowModalActivation}
+        />              
                     
     </div>
   )

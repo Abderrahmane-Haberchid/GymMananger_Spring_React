@@ -512,23 +512,23 @@ function Statis() {
     <div class="statis-container">
     <div className='header-container'>
         <div className='membre-card'>
-        <i class="fa-solid fa-user fa-2xl"></i>
+        <i className="fa-solid fa-user fa-2xl"></i>
             <h3><b>{membre.length}</b></h3>
             
             Membres au total
         </div>
         <div className='ajoutecemois-card'> 
-        <i class="fa-solid fa-circle-plus fa-2xl"></i>
+        <i className="fa-solid fa-circle-plus fa-2xl"></i>
             <h3><b>{membreAddedThisMonth.length}</b></h3>
             Ajoutés ce Mois
         </div>
         <div className='payment-card'> 
-        <i class="fa-solid fa-sack-dollar fa-2xl"></i>
+        <i className="fa-solid fa-sack-dollar fa-2xl"></i>
             <h3><b>{paymentThisMonth.length}</b></h3>
             Payments ce Mois
         </div>
         <div className='desactive-card'>
-        <i class="fa-solid fa-trash-can fa-2xl"></i>
+        <i className="fa-solid fa-trash-can fa-2xl"></i>
             <h3><b>{UnpaidMembre.length}</b></h3> 
             Membres Impayés
         </div>
@@ -536,7 +536,7 @@ function Statis() {
     </div>
 
 
-<div className='body-container'>  
+<div classNNamclassNameame='body-container'>  
 
         <div className='money-monthly'>  
           <p>Situation Financiére:</p>

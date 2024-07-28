@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { decodeToken } from 'react-jwt'
 import '../css/supplements.css';
 import SharedState from '../context/MembreContext'
+import Spinner from 'react-bootstrap/Spinner';
 
 function AddProducts(props) {
 
@@ -187,7 +188,7 @@ function AddProducts(props) {
                         className='btn btn-outline-primary' 
                         style={{color: "white"}}
                         disabled={loading}>
-                     {loading ? '...Loading' : 'Ajouter Produit'}
+                     {loading ? <Spinner animation='border' /> + ' Loading' : 'Ajouter Produit'}
                  </button>
         </div>
         </form> 

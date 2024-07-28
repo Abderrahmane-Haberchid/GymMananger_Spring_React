@@ -7,18 +7,17 @@ import SharedState from '../context/MembreContext';
 import { decodeToken } from 'react-jwt';
 import { Spinner } from 'react-bootstrap';
 
-function ModalDeleteProduct(props) {
-    
-    const [disableBtn, setDisableBtn] = useState(false)
+function ModalDeleteSale(props) {
 
-    const { setProductDeleted } = useContext(SharedState)
+    const [disableBtn, setDisabledBtn] = useState(false)
+    const { setSaleDeleted } = useContext(SharedState)
     const token = localStorage.getItem('token')
 
     const userEmail = decodeToken(token)
 
-    const handleDeleteProduct = () => {
-      setDisableBtn(true)
-        axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/supplements/delete/${props?.product?.id}/${userEmail.sub}`, 
+    const handleDeleteSale = () => {
+      setDisabledBtn(true)
+        axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/sale/delete/${props?.sale?.id}/${userEmail.sub}`, 
             {
                 headers: {
                     'Content-Type' : 'Application/json',
@@ -26,9 +25,9 @@ function ModalDeleteProduct(props) {
                 }
             }
         ).then(res => {
-            res.status === 200 && toast.success("Produit Supprimé !") 
-            setProductDeleted(prevState => !prevState)
-            setDisableBtn(false)
+            res.status === 200 && toast.success("Sale Supprimé !") 
+            setSaleDeleted(prevState => !prevState)
+            setDisabledBtn(false)
             props?.setShow(false)
         })
         .catch(err => {
@@ -40,19 +39,19 @@ function ModalDeleteProduct(props) {
 
       <Modal {...props} onHide={props?.close}>
         <Modal.Header closeButton>
-          <Modal.Title>Supprimer produit : {props?.product?.nom}</Modal.Title>
+          <Modal.Title>Supprimer vente : {props?.sale?.nom}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Vous êtes sûr de vouloir supprimer ce produit ?</Modal.Body>
+        <Modal.Body>Vous êtes sûr de vouloir supprimer cette vente ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props?.close}>
             Fermer
           </Button>
           <Button 
               variant="danger" 
-              onClick={handleDeleteProduct}
+              onClick={handleDeleteSale}
               disabled={disableBtn}
               >
-                {disableBtn ? 
+            {disableBtn ? 
                 <div> <Spinner animation="border" size="sm" as="span" /> <span>Loading...</span> </div> 
                 : 'Supprimer'}
           </Button>
@@ -62,4 +61,4 @@ function ModalDeleteProduct(props) {
   );
 }
 
-export default ModalDeleteProduct;
+export default ModalDeleteSale;

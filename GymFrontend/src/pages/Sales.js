@@ -10,10 +10,29 @@ import ReactDatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import deleteIcon from '../img/deleteIcon.png'
 import SharedState from '../context/MembreContext';
+import ModalDeleteSale from '../modals/ModalDeleteSale';
 
 function Sales() {
 
-  const { saleAdded } = useContext(SharedState)
+  const { saleAdded, saleDeleted } = useContext(SharedState)
+
+  // Modal Confirmation to delete sale, show, close
+  const [showModal, setShowModal] = useState(false);
+  const [sale, setSale] = useState({
+    id: '', 
+    nom: ''
+  });
+
+  const handleDeleteSale = (id, nom) => {
+      setShowModal(true)
+      setSale({
+        id: id,
+        nom: nom
+      })
+  }
+  const handleCloseModal = () => setShowModal(false);
+
+  // ===================================================
 
   const [showAddSaleForm, setShowAddSaleForm] = useState(false)
   const [sales, setSales] = useState([])
@@ -51,7 +70,7 @@ function Sales() {
 
   useEffect(() =>{
     fetchSales()
-  }, [saleAdded])
+  }, [saleAdded, saleDeleted])
 
   // Filtering sales in table by selected date 
 
@@ -65,6 +84,12 @@ function Sales() {
   {/*----------Datatable Property for Sales items-------------*/}
   const columnsSales = [
         
+    {
+        name: '',
+        selector: row => row.id,
+        sortable: true,
+        with: "80px"
+    },
     {
         name: "Nom",
         selector: row => row.nom,    
@@ -107,7 +132,7 @@ function Sales() {
                             data-bs-toggle="modal" 
                             src={deleteIcon} 
                             style={{height: '22px', width: '22px', cursor: 'pointer'}}
-                            onClick={() => {}}
+                            onClick={() => handleDeleteSale(row.id, row.nom)}
                           />,
       }
     
@@ -178,7 +203,11 @@ const customStyles = {
     <div className='wrapper'>
 
     <div className='sale-div'>
-            <button className='btn btn-outline-success' onClick={handleAddSale}>
+            <button 
+                className='btn btn-outline-success' 
+                style={{color:'var(--text-color)', borderBlockStyle: '2px white'}}
+                onClick={handleAddSale}>
+
                 <i class="fa-solid fa-plus md-3 fa-sm"></i>  Valider Vente
             </button>
     </div>
@@ -219,7 +248,13 @@ const customStyles = {
     </div>
 
 
-<AddSale display={showAddSaleForm} setDisplay={setShowAddSaleForm} />
+    <AddSale display={showAddSaleForm} setDisplay={setShowAddSaleForm} />
+    <ModalDeleteSale
+            sale= {sale}
+            show= {showModal}
+            close= {handleCloseModal}
+            setShow = {setShowModal}
+        />
     </div>  
 
   )
