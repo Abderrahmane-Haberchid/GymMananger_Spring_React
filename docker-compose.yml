@@ -1,18 +1,33 @@
-#version: '2.28.1'
+
 services:
   database:
     image: postgres:14-alpine
     container_name: database
+    hostname: database
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
-      - /home/ec2-user/postgres_datapart:/var/lib/postgresql/data
+      - /Users/abderahman/Developer/postgres_datapart:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gym_db
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=admin
+      - POSTGRES_PASSWORD=16022023yousra
+      - PGDATA=/var/lib/postgresql/data/pgdata
     platform: linux/amd64
-    restart: always
+    restart: unless-stopped
+
+
+  gym-frontend:
+      stdin_open: true
+      hostname: gym-frontend 
+      build:
+        context: ./GymFrontend
+        dockerfile: Dockerfile
+      ports:
+        - 3001:80
+      platform: linux/amd64 
+      depends_on:
+        - gym-backend
 
 
   gym-backend:
@@ -20,20 +35,15 @@ services:
         context: ./GymBackend
         dockerfile: Dockerfile
       ports:
-        - "8081:8081"
+        - 8081:8081
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/gym_db
+        SPRING_DATASOURCE_USERNAME: postgres
+        SPRING_DATASOURCE_PASSWORD: 16022023yousra  
       platform: linux/amd64
       depends_on:
         - database
-
-  gym-frontend:
-      build:
-        context: ./GymFrontend
-        dockerfile: Dockerfile
-      ports:
-        - "8000:80"
-      platform: linux/amd64  
-      depends_on:
-        - gym-backend
+ 
 
 
 
