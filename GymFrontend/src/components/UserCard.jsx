@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import CompteDetails from './compteDetail/CompteDetails';
 import { decodeToken } from "react-jwt";
 import SharedState from '../context/MembreContext';
+import { Spinner } from 'react-bootstrap';
 
 function UserCard() {
 
@@ -18,7 +19,7 @@ function UserCard() {
     const [showCompte, setShowCompte] = useState(false)
     const [ pending, setPending ] = useState(true)
     const [idmembre, setIdMembre] = useState()
-
+    const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState('')
 
     const handleShow = (e) => {
@@ -34,7 +35,7 @@ function UserCard() {
     const decoded = decodeToken(token)
 
       const dataLoader = async () => {
-
+          setLoading(true)
               await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decoded.sub}`,
                               {
                                 headers: {
@@ -47,12 +48,15 @@ function UserCard() {
 
                         setUsers(res.data.membreSet.sort((a, b) => b.id_membre - a.id_membre))
                         setPending(false)
+                        setLoading(false)
                       })
                       .catch(errors => {
                         if(errors?.response?.status  === 403) {
                           toast.error("403 error !")  
+                          
                         } 
                         else toast.error("An error has occured !")
+                        setLoading(false)
                       })
       }
       useEffect(() => {
@@ -75,15 +79,14 @@ function UserCard() {
     
     
     <>
-    { pending === true && (<Loader />) }
     <div className='search-container'>
 
           <div className="membreCounter-container"> 
-          <p className='membreCounter-text'>{filtered} Membres</p>
+          <p className='membreCounter-text'>{loading ? <Spinner animation='border' size='sm' /> : filtered} Membres</p>
           <br />
           </div>
           
-          <div>
+          <div className='search-input-container'>
             <i className="fa-solid fa-magnifying-glass search-icon"></i>
             <input type='text' className='search-input' placeholder='Chercher par Nom' onChange={handleSearch} />
           </div>  
@@ -91,7 +94,7 @@ function UserCard() {
     </div>
     <div className='usercard-list'>
 
-    { pending === false &&
+    { pending ? <Loader /> :
 
     users.filter((user) =>{
        filtered = search.toLowerCase() === '' ? user : user.nom.toLowerCase().includes(search)

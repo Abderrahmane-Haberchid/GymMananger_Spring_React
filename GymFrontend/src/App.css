@@ -5,7 +5,7 @@
     top:0;
     width: 100vw;
     height: auto;
-    background-color: var(--body-color);          
+    background: var(--body-color);          
     transition: var(--tran-03);
 }
 .app.dark{

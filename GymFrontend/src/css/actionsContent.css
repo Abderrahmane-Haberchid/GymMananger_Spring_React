@@ -130,3 +130,12 @@
     border: 1px solid var(--toggle-color);
     color: var(--text-color);
 }
+
+@media all and (min-width: 320px) and (max-width: 480px){ 
+    .classForm button{    
+        font-size: 18px;
+    }
+    .checkDate label{
+        font-size: 17px;
+    }
+}

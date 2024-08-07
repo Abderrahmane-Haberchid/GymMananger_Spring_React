@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
-const TableLoader = props => (
+const TableLoader = (props) => (
   <ContentLoader
     width={1000}
     height={550}
@@ -65,11 +65,5 @@ const TableLoader = props => (
   </ContentLoader>
 )
 
-TableLoader.metadata = {
-  name: 'Sridhar Easwaran',
-  github: 'sridhareaswaran',
-  description: 'Loader for Tables',
-  filename: 'TableLoader',
-}
 
 export default TableLoader

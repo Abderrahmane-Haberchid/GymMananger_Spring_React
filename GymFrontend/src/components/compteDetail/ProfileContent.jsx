@@ -121,7 +121,7 @@ function ProfileContent(props) {
                                     <td><b>Age</b></td>
                                     <td>{membre.age}ans</td>
                                 </tr>
-                                {membre.state === "deleted" && 
+                                {membre.state === "Deleted" && 
                                 <tr>
                                   <td colSpan={2}><h2 className='text text-danger h4'>Ce Compte est désactivé !</h2></td>
                                 </tr>
@@ -139,7 +139,7 @@ function ProfileContent(props) {
                             className='btn btn-danger'
                             onClick={() => handleDeleteMembre(membre.nom, membre.email)}  
                             >
-                              
+                              <i className="fa-solid fa-trash m-2"></i>
                               Supprimer ce membre</button>    
                         }      
                         {membre.state === "Deleted" &&   
@@ -147,7 +147,7 @@ function ProfileContent(props) {
                             className='btn btn-primary'
                             onClick={() => handleActivateMembre(membre.nom, membre.email)}  
                             >
-                              
+                              <i className="fa-solid fa-check m-2"></i>
                               Activer ce membre</button>
                          }             
                         </div>

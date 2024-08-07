@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     max-width: auto;
-    height: 120vh;
+    min-height: 100vh;
     background: transparent;
 }
 .sale-div{
@@ -23,27 +23,20 @@
 .sale-div button:hover{
     background: var(--primary-dark-color);
     border: 0;
-}
-
-/* Ici cest la partie qui concerne la carte de validation dune vente */
-.form-container{
+}  
+.mesventes-container{
     display: flex;
-    justify-content: center;
-}
-.form-container .btn:hover{
-    background: var(--primary-color);
-}
-.form-container .btn {
-    border:0;
-    background: var(--primary-dark-color);
-    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
-/*====================*/
-.container-items{    
+
+.container-sales{    
     max-width: 60%;
-    height: 100px;
-    display: block;
+    min-height: 100px;
+    display: flexbox;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -63,10 +56,101 @@
 .allsales-btn:hover{
     text-decoration: underline;
 }
-.sales-table{
+
+@media all and (min-width: 320px) and (max-width: 480px){ 
+
+    .wrapper{
+        display: flexbox;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: auto;
+        min-height: 100vh;
+        background: transparent;
+    }
+    .sale-div{
+        display: flex;
+        justify-content: center; 
+        margin-right: 0px;
+        margin-top: 80px;
+    }
+    .sale-div button{
+        font-size: 17px;
+        color: white;
+        width: 300px;
+        background: var(--primary-dark-color);
+    }
+
+    .container-sales{    
+        max-width: 100%;
+        min-height: 100vh;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+ }
+
+ @media all and (min-width: 480px) and (max-width: 780px){ 
+
+    .wrapper{
+        display: flexbox;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: auto;
+        min-height: 100vh;
+        background: transparent;
+    }
+    .sale-div{
+        display: flex;
+        justify-content: center; 
+        margin-right: 170px;
+        margin-top: 80px;
+    }
+    .sale-div button{
+        font-size: 17px;
+        color: white;
+        width: 400px;
+        background: var(--primary-dark-color);
+    }
+
+    .container-sales{    
+        max-width: 100%;
+        min-height: 100vh;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+ }
+
+@media all and (min-width: 780px) and (max-width: 1024px) { 
+
+    .container-sales{    
+        max-width: 60%;
+        min-height: 100px;
+        display: flexbox;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        margin-left: 270px;
+        background: transparent;
+    }
+}
+
+
+
+
+/* Ici cest la partie qui concerne la carte de validation dune vente */
+.form-container{
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: ease-in-out 1s;
 }
+.form-container .btn:hover{
+    background: var(--primary-color);
+}
+.form-container .btn {
+    border:0;
+    background: var(--primary-dark-color);
+    width: 100%;
+}
+
+/*====================*/

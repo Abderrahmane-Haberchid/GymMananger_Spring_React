@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { decodeToken } from 'react-jwt'
 import '../css/supplements.css';
 import SharedState from '../context/MembreContext'
+import { Spinner } from 'react-bootstrap'
 
 function AddSale(props) {
 
@@ -63,6 +64,7 @@ function AddSale(props) {
                        })             
                        .catch(err => {
                             toast.error("Une erreur s'est produite") 
+                            setLoading(false)
                        })
 
         }
@@ -169,8 +171,13 @@ function AddSale(props) {
         </div>
     </div>
         <div className='col mb-3'>
-                 <button className='btn btn-success valide-sale-btn'>
-                    {loading ? '... Loading' : 'Valider ma vente'}
+                 <button 
+                    className='btn btn-success valide-sale-btn'
+                    disabled={loading}>
+
+                    {loading ? 
+                              <div><Spinner animation="border" size="sm" as="span" /> <span> Loading...</span> </div>
+                            : 'Valider ma vente'  }
                 </button>
         </div>
     

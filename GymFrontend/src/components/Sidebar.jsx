@@ -7,23 +7,30 @@ import toast from 'react-hot-toast';
 function Sidebar() {
 
     const [menuIcon, setMenuIcon] = useState("fa-solid fa-bars fa-xl burger")
+    const [isMobile, setIsMobile] = useState(false)
+
+    const handleIsMobile = () => {
+        window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false)
+    }
     
     //Responsive menu
     const displayMenu = () => {
         const sidebar = document.getElementById('sidebarid')
+
         if (sidebar.style.transform === 'translateX(0px)') {
             
             sidebar.style.transform = 'translateX(-230px)'    
-            setMenuIcon('fa-solid fa-bars fa-xl burger')
+            setMenuIcon('fa-solid fa-bars fa-2xl burger')
             
         }
         else {
             sidebar.style.transform = 'translateX(0px)'
-            setMenuIcon('fa-solid fa-xmark fa-xl burger')
+            setMenuIcon('fa-solid fa-xmark fa-2xl xmark')
             }
         }
 
     const [click, setClick] = useState(false);
+    
     function hidesidebar(){
         
         const sidebar = document.querySelector('.sidebar');
@@ -53,8 +60,11 @@ function Sidebar() {
     }
   
     useEffect(() => {
+        // Chekcing if window size changed for mobile
+        handleIsMobile()
+
       let mode = localStorage.getItem('mode')
-    
+       
       return () => {
         if (mode === 'dark') {
           body.classList.toggle("dark")
@@ -81,44 +91,44 @@ function Sidebar() {
 
 
   return (
-    <>
+
     <div className="sidebar" id="sidebarid">
 
         <div className='header'>
             <div className='logo'>
                 <i className='bx bx-dumbbell bx-md logo-img'></i>
-                <span className='logo-text'>GYM Manager</span>
+                <span className='logo-text'>GYMER PRO</span>
             </div>    
             <div className='burger-menu'>
-              <i className={(menuIcon)} onClick={displayMenu}></i>
+              <i className={menuIcon} onClick={displayMenu}></i>
             </div>
-               {click === false && <i className='bx bx-chevron-left' onClick={hidesidebar}></i>} <i class='bx ' ></i>
-               {click === true && <i className='bx bx-chevron-right' onClick={hidesidebar}></i>}
+               {!click ? <i className='bx bx-chevron-left left-icon' onClick={hidesidebar}></i>
+                      : <i className='bx bx-chevron-right right-icon' onClick={hidesidebar}></i>}
         </div>
         <div className='sidebar-list'>
             <ul>
                 <li>
-                    <Link to='/home' className='links'>
+                    <Link to='/home' className='links' onClick={isMobile && displayMenu}>
                         <i className='bx bx-home-alt bx-sm icon' ></i> 
                         <span className='text'>Acceuil</span>
                     </Link>
                 </li>
 
                 <li>
-                    <Link to='/membres' className='links'>        
+                    <Link to='/membres' className='links' onClick={isMobile && displayMenu}>        
                         <i className='bx bx-user-pin bx-sm icon'></i>    
                         <span className='text'>Membres</span>
                     </Link>
                 </li>
 
                 <li>
-                    <Link to='/supplements' className='links'>
+                    <Link to='/supplements' className='links' onClick={isMobile && displayMenu}>
                         <i className='bx bx-baguette bx-sm icon'></i>    
-                        <span className='text'>Suppléments</span>
+                        <span className='text'>Produits</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to='/sales' className='links'>
+                    <Link to='/sales' className='links' onClick={isMobile && displayMenu}>
                         <i className='bx bx-money-withdraw bx-sm icon'></i>  
                         <span className='text'>Ventes</span>
                     </Link>
@@ -126,14 +136,14 @@ function Sidebar() {
 
                 <li>
                 
-                    <Link to='/statistiques' className='links'>
+                    <Link to='/statistiques' className='links' onClick={isMobile && displayMenu}>
                         <i className='bx bx-pie-chart bx-sm icon'></i>
                         <span className='text'>Statistique</span>
                     </Link>
                 </li>
                 
                 <li>
-                    <Link to='/admin' className='links'>
+                    <Link to='/admin' className='links' onClick={isMobile && displayMenu}>
                         <i className='bx bx-lock-alt  bx-sm icon'></i>    
                         <span className='text'>Admin</span>
                     </Link>
@@ -171,7 +181,7 @@ function Sidebar() {
        </div>
     
 	</div>
-</>    
+  
   );
 }
 

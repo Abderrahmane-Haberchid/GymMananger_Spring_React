@@ -11,10 +11,12 @@ import "react-datepicker/dist/react-datepicker.css"
 import deleteIcon from '../img/deleteIcon.png'
 import SharedState from '../context/MembreContext';
 import ModalDeleteSale from '../modals/ModalDeleteSale';
+import { Spinner } from 'react-bootstrap';
 
 function Sales() {
 
   const { saleAdded, saleDeleted } = useContext(SharedState)
+  const [loading, setLoading] = useState(false)
 
   // Modal Confirmation to delete sale, show, close
   const [showModal, setShowModal] = useState(false);
@@ -51,6 +53,7 @@ function Sales() {
 
 // Fetching sales data from db 
   const fetchSales = async () => {
+    setLoading(true)
     await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decodedToken.sub}`, 
         {
           headers: {
@@ -60,11 +63,12 @@ function Sales() {
         }
       ).then(res => {
           setSales(res.data.saleSet.sort((a,b) => b.id - a.id))
-          
+          setLoading(false)
           setPending(false)
       })
       .catch(errors => {
           toast.error("Une erreur s'est produite")
+          setLoading(false)
       })
 }
 
@@ -85,10 +89,10 @@ function Sales() {
   const columnsSales = [
         
     {
-        name: '',
+        name: 'Id',
         selector: row => row.id,
         sortable: true,
-        with: "80px"
+        width: "68px"
     },
     {
         name: "Nom",
@@ -148,13 +152,14 @@ const customStyles = {
 
     tableWrapper: {
         style: {
-            width: '100%',
-            position: 'relative',
+            minWidth: '100%',
+            maxHeight: '700px',
+            overflow: 'scroll',
             display: 'flex',
             justifyContent: 'center',
             borderRadius: '20px',
-            left: '0px',
             backgroundColor: 'var(--sidebar-color)',
+            zIndex: '0'
         },
     },  
     table: {
@@ -171,8 +176,8 @@ const customStyles = {
             height: '40px',
             backgroundColor: 'var(--sidebar-color)',
             color: 'var(--text-color)',
-            fontSize: '13px',
-            transition: 'var(--tran-03)'
+            fontSize: '16px',
+            transition: 'var(--tran-03)',
         }
     },
     rows: {
@@ -180,7 +185,7 @@ const customStyles = {
             height: '40px',
             backgroundColor: 'var(--sidebar-color)',
             color: 'var(--text-color)',
-            fontSize: '12px',
+            fontSize: '15px',
             transition: 'var(--tran-03)',
         },
         stripedStyle: {
@@ -204,17 +209,20 @@ const customStyles = {
 
     <div className='sale-div'>
             <button 
-                className='btn btn-outline-success' 
-                style={{color:'var(--text-color)', borderBlockStyle: '2px white'}}
+                className='btn btn-outline-success'
                 onClick={handleAddSale}>
 
-                <i class="fa-solid fa-plus md-3 fa-sm"></i>  Valider Vente
+                <i class="fa-solid fa-plus md-3 fa-sm"></i>  Ajouter une Vente
             </button>
     </div>
-    <div className='container-items'>
 
-      <div style={{display: 'flex', alignItems:'center', justifyContent: 'space-between', marginTop: '50px', marginBottom: '30px'}}>
-      <p className='allsales-btn'>Mes Ventes({filteredSales.length})</p>
+    <div className='container-sales'>
+
+      <div className='mesventes-container'>
+
+      <p className='allsales-btn'>
+        Mes Ventes({loading ? <Spinner animation='border' size='sm' /> : filteredSales.length})
+      </p>
       
     <ReactDatePicker
                 showIcon
@@ -240,7 +248,7 @@ const customStyles = {
                 pagination
                 responsive
                 highlightOnHover
-                Clicked
+                fixedHeader
                 />          
       </div>
     

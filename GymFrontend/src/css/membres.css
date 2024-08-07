@@ -1,18 +1,19 @@
-
+.membre-wrapper{
+    min-height:100vh;
+    max-width: 100%;
+    margin-right: 40px;
+}
 
 .table-header{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    position: relative;
     margin-top: 30px;
     margin-bottom: 30px;
-    height:100vh;
-    width: auto;
-}
-.add-btn{
-    margin-left:155px;
-    justify-content: left;
+    margin-left: 250px;
+    min-height:100vh;
+    max-width: 80%;
 }
 .add-btn button{
     background: var(--primary-dark-color);
@@ -25,8 +26,10 @@
        background-color: var(--primary-color);
 }
 .sorting-option{
+    display: flex;
     justify-content: right;
-    margin-right: 55px;
+    margin-left: 20px;
+    align-items: center;
 }
 .sorting-option span{
     color: var(--text-color);
@@ -83,18 +86,52 @@
     background: var(--primary-color);
 }
 
-@media (max-width: 700px) {
-    .table-header{
+@media all and (min-width: 320px) and (max-width: 480px){ 
+    .membre-wrapper{
+        margin-top: 5px;
+        margin-right: 0px;
+        display: flex;
         flex-direction: column;
-    }
-    .add-btn{
-        margin-bottom: 30px;
-        margin-top: 30px;
         justify-content: center;
+    }
+    .search-container{
+
+    }
+    .membreCounter-container{
+        margin-bottom: 20px;
+    }
+    .search-input-container{
+        margin-left: 0px;
+    }
+    .table-header{
+        margin-left: 20px;
+        max-width: 90%;
+        gap: 1rem;
+        overflow: scroll;
+
+        margin-top: 0px;
+    }
+    .add-btn button{
+        margin-left:0px;
+        justify-content: center;
+        width: 300px;
+        font-size: 18px;
     }
     .sorting-option{
-        display: flexbox;
-        justify-content: center;
-        margin-left: 60px;
+        display: block;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-right: 0px;
+
+        select{
+            font-size: 20px;
+            max-width: 100%; 
+            text-overflow: ellipsis;
+        }
     }
+    
+  }
+
+  @media all and (min-width: 780px) and (max-width: 1024px) {
+    
   }

@@ -5,6 +5,7 @@ import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import toast from 'react-hot-toast';
 import SharedState from '../../context/MembreContext';
+import { Button } from 'react-bootstrap';
 
 function ActionsContent(props) {
 
@@ -12,10 +13,12 @@ function ActionsContent(props) {
 
     const [membre, setMembre] = useState([])
     const [pending, setPending] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const id = props.membreId
 
     const loadMembre = async () => {
+        setLoading(true)
         const token = localStorage.getItem("token")
 
         await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/id/${id}`,
@@ -29,6 +32,11 @@ function ActionsContent(props) {
                     .then(res => {
                         setMembre(res.data)  
                         setPending(false)     
+                        setLoading(false)
+                    })
+                    .catch(err => {
+                        toast.error('Une erreur a été générée! Merci de réessayer plus tard')
+                        setLoading(false)
                     })
     }
 
@@ -128,7 +136,17 @@ function ActionsContent(props) {
                         <label for="floatingNom">Telephone</label>      
                 </div>
                 <br />                
-                <button className='btn btn-success'>Modifier</button>
+                <Button 
+                    type='submit'
+                    variant='success'
+                    disabled={loading}
+                    >
+                    {
+                        loading ? 
+                                <div><Spinner animation='border' size='sm' as='span' /><span> Loading...</span></div>
+                                : 'Mettre à jour'
+                    }        
+                </Button>
     </form>
       }             
     </div>

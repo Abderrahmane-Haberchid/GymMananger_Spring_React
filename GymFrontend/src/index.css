@@ -1,7 +1,20 @@
 
+/* ----Google font import  --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+
+*{
+     font-family: 'Poppins', sans-serif;
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     
+}
 
 :root{
-    --body-color: #E4E9F7;    
+    --body-color:  linear-gradient(to right, #e2e2e2, #c9d6ff);    
     --sidebar: #FFF;
     --primary-color: #695CFE;
     --primary-dark-color: #512da8;

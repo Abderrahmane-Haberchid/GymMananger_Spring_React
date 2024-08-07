@@ -10,6 +10,7 @@ import AddMembreForm from '../components/AddMembreForm'
 import toast from 'react-hot-toast'
 import { decodeToken } from "react-jwt";
 import SharedState from '../context/MembreContext'
+import { Spinner } from 'react-bootstrap'
 
 function Membres() {    
 
@@ -20,6 +21,7 @@ function Membres() {
 
     const [search, setSearch] = useState("")
     const [stateFilter, setStateFilter] = useState("")
+    const [loading, setLoading] = useState(false)
 
     // Display Compte Details
     const [idmembre, setIdMembre] = useState()
@@ -36,7 +38,7 @@ function Membres() {
     {/*--------Affichage des Membres dans table-------------*/}
 
     const fetchdata = async () =>{
-
+        setLoading(true)
         const token = localStorage.getItem("token")
 
         const config = {
@@ -52,9 +54,11 @@ function Membres() {
                     .then(res =>{
                         setRows(res.data.membreSet.sort((a, b) => b.id_membre - a.id_membre))  
                         setPending(false)
+                        setLoading(false)
                     })
                     .catch((errors) => {
                         errors?.response?.status  === 403 && toast.error("Pease log in again !")  
+                        setLoading(false)
                       } 
                     )
       }     
@@ -153,13 +157,14 @@ function Membres() {
 
         tableWrapper: {
             style: {
-                width: '70%',
-                position: 'relative',
+                maxWidth: '100%',
+                maxHeight: '700px',
                 display: 'flex',
                 justifyContent: 'center',
                 borderRadius: '20px',
-                left: '250px',
                 backgroundColor: 'var(--sidebar-color)',
+                overflow: 'scroll',
+                zIndex: '0'
             },
         },  
         table: {
@@ -168,7 +173,8 @@ function Membres() {
                 marginLeft: '30px',
                 fontSize: '16px',
                 cursor: 'hand',
-                
+                maxWidth: '100%',
+                backgroundColor: 'var(--sidebar-color)',
             }            
         },
           
@@ -178,8 +184,9 @@ function Membres() {
                 height: '40px',
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
-                fontSize: '13px',
-                transition: 'var(--tran-03)'
+                fontSize: '16px',
+                transition: 'var(--tran-03)',
+                width: '100%',
             }
         },
         rows: {
@@ -187,9 +194,10 @@ function Membres() {
                 height: '40px',
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
-                fontSize: '12px',
+                fontSize: '15px',
                 transition: 'var(--tran-03)',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                maxWidth: '100%',
             },
             stripedStyle: {
                 backgroundColor: 'var(--body-color)',
@@ -215,6 +223,7 @@ function Membres() {
             style: {
                 backgroundColor: 'rgba(63, 195, 128, 0.9)',
                 color: 'white',
+                maxWidth: '100%'
             },
         },
         
@@ -230,21 +239,19 @@ function Membres() {
         }
     ]
     const dataFinal = filteredData !== "" ? filteredData : rows
-
-    console.log(search)
     
   return (
-    <>
+    <div className='membre-wrapper'>
 
     {/*******Texte search input for fitrer**********/}
     <div className='search-container'>
 
           <div className="membreCounter-container"> 
-          <p className='membreCounter-text'>{dataFinal.length} Membres</p>
+          <p className='membreCounter-text'>{loading ? <Spinner animation='border' size='sm' /> : dataFinal.length} Membres</p>
           <br />
           </div>
           
-          <div>
+          <div className='search-input-container'>
             <i className="fa-solid fa-magnifying-glass search-icon"></i>
             <input type='text' 
                    className='search-input' 
@@ -287,13 +294,15 @@ function Membres() {
                 highlightOnHover
                 onRowClicked={handleShow}
                 conditionalRowStyles={conditionalRowStyles}
-                Clicked
+                fixedHeader
                 />
 
     <AddMembreForm display={addForm} setDisplay={setAddForm} />
 
-    <CompteDetails idmembre={idmembre} show={showCompte} onHide={handleClose} /></div> 
-    </>
+    <CompteDetails idmembre={idmembre} show={showCompte} onHide={handleClose} />
+    
+    </div> 
+    </div>
   )
 }
 

@@ -6,8 +6,8 @@
     position:relative;
     margin-top: 30px;
     left: 250px;
-    width: 80%;
-    height: 100vh;
+    max-width: 80%;
+    min-height: 100vh;
     display: flex;    
     flex-wrap: wrap;
     gap:1rem;
@@ -15,26 +15,68 @@
     background: var(--body-color);
 }
 @media all and (min-width: 320px) and (max-width: 480px){ 
+
+    .search-container{
+        
+        display: flex;
+        justify-content: center;
+        align-items:center ;
+        flex-wrap: wrap;
+    }
+    .search-input{
+        font-size: 17px;
+        margin-left: -40px;
+    }
+    .membreCounter-container{
+        margin-left: 20%;
+    }
+    .membreCounter-text{
+        color: var(--text-color);
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: -20px;
+    }
+    .search-icon{
+        margin-right: -50px;
+        margin-left: 50px;
+        position: relative;
+    }   
+
     .usercard-list {
-        width: auto;
-        left: 30px;
-        gap:1.3rem;
+        max-width: 100%;
+        padding-left: 30px;
+        left: 0;
+        row-gap:1.3rem;
+    }
+    .usercard-list p{
+        font-size: 17px;
+    }
+    .usercard-list span{
+        font-size: 17px;
     }
     .usercard{    
         width: 200px;
         height: 120px;
+        font-size: 17px;
        }
        .img-fluid{
         width: 60px;
        }
+    
+       .card-title{
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .card-subtitle{
+        font-size: 17px;
+        font-weight: 400;
+    }   
+
+
        
   }  
   @media all and (min-width: 480px) and (max-width: 768px){     
-    .usercard-list {
-        width: auto;
-        left: 30px;
-        gap:1.5rem;
-    }
+   
     .usercard{    
         width: 220px;
         height: 230px;
@@ -43,20 +85,31 @@
        .img-fluid{
         width: 60px;
        }
+
+       .card-title{
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .card-subtitle{
+        font-size: 17px;
+        font-weight: 400;
+    }  
   }  
   @media all and (min-width: 780px) and (max-width: 1024px) {
     .usercard-list {
-        width: auto;
-        gap:1.5rem;
+        max-width: 65vw;
     }
     .usercard{    
         width: 220px;
         height: 230px;
-        overflow-x: hidden;
        }
        .img-fluid{
         width: 60px;
        }
+
+    .membreCounter-container p{
+        margin-left: 100px;
+    }
   }
 .usercard{    
     display: flex;
@@ -75,10 +128,16 @@
 .usercard:hover{    
     cursor: pointer;
     background: var(--primary-color);
-    color: white;
+    
+    .card-subtitle{
+        color: white;
+    }
+    .card-title{
+        color: white;
+    }
 }
 .card-title{
-    color: white;
+    color: var(--text-color);
     font-size: 13px;
     font-weight: 500;
 }
@@ -87,6 +146,7 @@
     font-size: 13px;
     font-weight: 400;
 }
+
 .sidebar.hide ~ .usercard-list{
     left: 165px;
 }
@@ -122,6 +182,11 @@
     font-weight: 600;
     margin-bottom: -20px;
 }
+.search-input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .search-input{
     width: 300px;
     height: 40px;
@@ -139,6 +204,5 @@
     margin-right: -50px;
     margin-left: 50px;
     position: relative;
-    z-index: 1;
 }
 

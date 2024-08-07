@@ -21,7 +21,7 @@ function AddProducts(props) {
     const supplementsList = ["Protéines", "Gainer", "Vitamines", "Créatine", "Pré-Workout"]
     const proteinType = ["Whey", "Whey ISO", "Whey Hydro", "Caséine"]
     const gainerType = ["Mass Gainer", "Vitargo", "Max Gainer", "CARBS"]
-    const vitamineType = ["MuultiVitamine", "Omega 3", "Vitamine A", "Zinc", "Vitamine E"]
+    const vitamineType = ["MultiVitamine", "Omega 3", "Vitamine A", "Zinc", "Vitamine E"]
     const creatineType = ["Monohydrate", "Monohydrate Micronized", "Normal"]
     const preworkoutType = ["C4", "MAX POWER", "5000MG", "HULK"]
     const marque = ["BIOTECH USA", "MUSCLE TECH", "ISO 100", "GOLD STANDARD", "MUSCLETECH Platinum"]
@@ -62,7 +62,7 @@ function AddProducts(props) {
                     })
                     .catch((error) => {
                             toast.error("Une erreur est génerée ! Verifier votre internet")
-                            
+                            setLoading(false)
                     })
 
      }
@@ -188,7 +188,11 @@ function AddProducts(props) {
                         className='btn btn-outline-primary' 
                         style={{color: "white"}}
                         disabled={loading}>
-                     {loading ? <Spinner animation='border' /> + ' Loading' : 'Ajouter Produit'}
+
+                     {loading ? 
+                             <div><Spinner animation="border" size="sm" as="span" /> <span> Loading...</span> </div>
+                              : 'Ajouter Produit'
+                              }
                  </button>
         </div>
         </form> 

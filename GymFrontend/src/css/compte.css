@@ -140,3 +140,41 @@
     justify-content: center;
     float: center;
 }
+
+@media all and (min-width: 320px) and (max-width: 720px){
+  /*-------Carte du membre*/
+    .compte-container{
+        font-size: 18px;
+    }
+    .compte-container-header{
+        font-size: 17px;;
+    }  
+
+    .compte-container-body-btn{
+        display: inline-flex;
+        justify-content: start;
+        align-items: center;
+        gap: 5px;  
+        margin-left: 0px;
+        margin-top: 15px;
+        font-family: 500;
+        font-size: 18px;
+    }
+
+    .profile-content table{
+        height: 40vh;
+        width: 100%;
+        font-size: 17px;
+        justify-content: center;
+    }
+    #td-payment-nok{
+        font-size: 18px;
+    }
+    #td-payment{
+        font-size: 18px;
+    }
+
+    .btn-desactiver button{
+        font-size: 18px;
+    }
+ }

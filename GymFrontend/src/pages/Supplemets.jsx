@@ -11,10 +11,13 @@ import axios from 'axios'
 import SharedState from '../context/MembreContext';
 import deleteIcon from '../img/deleteIcon.png'
 import ModalDeleteProduct from '../modals/ModalDeleteProduct';
+import { Spinner } from 'react-bootstrap';
 
 function Supplements() {
 
   const {productAdded, productDeleted} = useContext(SharedState)
+
+  const [loading, setLoading] = useState(false)
 
   // Modal Confirmation to delete product, show, close
   const [showModal, setShowModal] = useState(false);
@@ -49,6 +52,7 @@ function Supplements() {
 
   // Fetching products from db
   const fetchSupp = async () => {
+    setLoading(true)
       await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decodedToken.sub}`, 
           {
             headers: {
@@ -58,11 +62,12 @@ function Supplements() {
           }
         ).then(res => {
             setSupps(res.data.suppSet.sort((a,b) => b.id - a.id))
-            
+            setLoading(false)
             setPending(false)
         })
         .catch(errors => {
             toast.error("Une erreur s'est produite")
+            setLoading(false)
         })
   }
 
@@ -97,9 +102,10 @@ function Supplements() {
   const columns = [
         
     {
-        name: '',
+        name: 'Id',
         selector: row => row.id,
-        sortable: true
+        sortable: true,
+        width: "68px"
     },
     {
         name: "Nom",
@@ -166,13 +172,14 @@ const customStyles = {
 
     tableWrapper: {
         style: {
-            width: '100%',
-            position: 'relative',
+            maxWidth: '100%',
+            maxHeight: '700px',
+            overflow: 'scroll',
             display: 'flex',
             justifyContent: 'center',
             borderRadius: '15px',
-            left: '0px',
             backgroundColor: 'var(--sidebar-color)',
+            zIndex: '0'
         },
     },  
     table: {
@@ -189,7 +196,7 @@ const customStyles = {
             height: '40px',
             backgroundColor: 'var(--sidebar-color)',
             color: 'var(--text-color)',
-            fontSize: '13px',
+            fontSize: '16px',
             transition: 'var(--tran-03)'
         }
     },
@@ -198,7 +205,7 @@ const customStyles = {
             height: '40px',
             backgroundColor: 'var(--sidebar-color)',
             color: 'var(--text-color)',
-            fontSize: '12px',
+            fontSize: '15px',
             transition: 'var(--tran-03)',
         },
         stripedStyle: {
@@ -329,7 +336,7 @@ const setProductsTable = () => {
     <div className='wrapperS'>
 
     <div className='sup-div'>
-            <button className='btn btn-outline-primary' style={{color:'var(--text-color)', borderBlockStyle: '2px white'}} onClick={handleShow}>
+            <button className='btn btn-outline-primary' onClick={handleShow}>
                 <i class="fa-solid fa-plus md-3 fa-sm"></i>  Ajouter Produit
             </button>
     </div>
@@ -348,7 +355,7 @@ const setProductsTable = () => {
                 </div>
                 <div>
                   <h6>Protéines</h6>
-                  <h6>{proteineCount.length}</h6>
+                  <h6><b>{loading ? <Spinner animation='border' size='sm' /> : proteineCount.length}</b></h6>
                 </div>
           
             </div>
@@ -361,7 +368,7 @@ const setProductsTable = () => {
                     </div>
                     <div>
                     <h6>Vitamine</h6>
-                      <h6>{vitamineCount.length}</h6>
+                      <h6><b>{loading ? <Spinner animation='border' size='sm' /> : vitamineCount.length}</b></h6>
                     </div>
             </div>  
           </li>
@@ -372,7 +379,7 @@ const setProductsTable = () => {
                   </div>
                   <div>
                   <h6>Gainer</h6>
-                  <h6>{gainerCount.length}</h6>
+                  <h6><b>{loading ? <Spinner animation='border' size='sm' /> : gainerCount.length}</b></h6>
                   </div>
             </div>
           </li>
@@ -383,7 +390,7 @@ const setProductsTable = () => {
                 </div>
                 <div>
                 <h6>Créatine</h6>
-                <h6>{creatineCount.length}</h6>
+                <h6><b>{loading ? <Spinner animation='border' size='sm' /> : creatineCount.length}</b></h6>
                 </div>
             </div>
           </li>
@@ -395,7 +402,7 @@ const setProductsTable = () => {
       <div className='products-table'>
 
       <div className='show-menu'>
-      <p className='allproduct-btn' onClick={setProductsTable}>Tous mes Produits({supps.length})</p>
+      <p className='allproduct-btn' onClick={setProductsTable}>Mes produits({loading ? <Spinner animation='border' size='sm' /> : supps.length})</p>
       </div>
       
       <DataTable                   
@@ -408,7 +415,7 @@ const setProductsTable = () => {
                 pagination
                 responsive
                 highlightOnHover
-                Clicked
+                fixedHeader
                 />
       </div>
     <AddProduct show={show} onHide={handleClose} />

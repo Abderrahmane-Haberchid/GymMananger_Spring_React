@@ -5,12 +5,14 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { decodeToken } from 'react-jwt'
 import SharedState from '../../context/MembreContext'
+import { Button, Spinner } from 'react-bootstrap'
 
 function AddPayment(props) {
 
     const {setMembreUpdated} = useContext(SharedState)
 
     const [payments, setPayments] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const id = props.membreId
     const {
@@ -25,6 +27,7 @@ function AddPayment(props) {
 
     // Add payment method
     const onSubmit = async (data) => {
+        setLoading(true)
         const jsonData = JSON.stringify(data)
         
         await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/add_payment/${id}/${decodedToken.sub}`,
@@ -39,9 +42,11 @@ function AddPayment(props) {
                     response.status === 200 && toast.success("Paiement validé!")
                     console.log(data)
                     setMembreUpdated(prevState => !prevState)
+                    setLoading(false)
                 })
                 .catch(errors => {
                     errors.response.status === 400 && toast.error("Une erreur s'est produite!")
+                    setLoading(false)
                 })
     }
     // Checking if this is a new membre 
@@ -110,10 +115,18 @@ function AddPayment(props) {
                             
                 </div>   
                 <div className='abtInput'>             
-                <input type='submit' 
-                       className='btn btn-success' 
+                <Button 
+                       type='submit' 
+                       variant='success' 
                        style={{width:"350px", marginTop:"20px"}} 
-                       value="Valider paiments" />
+                       disabled={loading} >
+
+                       {
+                        loading ?
+                                <div><Spinner animation='border' as='span' size='sm' /><span> Loading...</span></div>
+                                : 'Valider paiement'
+                       }
+                </Button>       
                 </div>
     </form>
                   

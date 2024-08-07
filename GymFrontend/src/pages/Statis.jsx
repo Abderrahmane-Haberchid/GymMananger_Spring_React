@@ -7,8 +7,10 @@ import DataTable from 'react-data-table-component';
 import { decodeToken } from 'react-jwt';
 import LoaderTablePayments from '../components/LoaderTablePayments'
 import axios from 'axios'
-import ReactDatePicker, { DatePicker } from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
+import toast from 'react-hot-toast';
+import { Spinner } from 'react-bootstrap';
 
 
 Chartjs.register( 
@@ -31,6 +33,7 @@ function Statis() {
     const [sales, setSales] = useState([])
 
     const [pending, setPending] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     // Getting total payments by month for first chart 
     const filteredPayments01 = payments.filter((p) => {
@@ -395,6 +398,7 @@ function Statis() {
     const decodedToken = decodeToken(token)
 
     const fetchPayments = async () => {
+          setLoading(true)
             await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decodedToken.sub}`, 
                    { 
                     headers: {
@@ -407,6 +411,11 @@ function Statis() {
                         setMembre(res.data.membreSet)
                         setSales(res.data.saleSet)
                         setPending(false)
+                        setLoading(false)
+                })
+                .catch( err => {
+                    toast.error('Une erreur de connexion survient! Réessayer plus tard')
+                    setLoading(false)
                 })
     }
 
@@ -446,9 +455,9 @@ function Statis() {
     const columns = [
         {
             name: "Prix",
-            selector: row => row.prix + " DH",
+            selector: row => row.prix + "dh",
             sortable: true,
-            width: "90px"
+            width: "100px"
         },
         {            
             name: "Date",
@@ -485,7 +494,7 @@ function Statis() {
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
                 fontWeight: 'bold',
-                fontSize: '12px',
+                fontSize: '16px',
                 transition: 'var(--tran-03)',
             }
         },
@@ -493,7 +502,7 @@ function Statis() {
             style: {
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
-                fontSize: '11px',
+                fontSize: '15px',
                 transition: 'var(--tran-03)'
             }
         },
@@ -509,34 +518,34 @@ function Statis() {
 
   return (
     
-    <div class="statis-container">
+<div className="statis-container">
     <div className='header-container'>
         <div className='membre-card'>
         <i className="fa-solid fa-user fa-2xl"></i>
-            <h3><b>{membre.length}</b></h3>
+            <h3><b>{loading ? <Spinner animation='border' /> : membre.length}</b></h3>
             
-            Membres au total
+           <p>Membres au total</p> 
         </div>
         <div className='ajoutecemois-card'> 
         <i className="fa-solid fa-circle-plus fa-2xl"></i>
-            <h3><b>{membreAddedThisMonth.length}</b></h3>
-            Ajoutés ce Mois
+            <h3><b>{loading ? <Spinner animation='border' /> : membreAddedThisMonth.length}</b></h3>
+            <p>Ajoutés ce Mois</p>
         </div>
         <div className='payment-card'> 
         <i className="fa-solid fa-sack-dollar fa-2xl"></i>
-            <h3><b>{paymentThisMonth.length}</b></h3>
-            Payments ce Mois
+            <h3><b>{loading ? <Spinner animation='border' /> : paymentThisMonth.length}</b></h3>
+            <p>Payments ce Mois</p>
         </div>
         <div className='desactive-card'>
-        <i className="fa-solid fa-trash-can fa-2xl"></i>
-            <h3><b>{UnpaidMembre.length}</b></h3> 
-            Membres Impayés
+        <i className="fa-solid fa-ban fa-2xl"></i>
+            <h3><b>{loading ? <Spinner animation='border' /> : UnpaidMembre.length}</b></h3> 
+            <p>Membres Impayés</p>
         </div>
 
     </div>
 
 
-<div classNNamclassNameame='body-container'>  
+    <div className='body-container'>  
 
         <div className='money-monthly'>  
           <p>Situation Financiére:</p>
@@ -545,9 +554,9 @@ function Statis() {
 
         
         <div className='payments-history'>
-        <p id='payments-history-p'>Historique Paiments ({filteredPayments.length })</p> 
+        <p id='payments-history-p'>Historique Paiments ({loading ? <Spinner animation='border' size='sm' /> : filteredPayments.length })</p> 
         <div className='history-wrapper'>
-        <p id='totalPayment'>Total: {total} DH </p>
+        <p id='totalPayment'>Total: {loading ? <Spinner animation='border' size='sm' /> : total} DH </p>
         
             <ReactDatePicker
                 showIcon
@@ -567,7 +576,7 @@ function Statis() {
          data={filteredPayments}
          progressPending={pending}
          progressComponent={<LoaderTablePayments />}
-         fixedHeaderScrollHeight="400px"   
+         fixedHeaderScrollHeight="360px"   
          className='datatable'
          highlightOnHover
          customStyles={customStyles} 
@@ -580,7 +589,7 @@ function Statis() {
         </div>
 
         <div className='added-payments-monthly'>
-        <p>Etat des paiments:</p>
+        <p>Etat de paiement des membres:</p>
             <Pie data={data2} options={options} />
         </div>
 
@@ -589,7 +598,7 @@ function Statis() {
             <Line data={data6} options={options} height={400} width={300} className='chart2' />
         </div>
     </div>
-    </div>
+</div>
   
   )
 }

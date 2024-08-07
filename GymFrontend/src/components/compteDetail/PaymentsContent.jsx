@@ -6,6 +6,7 @@ import LoaderTablePayments from '../LoaderTablePayments'
 import deleteIcon from '../../img/deleteIcon.png'
 import ModalDeletePayment from '../../modals/ModalDeletePayment'
 import SharedState from '../../context/MembreContext'
+import toast from 'react-hot-toast'
 
 
 function PaymentsContent(props) {
@@ -41,10 +42,14 @@ function PaymentsContent(props) {
                             }
                         }
                         )
-        .then(res =>{
-          setPayment(res.data.paiementsSet.sort((a, b) => b.id - a.id))
-          setPending(false)
-        })
+                    .then(res =>{
+                    setPayment(res.data.paiementsSet.sort((a, b) => b.id - a.id))
+                    setPending(false)
+                    })
+                    .catch(err => {
+                        toast.error("Une erreur de connexion est produite! Réessayer plus tard")
+                        setPending(false)
+                    })
       }
 
     useEffect(() => {            
@@ -58,7 +63,7 @@ function PaymentsContent(props) {
             name: "Prix",
             selector: row => row.prix + " DH",
             sortable: true,
-            width: "80px"
+            width: "90px"
         },
         {            
             name: "Date",
@@ -84,7 +89,8 @@ function PaymentsContent(props) {
     const customStyles = {
       table: {
           style:{
-              backgroundColor: 'var(--sidebar-color)'
+              backgroundColor: 'var(--sidebar-color)',
+              maxWidth: '100%'  
           }            
       },
       responsiveWrapper: {
@@ -94,8 +100,8 @@ function PaymentsContent(props) {
           style: {
               backgroundColor: 'var(--sidebar-color)',
               color: 'var(--text-color)',
-              fontWeight: 'bold',
-              fontSize: '12px',
+              fontWeight: '500',
+              fontSize: '16px',
               transition: 'var(--tran-03)',
               
           }
@@ -104,7 +110,7 @@ function PaymentsContent(props) {
           style: {
               backgroundColor: 'var(--sidebar-color)',
               color: 'var(--text-color)',
-              fontSize: '11px',
+              fontSize: '14px',
               transition: 'var(--tran-03)',
               cursor: 'pointer' 
           }

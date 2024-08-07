@@ -1,35 +1,17 @@
 
-/* ----Google font import  --- */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-
-:root{
-    --body-color: #E4E9F7;    
-    --sidebar-color: #FFF;
-    --primary-color: #695CFE;
-    --secondary-color: #F6F5FF;
-    --third-color: ##fefeff;
-    --toggle-color: #DDD;
-    --text-color: #707070;
-
-    --tran-01: all 0.1s ease;
-    --tran-02: all 0.2s ease;
-    --tran-03: all 0.3s ease;
-    --tran-04: all 0.4s ease;
-    --tran-05: all 0.5s ease;
-}
-*{
-     font-family: 'Poppins', sans-serif;
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-     
-}
 .burger{
     color: var(--text-color);
     right: -40px;
     margin-top: 10px;
+    position: absolute;
+    display: none;  
+   
+}
+.xmark{
+    color: var(--text-color);
+    right: 10px;
+    margin-top: 5px;
     position: absolute;
     display: none;  
 }
@@ -37,8 +19,17 @@
     .burger{
         display: block;
     }
+    .xmark{
+        display: block;
+    }
     .sidebar{
         transform: translateX(-230px);
+    }
+    .left-icon{
+        display: none;
+    }
+    .right-icon{
+        display: none;;
     }
     .links{
         width: 50px;
@@ -52,12 +43,18 @@
     
     .toggle{
         display: none;
+    }
+    .sidebar-list span{
+        font-size: 18px;
     }
   }  
   @media all and (min-width: 480px) and (max-width: 768px){   
     .burger{
         display: block;
     }  
+    .xmark{
+        display: block;
+    }
     .sidebar{
         transform: translateX(-230px);
     }
@@ -73,6 +70,9 @@
     
     .toggle{
         display: none;
+    }
+    .sidebar-list span{
+        font-size: 18px;
     }
   }  
   @media all and (min-width: 780px) and (max-width: 1024px) {
@@ -204,7 +204,7 @@
         border-radius: 10px;
         width: 180px;
         justify-content: center;
-        transition: background 0.3s linear; 
+        transition: 0.3s linear; 
 }
 .links:hover{
     color: var(--sidebar-color);

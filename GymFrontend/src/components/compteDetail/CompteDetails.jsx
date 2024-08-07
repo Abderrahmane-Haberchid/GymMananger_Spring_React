@@ -9,15 +9,16 @@ import avatar from '../../img/avatar.jpg'
 import { Link } from 'react-router-dom'
 import Dropzone from 'react-dropzone'
 import toast from 'react-hot-toast'
-import { ProgressBar } from 'react-bootstrap'
+import { ProgressBar, Spinner } from 'react-bootstrap'
 import SharedState from '../../context/MembreContext'
 
 function CompteDetails(props) {
 
-    const {membreUpdated} = useContext(SharedState)
+    const {membreUpdated, setMembreUpdated} = useContext(SharedState)
 
     const [progress, setProgress] = useState({started: false, pc: 0})
-    
+
+    const [loading, setLoading] = useState(false)
     const [membre, setMembre] = useState([])
     const [image, setImage] = useState(null)
     
@@ -71,21 +72,22 @@ function CompteDetails(props) {
                     return {...prevState, pc: eventProgress.progress*100}
                 }),
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    //"Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${token}`
                 }
             }
             ).then(res => {
                 toast.success("Image chargé !")
+                setMembreUpdated(prevState => !prevState)
                
             })
             .catch(errors => {
-                toast.error('An error has occured' + errors?.response?.status)
+                toast.error('Echec de connexion! Merci de réessayer ' + errors?.response?.status)
             })
       }
 
       const loadMembre = async () => {
-                
+        setLoading(true)        
         await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/membres/id/${id}`, 
                     {
                         headers: {
@@ -96,9 +98,11 @@ function CompteDetails(props) {
                 )
                .then(response => {
                     setMembre(response.data)
+                    setLoading(false)
                })
                .catch(errors =>{
                   // toast.error('Une erreur a été générée : ' + errors?.response?.status)
+                  setLoading(false)
                })
 }
 
@@ -116,7 +120,9 @@ function CompteDetails(props) {
      <Offcanvas {...props} placement='end' className="offCanvas offCanvas-end">
         
      <div className='compte-container'>
-     {progress.started && <ProgressBar now={progress.pc} label={progress.pc} />}
+
+     {progress.started && <ProgressBar now={progress.pc} label={Math.floor(progress.pc)+'%'} />}
+
          <Offcanvas.Header closeButton>
            <Offcanvas.Title>Détail Compte</Offcanvas.Title>
          </Offcanvas.Header>
@@ -125,7 +131,7 @@ function CompteDetails(props) {
              <center>
              <div className='compte-container-header'>
             <img src={membre.image !== "" ? `https://gympics.s3.eu-north-1.amazonaws.com/${membre.image}` : avatar}  
-                    style={{width:"90px", height:"90px", backgroundImage:"cover"}} 
+                    style={{width:"130px", height:"130px", objectFit:"fill"}} 
                     className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" /> 
                  
                  <p style={{fontWeight: "700"}}>{membre.prenom} {membre.nom}</p> 
@@ -169,7 +175,7 @@ function CompteDetails(props) {
                  <Link to=""
                      className="payments-btn"
                      onClick={changePayments}
-                     >Historique ({membre?.paiementsSet?.length})
+                     >Historique ({ loading ? <Spinner animation='border' size='sm' /> : membre?.paiementsSet?.length})
                  </Link>
                 
              </div>

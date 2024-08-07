@@ -1,5 +1,7 @@
 
-.login-container{
+
+
+.register-container{
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
@@ -9,13 +11,11 @@
     column-gap: 5rem;
 }
 
-.login-container a{
+.register-form-container a{
     color: #333;
-    font-size: 13px;
-    text-decoration: none;
 }
 
-.login-container button{
+.register-container button{
     background-color: #512da8;
     color: #fff;
     font-size: 12px;
@@ -30,105 +30,90 @@
     width: 100%;
 }
 
-.login-container form{
+.register-container form{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    min-height: 100%;
     max-width: 100vw;
-    min-height: 100vh;
 }
 
-.login-container input{
+.register-container input{
     background-color: #eee;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
-    width: 100%;
+    width: 27vw;
     outline: none;
 }
 
-.login-form-container{
+.register-form-container{
     max-width: 50%;
     transition: all 0.6s ease-in-out;
 }
+.register-form-container p{
+    margin-top: 20px;
+}
 
-
-.login-services-container{
+.register-services-container{
     display: flex;
     justify-content: center;
     align-items: left;
     flex-direction: column;
     max-width: 50%;
 }
-.login-services-container span{
+.register-services-container span{
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
 }
-.login-sous-service-div span {
+.sous-service-div span {
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
 }
-.login-service-presente-container div{
+.service-presente-container div{
     margin-left: 30px;
     margin-top: 15px;
 }
-.login-service-presente-container p{
+.service-presente-container p{
     margin-left: 40px;
     margin-top: 10px;
 }
-.login-services-container .login-presentation-div p{
+.register-services-container .presentation-div p{
     margin-top: 15px;
     margin-left: 30px;
 }
-.login-services-container .login-enprofter-div p{
+.register-services-container .enprofter-div p{
     margin-top: 15px;
     margin-left: 30px;
 }
 
 
 @media all and (min-width: 320px) and (max-width: 480px){ 
-    .login-container{
+    .register-container{
         flex-direction: column;
-        align-items: top;
-        min-height: 100vh;
+        height: 100%;
         font-size: 18px;
         gap: 0rem;
     }
-    .login-form-container{
-        margin-top: 0px;
+    .register-form-container{
+        margin-top: 50px;
         max-width: 80%;
     }
-    .login-container form{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        max-width: 100vw;
-        min-height: 0vh;
-    }
-    .login-services-container{
+    .register-services-container{
         max-width: 80%;
-        margin-top: 70px;
+        margin-top: 40px;
     }
-
-    .login-container input{
+    .register-container input{
         width: 80vw;
         font-size: 18px;
     }
-    .login-container button{
+    .register-container button{
         width: 80vw;
         font-size: 16px;
     }
-
-    .login-form-container a{
-        font-size: 17px;
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-
 }

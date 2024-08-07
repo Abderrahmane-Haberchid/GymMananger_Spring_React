@@ -16,7 +16,6 @@ function Admin(){
 
     const {
         register,
-        handleSubmit
     } = useForm()
 
     const fetchUser = async () => {
@@ -58,7 +57,7 @@ function Admin(){
                 <form>
                 <div className="form-contol row">
                     <label for="username" className="form-label">
-                        Username
+                        Pseudo:
                     </label>
                     <input {...register('username')}
                            className="form-control" 
@@ -80,7 +79,7 @@ function Admin(){
                 </div>
                 <div className="form row">
                     <label for="username" className="form-label">
-                        Created at:
+                        Date de création:
                     </label>
                     <input {...register('created_at')}
                            className="form-control" 
