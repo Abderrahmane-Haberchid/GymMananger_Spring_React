@@ -7,6 +7,7 @@ import com.gymbackend.models.User;
 import com.gymbackend.repository.MembreRepository;
 import com.gymbackend.repository.PaimentsRepository;
 import com.gymbackend.repository.UserRepository;
+import com.gymbackend.services.MailSender;
 import com.gymbackend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,20 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MembreRepository membreRepository;
     private final PaimentsRepository paimentsRepository;
+    private final MailSender mailSender;
+    @Override
+    public boolean checkEmail(String email) {
+        var user = userRepository.findByEmail(email).get();
+
+        if (user.equals(""))
+            return false;
+        else{
+            String msg = "ceci est un test denvoi de mail";
+            mailSender.sendMail(email, "Gymer Pro: Réinitialisation du mot de passe", msg);
+            return true;
+        }
+    }
+
     public UserDto findUserByEmail(String email){
         var user = userRepository.findByEmail(email).get();
 

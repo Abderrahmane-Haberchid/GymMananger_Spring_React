@@ -38,19 +38,12 @@ public class MembreController {
 
 
 
-    @PostMapping(value = "upload/{id}",
-                    consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("upload/{id}")
     private ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws IOException {
 
            s3Service.uploadtos3(file, id);
             return new ResponseEntity("Image uploaded", HttpStatus.OK);
     }
-
-//    @GetMapping("download/{id}")
-//    private byte[] downloadImage(@PathVariable Long id) throws IOException {
-//        return s3Service.downloadfroms3(id);
-//    }
 
     @PostMapping("save/{email}")
     private ResponseEntity<String> ajouter(@PathVariable String email, @RequestBody MembreDto membredto){

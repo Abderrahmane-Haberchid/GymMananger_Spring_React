@@ -8,6 +8,8 @@ import com.gymbackend.repository.PaimentsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -69,5 +71,7 @@ public class ApplicationConfiguration {
 //        System.out.println(membreList.size());
 //        membreRepository.saveAll(membreList);
 //    }
+
+
 
 }

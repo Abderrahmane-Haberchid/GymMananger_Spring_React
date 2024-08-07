@@ -3,13 +3,14 @@ package com.gymbackend.api;
 import com.gymbackend.dto.UserDto;
 import com.gymbackend.services.UserService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
@@ -43,4 +44,5 @@ public class UserController {
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
 }

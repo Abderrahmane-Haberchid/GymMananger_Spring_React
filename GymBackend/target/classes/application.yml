@@ -1,8 +1,8 @@
 cloud:
   aws:
     credentials:
-      access-key:
-      secret-key:
+      access-key: ${ACCES_KEY}
+      secret-key: ${SECRET_KEY}
     region:
       static: eu-north-1
     stack:

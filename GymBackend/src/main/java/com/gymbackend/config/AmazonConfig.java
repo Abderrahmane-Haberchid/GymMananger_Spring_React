@@ -28,5 +28,6 @@ public class AmazonConfig {
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(String.valueOf(region))
                 .build();
+
     }
 }
