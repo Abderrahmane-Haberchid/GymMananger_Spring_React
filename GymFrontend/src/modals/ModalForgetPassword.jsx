@@ -49,7 +49,7 @@ function ModalForgetPassword(props) {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose} style={{background:'gray'}}>
             Fermer
           </Button>
           <Button 

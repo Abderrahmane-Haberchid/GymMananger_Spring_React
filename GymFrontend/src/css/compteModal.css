@@ -8,10 +8,6 @@
     color: var(--text-color);
     background: var(--sidebar-color);
     display: block;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
 }
 .compte-container-header{
     display: flexbox;
@@ -20,11 +16,11 @@
 
 /*---------boutons de la carte profile, acions, payments*/
 .compte-container-body-btn{
-    display: inline-flex;
-    justify-content: start;
+    display: flex;
+    justify-content: center;
     gap: 10px;  
-    margin-left: 20px;
-    margin-top: 15px;
+    margin-inline: auto;
+    margin-top: 30px;
     font-size: 14px;
 }
 .profile-btn{ 
@@ -89,17 +85,32 @@
     justify-content: center;
     padding: 20px;
 }
+/*-----------Ici on switch lec component--*/
+.compte-container-body{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    min-height: 100vh;
+}
 
 /*-----------Détail du compte--*/
 
 .profile-content {
     margin-top: -30px;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 14px;
 }
 .profile-content table{
-    height: 40vh;
-    width: 100%;
-    font-size: 13px;
-    justify-content: center;
+    max-width: 100%;
+    gap: 15px;
+    min-height: 40vh;
+    border-spacing: 10px;
+}
+.profile-content table tr td{
+    padding-right: 20px;
 }
 #td-payment-nok{
     background: rgba(242, 38, 19, 0.9);
@@ -138,43 +149,10 @@
 .spiner{
     display: flex;
     justify-content: center;
-    float: center;
+    align-items: center;
 }
 
-@media all and (min-width: 320px) and (max-width: 720px){
-  /*-------Carte du membre*/
-    .compte-container{
-        font-size: 18px;
-    }
-    .compte-container-header{
-        font-size: 17px;;
-    }  
+@media screen and (max-device-width: 450px) {  
+  
 
-    .compte-container-body-btn{
-        display: inline-flex;
-        justify-content: start;
-        align-items: center;
-        gap: 5px;  
-        margin-left: 0px;
-        margin-top: 15px;
-        font-family: 500;
-        font-size: 18px;
-    }
-
-    .profile-content table{
-        height: 40vh;
-        width: 100%;
-        font-size: 17px;
-        justify-content: center;
-    }
-    #td-payment-nok{
-        font-size: 18px;
-    }
-    #td-payment{
-        font-size: 18px;
-    }
-
-    .btn-desactiver button{
-        font-size: 18px;
-    }
  }

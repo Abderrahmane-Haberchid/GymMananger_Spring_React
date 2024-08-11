@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import '../../css/compte.css';
+import '../../css/compteModal.css';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import toast from 'react-hot-toast';
 import ModalDeleteMembre from '../../modals/ModalDeleteMembre';
 import ModalActivateMembre from '../../modals/ModalActivateMembre';
 import SharedState from '../../context/MembreContext';
+import { Button } from 'react-bootstrap';
 
 function ProfileContent(props) {
 
@@ -123,7 +124,7 @@ function ProfileContent(props) {
                                 </tr>
                                 {membre.state === "Deleted" && 
                                 <tr>
-                                  <td colSpan={2}><h2 className='text text-danger h4'>Ce Compte est désactivé !</h2></td>
+                                  <td colSpan={2}><h3 className='text text-danger'>Ce Compte est désactivé !</h3></td>
                                 </tr>
                                 }
                                
@@ -135,20 +136,21 @@ function ProfileContent(props) {
                         <div className='btn-desactiver'> 
 
                         {membre.state === "Actif" &&   
-                        <button 
-                            className='btn btn-danger'
+                        <Button 
+                            type='submit'
                             onClick={() => handleDeleteMembre(membre.nom, membre.email)}  
                             >
                               <i className="fa-solid fa-trash m-2"></i>
-                              Supprimer ce membre</button>    
+                              Supprimer ce membre</Button>    
                         }      
                         {membre.state === "Deleted" &&   
-                        <button 
-                            className='btn btn-primary'
+                        <Button 
+                            type='submit'
                             onClick={() => handleActivateMembre(membre.nom, membre.email)}  
                             >
                               <i className="fa-solid fa-check m-2"></i>
-                              Activer ce membre</button>
+                              Activer ce membre
+                              </Button>
                          }             
                         </div>
 

@@ -7,24 +7,14 @@
 .payments-table{
     transition: var(--tran-03);
     margin-top: -30px;
-    
-}
-.datatable{
-    transition: var(--tran-05);
-    background: var(--body-color);
-    height: 100%;
-    width: 100%;
-    margin-top: -30px;    
-    font-size: 13px;
-    color: var(--text-color);
-    margin-bottom: 15px;
+    margin-inline: auto;
 }
 
 
-@media all and (min-width: 320px) and (max-width: 720px){
+
+@media screen and (max-device-width: 450px){
     .payments-table{
         transition: var(--tran-03);
         margin-top: -30px;
-        margin-left: -20px;
     }
  }

@@ -1,141 +1,51 @@
 
-.classForm{
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: center;
-    gap:15px;
-}
-.classForm button{    
-    width: 90px;
-    font-size: 14px;
-    grid-column-start: 1;
-}
-/* ----------style des inputs du formuaire */
-.nomInput-text{
-    width: 168px;    
-    background: transparent;
-    height: 40px;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
-.prenomInput-text{
-    width: 168px;
-    background: transparent;
-    height: 40px;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
-.abtInput-text{
-    width: 350px;
-    background: transparent;
-    height: 40px;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
-.adrInput-text{
-    width: 350px;
-    background: transparent;
-    height: 40px;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
-.ageInput-text{
-    width: 168px;
-    background: transparent;
-    height: 40px;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
-.typeInput-text{
-    width: 168px;
-    background: transparent;
-    height: 40px;
-    border-radius: 10px;
-    padding-left: 10px;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
-.typeInput-text option{
-    background: transparent;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
 /* ----------grid div des éléments du formuaire de modifications membre */
 
 .actions-content{
-    width: 100%;
-
+    max-width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
 }
+
+.classForm{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap:15px;
+}
+
 .actions-content button{
-    width: 350px;
+    width: 320px;
     background: var(--primary-dark-color);
     grid-column-start: 1;
     grid-column-end: 5;
+    font-size: 14px;
 }
 .actions-content button:hover{
-    background: var(--primary-color);
-}
-.nomInput{
-    width: 168px;    
+    background: var(--primary-dark-hover-color);
 }
 .prenomInput{
-    width: 168px;
+    width: 140px;
 }
-.abtInput{
-    width: 350px;
+.nomInput{
+    width: 150px;
+}
+.emailInput{
+    width: 320px;
     grid-column-start: 1;
     grid-column-end: 5;
 }
-.abtInput .btn{
-    background: var(--primary-dark-color);
-}
-.abtInput .btn:hover{
-    background: var(--primary-color);
-}
-.adrInput{
-    width: 350px;
+
+.adresseInput{
+    width: 320px;
     grid-column-start: 1;
     grid-column-end: 5;
 }
 .ageInput{
-    width: 168px;
+    width: 140px;
 }
 .telephoneInput{
     width: 168px;
 }
-.checkDate{
-    display: flex;
-    justify-content: center;
-}
-.checkDate label{
-    font-size: 13px;
-}
-.checkDate input{
-    background: transparent;
-    height: 30px;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid var(--toggle-color);
-    color: var(--text-color);
-}
 
-@media all and (min-width: 320px) and (max-width: 480px){ 
-    .classForm button{    
-        font-size: 18px;
-    }
-    .checkDate label{
-        font-size: 17px;
-    }
-}

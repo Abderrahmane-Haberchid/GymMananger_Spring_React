@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { decodeToken } from "react-jwt"
 import SharedState from '../context/MembreContext'
-import { Spinner } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 
 function AddMembreForm(props) {
 
@@ -35,7 +35,6 @@ function AddMembreForm(props) {
                             }  
                         }
                         ) 
-
                     .then(response =>{
                         response?.status === 200 && toast.success('Membre ajouté')
                         reset()
@@ -58,15 +57,20 @@ function AddMembreForm(props) {
 
     
    
-     <Offcanvas show={props?.display} onHide={closeForm} placement='end' scroll="true" className="offCanvas"> 
-     <div className='compte-container'>
+     <Offcanvas show={props?.display} 
+                onHide={closeForm} 
+                placement='end' 
+                scroll="true" 
+                className="offCanvas" 
+                > 
+     <div className='compte-container' style={{minHeight:'100vh'}}>
          <Offcanvas.Header closeButton>
            <Offcanvas.Title>Créer un Membre</Offcanvas.Title>
          </Offcanvas.Header>
 
 
         <div className="form-container">
-        <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data" className='form'>
+        <form onSubmit={handleSubmit(onSubmit)} className='form'>
             
             <div className='row mb-3'>
              <div className='col form-floating'> 
@@ -147,14 +151,14 @@ function AddMembreForm(props) {
              </div>
  
              <div className='submit-btn mb-4'>
-                 <button 
-                     className='btn btn-success'
+                 <Button 
+                     type='submit'
                      disabled={isLoading}>
                      
                      {isLoading ? 
                      <div><Spinner animation='border' size='sm' as="span" /> <span> Loading...</span></div>
                      : 'Ajouter membre'}
-                     </button>
+                     </Button>
              </div>
         </form> 
         </div>       

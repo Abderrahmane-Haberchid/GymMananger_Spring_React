@@ -1,10 +1,10 @@
 .app{
-    position:absolute;
-    display: block;
-    left: 0;
-    top:0;
-    width: 100vw;
-    height: auto;
+    
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: auto;
     background: var(--body-color);          
     transition: var(--tran-03);
 }

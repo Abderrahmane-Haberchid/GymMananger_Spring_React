@@ -1,12 +1,12 @@
 import '../css/usercard.css';
-import '../css/compte.css';
+import '../css/compteModal.css';
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import avatar from '../img/avatar.jpg'
-import Loader from './Loader';
+import Loader from './loaders/Loader';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import CompteDetails from './compteDetail/CompteDetails';
+import CompteModal from './compteDetail/CompteModal';
 import { decodeToken } from "react-jwt";
 import SharedState from '../context/MembreContext';
 import { Spinner } from 'react-bootstrap';
@@ -36,7 +36,7 @@ function UserCard() {
 
       const dataLoader = async () => {
           setLoading(true)
-              await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decoded.sub}`,
+              await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/user/${decoded?.sub}`,
                               {
                                 headers: {
                                 'Content-Type': 'application/json',
@@ -68,27 +68,24 @@ function UserCard() {
       const handleSearch = (e) => {
         setSearch(e.target.value)         
        }
-
-       let filtered = users.length
-
-       // Image profile logic 
-
+       let filtered
+       const dataFinal = filtered === "" ? users : filtered
 
     
   return (
     
     
-    <>
+    <div className='usercard-wrapper'>
     <div className='search-container'>
 
           <div className="membreCounter-container"> 
-          <p className='membreCounter-text'>{loading ? <Spinner animation='border' size='sm' /> : filtered} Membres</p>
+          <p className='membreCounter-text'>{loading ? <Spinner animation='border' size='sm' /> : users.length} Membres</p>
           <br />
           </div>
           
           <div className='search-input-container'>
-            <i className="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type='text' className='search-input' placeholder='Chercher par Nom' onChange={handleSearch} />
+            <i className="fa-solid fa-magnifying-glass"></i>
+            <input type='text' placeholder='Chercher par Nom' onChange={handleSearch} />
           </div>  
 
     </div>
@@ -97,10 +94,13 @@ function UserCard() {
     { pending ? <Loader /> :
 
     users.filter((user) =>{
-       filtered = search.toLowerCase() === '' ? user : user.nom.toLowerCase().includes(search)
-      return filtered
-  }).map((user, index) =>  
 
+       filtered = search.toLowerCase() === '' ? user : user.nom.toLowerCase().includes(search)
+      // setFilteredData(filtered)
+      return filtered
+
+  }).map((user, index) =>  
+  
     <Link to="/" id={user.id_membre}  key={index} className='usercard shadow' onClick={handleShow}>
                 <ul className="list-iems-card">   
                 <li>
@@ -134,10 +134,10 @@ function UserCard() {
 </div>        
 
 
-      <CompteDetails idmembre={idmembre} show={showCompte} onHide={handleClose} />
+      <CompteModal idmembre={idmembre} show={showCompte} onHide={handleClose} />
 
       
-</>    
+</div>    
     
   )
 }

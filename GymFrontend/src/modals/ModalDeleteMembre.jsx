@@ -42,11 +42,15 @@ function ModalDeleteMembre(props) {
         </Modal.Header>
         <Modal.Body>Vous êtes sûr de vouloir supprimer le membre {props?.membre.nom} ?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props?.close}>
+          <Button 
+            variant="secondary" 
+            onClick={props?.close}
+            style={{background: 'gray'}}
+            >
             Fermer
           </Button>
           <Button 
-                variant="danger" 
+                
                 onClick={handleDeleteMembre}
                 disabled={loading}>
             {loading ? 

@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { decodeToken } from 'react-jwt'
 import '../css/supplements.css';
 import SharedState from '../context/MembreContext'
-import { Spinner } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 
 function AddSale(props) {
 
@@ -72,7 +72,7 @@ function AddSale(props) {
   return (
    
      <Offcanvas show={props.display} onHide={closeForm} placement='end' scroll="true" className="offCanvas offCanvas-end"> 
-     <div className='compte-container'>
+     <div className='compte-container' style={{minHeight:'100vh'}}>
          <Offcanvas.Header closeButton>
            <Offcanvas.Title>Valider une vente</Offcanvas.Title>
          </Offcanvas.Header>
@@ -166,19 +166,19 @@ function AddSale(props) {
                     type='text' 
                     className='form-control'
                     id="price"
-                    placeholder="999 Dh" />
+                    placeholder="Prix..." />
             {errors.prixVente && <p className='text text-danger mt-2'>{errors.prixVente.message}</p>}        
         </div>
     </div>
         <div className='col mb-3'>
-                 <button 
-                    className='btn btn-success valide-sale-btn'
+                 <Button 
+                    type='submit'
                     disabled={loading}>
 
                     {loading ? 
                               <div><Spinner animation="border" size="sm" as="span" /> <span> Loading...</span> </div>
                             : 'Valider ma vente'  }
-                </button>
+                </Button>
         </div>
     
         </form> 

@@ -5,7 +5,7 @@ import { Chart as Chartjs, BarElement, CategoryScale, LinearScale, Tooltip, Lege
 import { Bar, Pie, Line } from 'react-chartjs-2';
 import DataTable from 'react-data-table-component';
 import { decodeToken } from 'react-jwt';
-import LoaderTablePayments from '../components/LoaderTablePayments'
+import LoaderTablePayments from '../components/loaders/LoaderTablePayments'
 import axios from 'axios'
 import ReactDatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
@@ -482,8 +482,9 @@ function Statis() {
         },
         table: {
             style:{
-                backgroundColor: 'var(--sidebar-color)',
-                scrollbarColor: "var(--primary-dark-color)"
+                background: 'var(--sidebar-color)',
+                scrollbarColor: "var(--primary-dark-color)",
+                minHeight: '360px'
             }            
         },
         responsiveWrapper: {
@@ -494,7 +495,7 @@ function Statis() {
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
                 fontWeight: 'bold',
-                fontSize: '16px',
+                fontSize: '14px',
                 transition: 'var(--tran-03)',
             }
         },
@@ -502,7 +503,7 @@ function Statis() {
             style: {
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
-                fontSize: '15px',
+                fontSize: '14px',
                 transition: 'var(--tran-03)'
             }
         },
@@ -522,23 +523,23 @@ function Statis() {
     <div className='header-container'>
         <div className='membre-card'>
         <i className="fa-solid fa-user fa-2xl"></i>
-            <h3><b>{loading ? <Spinner animation='border' /> : membre.length}</b></h3>
+        <h4><b> {loading ? <Spinner animation='border' /> : membre.length}</b></h4>
             
            <p>Membres au total</p> 
         </div>
         <div className='ajoutecemois-card'> 
         <i className="fa-solid fa-circle-plus fa-2xl"></i>
-            <h3><b>{loading ? <Spinner animation='border' /> : membreAddedThisMonth.length}</b></h3>
+            <h4><b>{loading ? <Spinner animation='border' /> : membreAddedThisMonth.length}</b></h4>
             <p>Ajoutés ce Mois</p>
         </div>
         <div className='payment-card'> 
         <i className="fa-solid fa-sack-dollar fa-2xl"></i>
-            <h3><b>{loading ? <Spinner animation='border' /> : paymentThisMonth.length}</b></h3>
+            <h4><b>{loading ? <Spinner animation='border' /> : paymentThisMonth.length}</b></h4>
             <p>Payments ce Mois</p>
         </div>
         <div className='desactive-card'>
         <i className="fa-solid fa-ban fa-2xl"></i>
-            <h3><b>{loading ? <Spinner animation='border' /> : UnpaidMembre.length}</b></h3> 
+            <h4><b>{loading ? <Spinner animation='border' /> : UnpaidMembre.length}</b></h4> 
             <p>Membres Impayés</p>
         </div>
 
@@ -554,7 +555,7 @@ function Statis() {
 
         
         <div className='payments-history'>
-        <p id='payments-history-p'>Historique Paiments ({loading ? <Spinner animation='border' size='sm' /> : filteredPayments.length })</p> 
+        <p id='payments-history-p'>Historique des paiements ({loading ? <Spinner animation='border' size='sm' /> : filteredPayments.length })</p> 
         <div className='history-wrapper'>
         <p id='totalPayment'>Total: {loading ? <Spinner animation='border' size='sm' /> : total} DH </p>
         

@@ -11,19 +11,16 @@
     flex-wrap: wrap;
     margin-top: 30px;
     margin-bottom: 30px;
-    margin-left: 250px;
+    margin-left: 280px;
     min-height:100vh;
     max-width: 80%;
 }
-.add-btn button{
+.btn{
     background: var(--primary-dark-color);
-    border: 0;
+    color: white;
 }
-.add-btn button:hover{
-    animation-duration: 0.5s;
-       animation-direction: reverse;
-       transition: 0.5s;
-       background-color: var(--primary-color);
+.btn:hover{
+       background: var(--primary-dark-hover-color);
 }
 .sorting-option{
     display: flex;
@@ -78,15 +75,8 @@
     color: var(--text-color);
   }
 
-.submit-btn button{
-    width: 100%;
-    background: var(--primary-dark-color);
-}
-.submit-btn button:hover{
-    background: var(--primary-color);
-}
 
-@media all and (min-width: 320px) and (max-width: 480px){ 
+@media screen and (max-device-width: 450px) {  
     .membre-wrapper{
         margin-top: 5px;
         margin-right: 0px;
@@ -109,12 +99,12 @@
         gap: 1rem;
         overflow: scroll;
 
-        margin-top: 0px;
+        margin-top: 30px;
     }
     .add-btn button{
         margin-left:0px;
         justify-content: center;
-        width: 300px;
+        width: 250px;
         font-size: 18px;
     }
     .sorting-option{
@@ -129,9 +119,5 @@
             text-overflow: ellipsis;
         }
     }
-    
-  }
-
-  @media all and (min-width: 780px) and (max-width: 1024px) {
     
   }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/style.css';
+import '../css/sidebar.css';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -8,18 +8,19 @@ function Sidebar() {
 
     const [menuIcon, setMenuIcon] = useState("fa-solid fa-bars fa-xl burger")
     const [isMobile, setIsMobile] = useState(false)
+    const [linkActif, setLinkActif] = useState('home')
 
     const handleIsMobile = () => {
         window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false)
     }
     
-    //Responsive menu
+    // Displaying responsive menu icon
     const displayMenu = () => {
         const sidebar = document.getElementById('sidebarid')
 
         if (sidebar.style.transform === 'translateX(0px)') {
             
-            sidebar.style.transform = 'translateX(-230px)'    
+            sidebar.style.transform = 'translateX(-260px)'    
             setMenuIcon('fa-solid fa-bars fa-2xl burger')
             
         }
@@ -85,8 +86,8 @@ function Sidebar() {
             setTimeout(() => {
                 window.location.reload() 
             }, 1500)
-            
-        }        
+        }   
+        else toast.error("Une erreur s'est produite! Merci de réessayer")
     } 
 
 
@@ -97,7 +98,7 @@ function Sidebar() {
         <div className='header'>
             <div className='logo'>
                 <i className='bx bx-dumbbell bx-md logo-img'></i>
-                <span className='logo-text'>GYMER PRO</span>
+                <span className='logo-text'>GYMER</span>
             </div>    
             <div className='burger-menu'>
               <i className={menuIcon} onClick={displayMenu}></i>
@@ -107,52 +108,70 @@ function Sidebar() {
         </div>
         <div className='sidebar-list'>
             <ul>
-                <li>
-                    <Link to='/home' className='links' onClick={isMobile && displayMenu}>
+                <li onClick={() => setLinkActif('home')}>
+                    <Link to='/home' 
+                          className={linkActif === 'home' ? 'links-actif' : 'links'} 
+                          onClick={isMobile && displayMenu}>
+
                         <i className='bx bx-home-alt bx-sm icon' ></i> 
                         <span className='text'>Acceuil</span>
                     </Link>
                 </li>
 
-                <li>
-                    <Link to='/membres' className='links' onClick={isMobile && displayMenu}>        
+                <li onClick={() => setLinkActif('membres')}>
+                    <Link to='/membres' 
+                          className={linkActif === 'membres' ? 'links-actif' : 'links'} 
+                          onClick={isMobile && displayMenu}>     
+
                         <i className='bx bx-user-pin bx-sm icon'></i>    
                         <span className='text'>Membres</span>
                     </Link>
                 </li>
 
-                <li>
-                    <Link to='/supplements' className='links' onClick={isMobile && displayMenu}>
+                <li onClick={() => setLinkActif('produits')}>
+                    <Link to='/supplements' 
+                          className={linkActif === 'produits' ? 'links-actif' : 'links'} 
+                          onClick={isMobile && displayMenu}>
+
                         <i className='bx bx-baguette bx-sm icon'></i>    
                         <span className='text'>Produits</span>
                     </Link>
                 </li>
-                <li>
-                    <Link to='/sales' className='links' onClick={isMobile && displayMenu}>
+                <li onClick={() => setLinkActif('ventes')}>
+                    <Link to='/sales' 
+                          className={linkActif === 'ventes' ? 'links-actif' : 'links'} 
+                          onClick={isMobile && displayMenu}>
+
                         <i className='bx bx-money-withdraw bx-sm icon'></i>  
                         <span className='text'>Ventes</span>
                     </Link>
                 </li>
 
-                <li>
+                <li onClick={() => setLinkActif('statis')}>
                 
-                    <Link to='/statistiques' className='links' onClick={isMobile && displayMenu}>
+                    <Link to='/statistiques' 
+                          className={linkActif === 'statis' ? 'links-actif' : 'links'} 
+                          onClick={isMobile && displayMenu}>
+
                         <i className='bx bx-pie-chart bx-sm icon'></i>
                         <span className='text'>Statistique</span>
                     </Link>
                 </li>
                 
-                <li>
-                    <Link to='/admin' className='links' onClick={isMobile && displayMenu}>
+                <li onClick={() => setLinkActif('admin')}>
+                    <Link to='/admin' 
+                          className={linkActif === 'admin' ? 'links-actif' : 'links'} 
+                          onClick={isMobile && displayMenu}>
+
                         <i className='bx bx-lock-alt  bx-sm icon'></i>    
-                        <span className='text'>Admin</span>
+                        <span className='text'>Administrateur</span>
                     </Link>
                 </li>
-                <br />
+                
                 <li>
                     <Link className='links' onClick={logout}>
                         <i className='bx bx-log-out  bx-sm icon'></i>    
-                        <span className='text'>Log out</span>
+                        <span className='text'>Se déconnecter</span>
                     </Link>
                 </li>
                 
@@ -176,7 +195,9 @@ function Sidebar() {
        <div className='footer'> 
             
             
-            <span className='footer-text'>Developed by Abderrahmane HABERCHID. 2023-24.</span>
+            <span className='footer-text'>
+                Crée par <Link to='' className='footer-text'>Abderrahmane HABERCHID</Link>. 2023-24.
+            </span>
               
        </div>
     

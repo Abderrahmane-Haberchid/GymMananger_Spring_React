@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import AddSale from '../components/AddSale';
 import { decodeToken } from 'react-jwt';
 import toast from 'react-hot-toast';
-import TableLoader from '../components/TableLoader'
+import TableLoader from '../components/loaders/TableLoader'
 import DataTable from 'react-data-table-component'        
 import axios from 'axios'
 import ReactDatePicker from 'react-datepicker';
@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import deleteIcon from '../img/deleteIcon.png'
 import SharedState from '../context/MembreContext';
 import ModalDeleteSale from '../modals/ModalDeleteSale';
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 
 function Sales() {
 
@@ -208,12 +208,11 @@ const customStyles = {
     <div className='wrapper'>
 
     <div className='sale-div'>
-            <button 
-                className='btn btn-outline-success'
+            <Button 
                 onClick={handleAddSale}>
 
                 <i class="fa-solid fa-plus md-3 fa-sm"></i>  Ajouter une Vente
-            </button>
+            </Button>
     </div>
 
     <div className='container-sales'>

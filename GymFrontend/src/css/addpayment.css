@@ -1,0 +1,44 @@
+
+
+.addpayment-wrapper{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.addpayment-form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.type-payment-select, .type-abonnement-select, .prix-input{
+    width: 270px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+.checkDate{
+    display: flex;
+    justify-content: center;
+    max-width: 270px;
+}
+.checkDate label{
+    font-size: 15px;
+}
+.checkDate input{
+    width: 40px;
+}
+
+.addpayment-form-container button{
+    width: 270px;
+    background: var(--primary-dark-color);
+    grid-column-start: 1;
+    grid-column-end: 5;
+    font-size: 14px;
+    margin-top: 30px;
+}
+.addpayment-form-container button:hover{
+    background: var(--primary-dark-hover-color);
+}

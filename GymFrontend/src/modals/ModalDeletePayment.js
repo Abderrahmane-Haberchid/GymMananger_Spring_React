@@ -81,19 +81,17 @@ function ModalDeletePayment(props) {
       </Modal.Title>
     </Modal.Header>
     <Modal.Body>
-    <div className='actions-content'>    
-            <center>{ pending === true && 
+    <div>    
+            { pending ? 
                         <Spinner animation="grow" 
                                 style={{'display': 'flex', 'justifyContent': 'center'}} />
-                    }            
-            </center>    
-            {pending === false && 
-            <form className='classForm'>                  
+              : 
+            <form style={style.deletePaymentContainer}>                  
                                         
                         <div className='abtInput'>
                             <input 
                                     type='text'
-                                    className='abtInput-text'
+                                    className='form-control'
                                     value={paymentDetail?.type_abonnement}
                                     disabled
                             />
@@ -102,15 +100,15 @@ function ModalDeletePayment(props) {
                         <div className='abtInput'>
                             <input type='text'
                                    value={paymentDetail?.type_paiement} 
-                                   className='abtInput-text'
+                                   className='form-control'
                                    disabled
                             />
                         </div>
                         <div className='abtInput'>
                             <input 
                                 type='text' 
-                                value={paymentDetail?.prix}
-                                className='abtInput-text' 
+                                value={paymentDetail?.prix + " DH"}
+                                className='form-control' 
                                 disabled
                                 />    
                         </div>
@@ -121,7 +119,7 @@ function ModalDeletePayment(props) {
     </Modal.Body>
     <Modal.Footer>
       <Button 
-        className='btn btn-danger' 
+         
         onClick={deletePaymentById}
         disabled = {disableBtn}
         >
@@ -129,11 +127,23 @@ function ModalDeletePayment(props) {
                 <div> <Spinner animation="border" size="sm" as="span" /> <span>Loading...</span> </div> 
                 : 'Supprimer'}
         </Button>  
-      <Button onClick={props.onHide}>Fermer</Button>
+      <Button 
+            onClick={props.onHide} 
+            style={{background: 'gray'}}>
+                Fermer
+      </Button>
     </Modal.Footer>
   </Modal>
   )
 }
 
-export default ModalDeletePayment
+const style = {
+    deletePaymentContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        gap: '15px',
+    }
+}
 
+export default ModalDeletePayment

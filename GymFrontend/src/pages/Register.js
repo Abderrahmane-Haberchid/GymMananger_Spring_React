@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 function Register() {
 
+    const [showPassword, setShowPassword] = useState(false)
     const [loading, setLoading] = useState(false)
     const [first, setFirst] = useState(true)
     const [seconde, setSeconde] = useState(false)
@@ -54,6 +55,8 @@ function Register() {
               
   }
 
+
+
   return (
 
   <div className="register-container" id="container">
@@ -85,11 +88,12 @@ function Register() {
                       message: 'Addresse mail invalide !',
                     },
                   })}  
-                  placeholder="Email" 
+                  placeholder="Email..." 
                 />
             {errors.email && <p className='text text-danger mt-2'>{errors.email.message}</p>}      
+            <div style={{display: 'flex', alignItems: 'center', marginLeft:'-15px'}}>   
 
-            <input type="password" 
+            <input type={showPassword ? "text" : "password"} 
                   {...register('password', 
                                 {required: 'Password Requis', 
                                 minLength: {
@@ -98,8 +102,15 @@ function Register() {
                                   },
                                 }
                                 )} 
-                  placeholder="Mot de poasse" 
+                  placeholder="Mot de passe..." 
                 />
+
+            <i className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'} 
+               style={{marginLeft: '-35px', cursor: 'pointer'}}
+               onClick={() => setShowPassword(prevState => !prevState)}
+               ></i>
+            </div>
+
             {errors.password && <p className='text text-danger mt-2'>{errors.password.message}</p>}      
             <button
               disabled={loading}

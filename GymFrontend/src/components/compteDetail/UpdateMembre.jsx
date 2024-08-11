@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import SharedState from '../../context/MembreContext';
 import { Button } from 'react-bootstrap';
 
-function ActionsContent(props) {
+function UpdateMembre(props) {
 
     const { setMembreUpdated, membreUpdated } = useContext(SharedState)
 
@@ -80,40 +80,40 @@ function ActionsContent(props) {
 
      { pending === false &&        
     <form className='classForm' onSubmit={handleSubmit(onSubmit)}>                  
-                <div className='form-floating nomInput'>
-                    <input type='text' 
-                           {...register('nom', {required: "Veuillez saisir le nom"})} 
-                           className='form-control nomInput-text' 
-                           {...setValue('nom', membre.nom)}
-                           id='floatingNom'
-                           />
-                    <label for="floatingNom">Nom</label>       
-                    {errors.nom && <p className='text text-danger mt-2'>{errors.nom.message}</p>}       
-                </div>
+                
                 <div className='form-floating prenomInput'>
                     <input type='text'
                            {...register('prenom', {required: "Veuillez saisir le prenom"})}
-                           className='form-control prenomInput-text' 
+                           className='form-control' 
                            {...setValue('prenom', membre.prenom)}
-                           id='floatingNom'
                            />
                            <label for="floatingNom">Prenom</label>
                     {errors.prenom && <p className='text text-danger mt-2'>{errors.prenom.message}</p>}       
                 </div>
+
+                <div className='form-floating nomInput'>
+                    <input type='text' 
+                           {...register('nom', {required: "Veuillez saisir le nom"})} 
+                           className='form-control' 
+                           {...setValue('nom', membre.nom)}
+                           />
+                    <label for="floatingNom">Nom</label>       
+                    {errors.nom && <p className='text text-danger mt-2'>{errors.nom.message}</p>}       
+                </div>
                 
-                <div className='form-floating abtInput'>
+                <div className='form-floating emailInput'>
                     <input type="mail" 
-                            className='form-control abtInput-text'
+                            className='form-control'
                             {...register('email', {required: "Veuillez saisir une adresse mail"})}
                             {...setValue('email', membre.email)}
                             />
                         <label for="floatingNom">Email</label>    
                      {errors.email && <p className='text text-danger mt-2'>{errors.email.message}</p>}       
                 </div>
-                <div className='form-floating adrInput'>
+                <div className='form-floating adresseInput'>
                     <input type='text'
                            {...register('adresse')} 
-                           className='form-control adrInput-text' 
+                           className='form-control' 
                            {...setValue('adresse', membre.adresse)}
                            />
                            <label for="floatingNom">Adresse</label>
@@ -122,7 +122,7 @@ function ActionsContent(props) {
                 <div className='form-floating ageInput'>
                     <input type='number'
                            {...register('age')}
-                           className='form-control ageInput-text'
+                           className='form-control'
                            {...setValue('age', membre.age)}
                            />
                         <label for="floatingNom">Age</label>   
@@ -130,7 +130,7 @@ function ActionsContent(props) {
                 <div className='form-floating telephoneInput'>
                     <input type='number' 
                            {...register('telephone')} 
-                           className='form-control ageInput-text'
+                           className='form-control'
                            {...setValue('telephone', membre.telephone)}
                             /> 
                         <label for="floatingNom">Telephone</label>      
@@ -138,7 +138,6 @@ function ActionsContent(props) {
                 <br />                
                 <Button 
                     type='submit'
-                    variant='success'
                     disabled={loading}
                     >
                     {
@@ -153,4 +152,4 @@ function ActionsContent(props) {
   )
 }
 
-export default ActionsContent
+export default UpdateMembre

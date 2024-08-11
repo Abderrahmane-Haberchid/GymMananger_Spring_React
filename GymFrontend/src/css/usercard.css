@@ -1,116 +1,26 @@
 
 
 /*------User card -------------*/
-
+.usercard-wrapper{
+    max-width: 95vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 .usercard-list{
+    display: flex;    
+    justify-content: start;
+    flex-wrap: wrap;
     position:relative;
     margin-top: 30px;
-    left: 250px;
     max-width: 80%;
     min-height: 100vh;
-    display: flex;    
-    flex-wrap: wrap;
+    left: 280px;
     gap:1rem;
-    transition: var(--tran-03);
-    background: var(--body-color);
 }
-@media all and (min-width: 320px) and (max-width: 480px){ 
-
-    .search-container{
-        
-        display: flex;
-        justify-content: center;
-        align-items:center ;
-        flex-wrap: wrap;
-    }
-    .search-input{
-        font-size: 17px;
-        margin-left: -40px;
-    }
-    .membreCounter-container{
-        margin-left: 20%;
-    }
-    .membreCounter-text{
-        color: var(--text-color);
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: -20px;
-    }
-    .search-icon{
-        margin-right: -50px;
-        margin-left: 50px;
-        position: relative;
-    }   
-
-    .usercard-list {
-        max-width: 100%;
-        padding-left: 30px;
-        left: 0;
-        row-gap:1.3rem;
-    }
-    .usercard-list p{
-        font-size: 17px;
-    }
-    .usercard-list span{
-        font-size: 17px;
-    }
-    .usercard{    
-        width: 200px;
-        height: 120px;
-        font-size: 17px;
-       }
-       .img-fluid{
-        width: 60px;
-       }
-    
-       .card-title{
-        font-size: 18px;
-        font-weight: 500;
-    }
-    .card-subtitle{
-        font-size: 17px;
-        font-weight: 400;
-    }   
 
 
-       
-  }  
-  @media all and (min-width: 480px) and (max-width: 768px){     
-   
-    .usercard{    
-        width: 220px;
-        height: 230px;
-        overflow-x: hidden;
-       }
-       .img-fluid{
-        width: 60px;
-       }
 
-       .card-title{
-        font-size: 18px;
-        font-weight: 500;
-    }
-    .card-subtitle{
-        font-size: 17px;
-        font-weight: 400;
-    }  
-  }  
-  @media all and (min-width: 780px) and (max-width: 1024px) {
-    .usercard-list {
-        max-width: 65vw;
-    }
-    .usercard{    
-        width: 220px;
-        height: 230px;
-       }
-       .img-fluid{
-        width: 60px;
-       }
-
-    .membreCounter-container p{
-        margin-left: 100px;
-    }
-  }
 .usercard{    
     display: flex;
     justify-content: center;
@@ -171,10 +81,12 @@
     margin: 30px;
     display: flex;
     justify-content: space-between;
-    align-items:center ;
+    flex-wrap: wrap;
+    max-width: 100vw;
+    margin-left: 280px;
 }
 .membreCounter-container{
-    margin-left: 20%;
+    margin-left:30px;
 }
 .membreCounter-text{
     color: var(--text-color);
@@ -187,8 +99,8 @@
     justify-content: center;
     align-items: center;
 }
-.search-input{
-    width: 300px;
+.search-input-container input{
+    max-width: 300px;
     height: 40px;
     padding: 15px;
     padding-left: 40px;
@@ -200,9 +112,35 @@
     outline: none;
     transition: var(--tran-02);
 }
-.search-icon{
+.search-input-container i{
     margin-right: -50px;
     margin-left: 50px;
     position: relative;
 }
 
+@media screen and (max-device-width: 450px) {  
+
+    .search-container{
+        margin: 0px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        max-width: 100vw;
+        margin-left: 0px;
+        margin-top: 32px;
+    }
+    .membreCounter-container{
+        margin-inline: auto;
+    }
+
+    .usercard-list{
+        max-width: 100%;
+        left: 10px;
+        
+    }
+    
+
+
+       
+  }  

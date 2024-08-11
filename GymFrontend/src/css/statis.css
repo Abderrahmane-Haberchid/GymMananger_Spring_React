@@ -5,8 +5,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 :root{
-    --body-color: #E4E9F7;    
-    --sidebar-color: #FFF;
+    --body-color: linear-gradient(to right, #e2e2e2, #c9d6ff);    
+    --sidebar-color: #fff;
     --primary-color: #695CFE;
     --secondary-color: #F6F5FF;
     --third-color: ##fefeff;
@@ -27,7 +27,7 @@
     display: flexblock;
     justify-content: center; 
     flex-wrap: wrap;
-    margin-left: 250px;
+    margin-left: 280px;
     margin-top: 30px;
 }
 .header-container{
@@ -51,7 +51,8 @@
     gap:1rem;
     transition: var(--tran-03);
 }
-@media all and (min-width: 320px) and (max-width: 480px){ 
+
+@media screen and (max-device-width: 450px) {    
     .statis-container{
         display: flex;
         max-width: 100%;
@@ -72,10 +73,7 @@
         margin-bottom: 20px;
         max-width: 100%;
         justify-content: center;
-        gap: 20px;
-        min-height: 80px;
     }
-    .header-container div p{ font-size: 20px; }
 
 
     .body-container{
@@ -90,9 +88,10 @@
     }
     .money-monthly{
         max-width: 380px;
+        overflow-y: scroll;
     }
     .money-monthly p{
-        font-size: 17px;
+        font-size: 16px;
     }
     
     .chart1{
@@ -126,90 +125,8 @@
 
    
   }
-  @media all and (min-width: 480px) and (max-width: 768px){  
-    .statis-container{
-        display: flex;
-        max-width: fit-content;
-        justify-content: center;
-        margin-left: 0px;
-        margin-top: 40px;
-    }
 
-    .header-container{
-        display: block;
-        width: auto;        
-    }
-    .membre-card{
-        margin-bottom: 10px;
-        width: 400px;
-        height: 30px;
-    }
-    .membre-card p{ font-size: 17px; }
 
-    .ajoutecemois-card{
-        margin-bottom: 10px;
-    }
-    .ajoutecemois-card p{ font-size: 17px; }
-
-    .desactive-card{
-        margin-bottom: 10px;
-    }
-    .desactive-card p{ font-size: 17px; }
-
-    .payment-card{
-        margin-bottom: 10px;
-    }
-    .payment-card p{ font-size: 17px; }
-
-    .body-container{
-        max-width: auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: left;    
-        gap:1rem;
-        transition: var(--tran-03);
-        margin-left: 10px;
-        overflow: hidden;
-    }
-    .money-monthly{
-        max-width: 380px;
-    }
-    .money-monthly p{
-        font-size: 17px;
-    }
-    
-    .chart1{
-        width: 380px;
-        
-     }
-
-.payments-history{
-    max-width: 400px;
-    min-height: 300px;
-}
-#payments-history-p{
-    margin-top: 25px;
-    margin-left: 20px;
-    color: var(--text-color);
-    left: 0;
-    font-weight: 500;
-    font-size: 18px;
-}
-#totalPayment{
-    margin-top: 25px;
-    margin-left: 20px;
-    color: var(--text-color);
-    left: 0;
-    font-weight: 500;
-}
-.wrapperClass{
-    margin-top: 15px;
-    background: var(--body-color);
-}
-
-  }
-  @media all and (min-width: 780px) and (max-width: 1024px) {
-  }
 
 
 .membre-card{
@@ -340,7 +257,7 @@
 }
 .payments-history{
     min-width: 340px;
-    min-height: 300px;
+    min-height: 320px;
     border-radius: 10px;
     background: var(--sidebar-color);
     padding: 0px;
@@ -370,9 +287,11 @@
 .wrapperClass{
     margin-top: 15px;
     background: var(--body-color);
+    border-radius: 10px;
 }
 .datePicker{
     width: 150px;
+    border-radius: 10px;
     z-index: 1;
     margin-top: -3px;
 }

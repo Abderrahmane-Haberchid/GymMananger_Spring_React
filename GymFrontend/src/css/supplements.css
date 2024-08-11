@@ -1,10 +1,11 @@
 
 .wrapperS{
-    display: flex;
+    display: flexbox;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     max-width: auto;
+    min-height: 100vh;
     margin-left: 250px;
 }
 
@@ -13,19 +14,16 @@
 .sup-div{
     display: flex;
     justify-content: right; 
-    position: absolute;
-    top: 20px;
-    right: 100px;
+    margin-right: 150px;
     margin-top: 40px;
 }
-.sup-div button{
-    color:'var(--text-color)';
-    border-color: var(--primary-dark-color);
-}
-.sup-div button:hover{
+.btn{
     background: var(--primary-dark-color);
-    border: 0;
+    color: white;
 }
+.btn:hover{
+    background: var(--primary-dark-hover-color);
+}  
 
 /*====================*/
 
@@ -35,7 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 130px;
+    margin-top: 20px;
 }
 .container-products{
     display: flex;
@@ -148,9 +146,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 100%;
+    max-width: 90%;
     transition: 1s;
     margin-top: 50px;
+    margin-inline: auto;
 }
 
 
@@ -170,15 +169,15 @@
 
 
 
-@media all and (min-width: 320px) and (max-width: 480px){ 
+@media screen and (max-device-width: 450px) {  
     .wrapperS{
         margin-left: 20px;
         overflow-x: hidden;
     }
     .sup-div{
-        margin-top: 60px;
-        margin-left: 40px;
-        right: 50px;
+        justify-content: center; 
+        margin-right: 0px;
+        margin-top: 80px;
     }
     .sup-div button{
         background: var(--primary-dark-color);
@@ -220,47 +219,3 @@
     }
 }
 
-@media all and (min-width: 780px) and (max-width: 1024px) {
-    .wrapperS{
-        overflow-x: hidden;
-        min-height: 100vh;
-    }
-    .sup-div{
-        margin-top: 60px;
-        margin-left: 40px;
-        right: 50px;
-    }
-    .sup-div button{
-        background: var(--primary-dark-color);
-        color: white;
-        width: 300px;
-    }
-
-    .container-item{    
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    .container-products{
-        display: flex;
-        justify-content: center;
-        height: 100px;
-        margin-left: 80px;
-    }
-    .container-products ul li{
-        margin-bottom: 20px;
-    }
-
-    .products-table{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 100%;
-        margin-top: 140px;
-        margin-right: 20px;
-    }
-    .show-menu{
-        margin-left: 20px;
-    }
-}

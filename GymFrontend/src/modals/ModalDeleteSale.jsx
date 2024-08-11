@@ -43,11 +43,12 @@ function ModalDeleteSale(props) {
         </Modal.Header>
         <Modal.Body>Vous êtes sûr de vouloir supprimer cette vente ?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props?.close}>
+          <Button 
+             onClick={props?.close}
+             style={{background: 'gray'}}>
             Fermer
           </Button>
           <Button 
-              variant="danger" 
               onClick={handleDeleteSale}
               disabled={disableBtn}
               >

@@ -44,11 +44,13 @@ function ModalDeleteProduct(props) {
         </Modal.Header>
         <Modal.Body>Vous êtes sûr de vouloir supprimer ce produit ?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props?.close}>
+          <Button 
+             onClick={props?.close}
+             style={{background: 'gray'}}>
             Fermer
           </Button>
           <Button 
-              variant="danger" 
+              
               onClick={handleDeleteProduct}
               disabled={disableBtn}
               >

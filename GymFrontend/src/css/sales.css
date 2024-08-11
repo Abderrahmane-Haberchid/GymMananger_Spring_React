@@ -1,13 +1,12 @@
 
 
 .wrapper{
-    display: flexbox;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: auto;
+    max-width: 100%;
     min-height: 100vh;
-    background: transparent;
 }
 .sale-div{
     display: flex;
@@ -16,14 +15,14 @@
     margin-right: 170px;
     margin-top: 40px;
 }
-.sale-div button{
-    color: var(--primary-dark-color);
-    border-color: var(--primary-dark-color);
+.btn{
+    color: white;
+    background-color: var(--primary-dark-color);
 }
-.sale-div button:hover{
-    background: var(--primary-dark-color);
-    border: 0;
-}  
+.btn:hover{
+    background-color: var(--primary-dark-hover-color);
+}
+
 .mesventes-container{
     display: flex;
     justify-content: space-between;
@@ -57,19 +56,14 @@
     text-decoration: underline;
 }
 
-@media all and (min-width: 320px) and (max-width: 480px){ 
+@media screen and (max-device-width: 450px) {  
 
     .wrapper{
-        display: flexbox;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: auto;
-        min-height: 100vh;
-        background: transparent;
+       
     }
     .sale-div{
         display: flex;
-        justify-content: center; 
+        justify-content: start; 
         margin-right: 0px;
         margin-top: 80px;
     }
@@ -83,58 +77,15 @@
     .container-sales{    
         max-width: 100%;
         min-height: 100vh;
-        margin-right: 20px;
-        margin-left: 20px;
+       margin-left: 30px;
+       margin-right: 30px;
+       padding-left: 20px;
+       padding-right: 20px;
     }
 
  }
 
- @media all and (min-width: 480px) and (max-width: 780px){ 
 
-    .wrapper{
-        display: flexbox;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: auto;
-        min-height: 100vh;
-        background: transparent;
-    }
-    .sale-div{
-        display: flex;
-        justify-content: center; 
-        margin-right: 170px;
-        margin-top: 80px;
-    }
-    .sale-div button{
-        font-size: 17px;
-        color: white;
-        width: 400px;
-        background: var(--primary-dark-color);
-    }
-
-    .container-sales{    
-        max-width: 100%;
-        min-height: 100vh;
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-
- }
-
-@media all and (min-width: 780px) and (max-width: 1024px) { 
-
-    .container-sales{    
-        max-width: 60%;
-        min-height: 100px;
-        display: flexbox;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: 20px;
-        margin-left: 270px;
-        background: transparent;
-    }
-}
 
 
 
@@ -144,13 +95,6 @@
     display: flex;
     justify-content: center;
 }
-.form-container .btn:hover{
-    background: var(--primary-color);
-}
-.form-container .btn {
-    border:0;
-    background: var(--primary-dark-color);
-    width: 100%;
-}
+
 
 /*====================*/

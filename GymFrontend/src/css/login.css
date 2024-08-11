@@ -46,7 +46,7 @@
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
-    width: 100%;
+    width: 250px;
     outline: none;
 }
 
@@ -91,7 +91,7 @@
 }
 
 
-@media all and (min-width: 320px) and (max-width: 480px){ 
+@media screen and (max-device-width: 450px) {  
     .login-container{
         flex-direction: column;
         align-items: top;
@@ -100,7 +100,7 @@
         gap: 0rem;
     }
     .login-form-container{
-        margin-top: 0px;
+        margin-top: 50px;
         max-width: 80%;
     }
     .login-container form{
@@ -114,6 +114,7 @@
     .login-services-container{
         max-width: 80%;
         margin-top: 70px;
+        margin-bottom: 30px;
     }
 
     .login-container input{

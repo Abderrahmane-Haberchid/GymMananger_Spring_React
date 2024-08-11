@@ -3,14 +3,14 @@ import '../css/membres.css'
 import { useState, useEffect, React, useContext } from 'react'
 import DataTable from 'react-data-table-component'        
 import axios from 'axios'
-import TableLoader from '../components/TableLoader'
+import TableLoader from '../components/loaders/TableLoader'
 import avatar from '../img/avatar.jpg'
-import CompteDetails from '../components/compteDetail/CompteDetails'
+import CompteModal from '../components/compteDetail/CompteModal'
 import AddMembreForm from '../components/AddMembreForm'
 import toast from 'react-hot-toast'
 import { decodeToken } from "react-jwt";
 import SharedState from '../context/MembreContext'
-import { Spinner } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 
 function Membres() {    
 
@@ -267,9 +267,11 @@ function Membres() {
     {/*******Bouton d'ajout d'un nouveau Membre**********/}
       <div className='table-header'> 
        <div className='add-btn'>
-            <button className='btn btn-success' onClick={handleAddForm}>
+            <Button 
+                 type='submit'
+                 onClick={handleAddForm}>
                 <i class="fa-solid fa-plus md-3 fa-sm"></i>  Ajouter Membre
-            </button>
+            </Button>
        </div>
 
     {/*******Liste de filtrage Payé/Impayé**********/}       
@@ -299,7 +301,7 @@ function Membres() {
 
     <AddMembreForm display={addForm} setDisplay={setAddForm} />
 
-    <CompteDetails idmembre={idmembre} show={showCompte} onHide={handleClose} />
+    <CompteModal idmembre={idmembre} show={showCompte} onHide={handleClose} />
     
     </div> 
     </div>

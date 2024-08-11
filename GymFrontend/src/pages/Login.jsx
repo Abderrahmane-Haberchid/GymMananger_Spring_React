@@ -9,6 +9,8 @@ import ModalForgetPassword from '../modals/ModalForgetPassword';
 
 export default function Login() {
 
+  const [showPassword, setShowPassword] = useState(false)
+
   const [loading, setLoading] = useState(false)
   const [show, setShow] = useState(false)
 
@@ -66,10 +68,20 @@ export default function Login() {
 
                 <input type="text"
                         {...register("email")}
-                      placeholder="Email" />
-                <input type="password" 
+                      placeholder="Email..." />
+
+                <div style={{display: 'flex', alignItems: 'center', marginLeft:'-15px'}}>  
+
+                <input type={showPassword ? "text" : "password"} 
                       {...register("password")} 
-                      placeholder="Password" />
+                      placeholder="Mot de passe..." />
+
+                <i className={showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'} 
+                    style={{marginLeft: '-35px', cursor: 'pointer'}}
+                    onClick={() => setShowPassword(prevState => !prevState)}
+                    ></i>
+                </div>
+
                 <a href="#" onClick={() => setShow(true)}>Mot de passe oublié?</a>
                 <button
                     disabled={loading}

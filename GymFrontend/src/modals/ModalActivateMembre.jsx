@@ -43,7 +43,7 @@ function ModalActivateMembre(props) {
         </Modal.Header>
         <Modal.Body>Vous êtes sûr de vouloir activer ce compte ?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props?.close}>
+          <Button variant="secondary" onClick={props?.close} style={{background: 'gray'}}>
             Fermer
           </Button>
           <Button 

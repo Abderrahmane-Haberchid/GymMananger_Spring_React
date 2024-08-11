@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import '../../css/payment.css'
 import DataTable from 'react-data-table-component'
 import axios from 'axios'
-import LoaderTablePayments from '../LoaderTablePayments'
+import LoaderTablePayments from '../loaders/LoaderTablePayments'
 import deleteIcon from '../../img/deleteIcon.png'
 import ModalDeletePayment from '../../modals/ModalDeletePayment'
 import SharedState from '../../context/MembreContext'
@@ -55,15 +55,13 @@ function PaymentsContent(props) {
     useEffect(() => {            
        fetchdata()        
     }, [membreUpdated])
-
-    console.log(membreUpdated)
     
     const columns = [
         {
             name: "Prix",
             selector: row => row.prix + " DH",
             sortable: true,
-            width: "90px"
+            width: "auto"
         },
         {            
             name: "Date",
@@ -87,10 +85,21 @@ function PaymentsContent(props) {
     ]
 
     const customStyles = {
+        tableWrapper: {
+            style: {
+                maxWidth: '100%',
+                maxHeight: '400px',
+                marginLeft: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+                backgroundColor: 'var(--sidebar-color)',
+            },
+        },   
+
       table: {
           style:{
               backgroundColor: 'var(--sidebar-color)',
-              maxWidth: '100%'  
+              overflow: 'hidden'
           }            
       },
       responsiveWrapper: {
@@ -101,8 +110,9 @@ function PaymentsContent(props) {
               backgroundColor: 'var(--sidebar-color)',
               color: 'var(--text-color)',
               fontWeight: '500',
-              fontSize: '16px',
+              fontSize: '14px',
               transition: 'var(--tran-03)',
+              
               
           }
       },
@@ -110,9 +120,10 @@ function PaymentsContent(props) {
           style: {
               backgroundColor: 'var(--sidebar-color)',
               color: 'var(--text-color)',
-              fontSize: '14px',
+              fontSize: '13px',
               transition: 'var(--tran-03)',
-              cursor: 'pointer' 
+              cursor: 'pointer' ,
+              overflow: 'hidden'
           }
       }
       
@@ -129,7 +140,6 @@ function PaymentsContent(props) {
                     paymentId={paymentId}
                     membreId={id}
              /> 
-        <center>    
        
         <DataTable
          fixedHeader    
@@ -137,13 +147,10 @@ function PaymentsContent(props) {
          data={payment}
          progressPending={pending}
          progressComponent={<LoaderTablePayments />}
-         fixedHeaderScrollHeight="350px"   
          customStyles={customStyles} 
-        responsive
-        highlightOnHover
+         responsive
+         highlightOnHover
         />
-        
-       </center>  
     </div>
   )
 }

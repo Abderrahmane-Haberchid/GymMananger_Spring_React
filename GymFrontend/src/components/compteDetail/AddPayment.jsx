@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import '../../css/actionsContent.css'
+import '../../css/addpayment.css'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
@@ -69,46 +69,48 @@ function AddPayment(props) {
          
     }, [])
   return (
-    <div className='actions-content'>        
+    <div className='addpayment-wrapper'>        
             
-    <form className='classForm' onSubmit={handleSubmit(onSubmit)}>                  
+    <form className='addpayment-form-container' onSubmit={handleSubmit(onSubmit)}>                  
                                 
-                <div className='abtInput'>
+                <div className='type-abonnement-select'>
                     <select
                      {...register("type_abonnement")}   
-                     className='abtInput-text'>
-                        <option selected>Basic + Tapis Roulant</option>
+                     className='form-control'>
+                        <option selected>Choisir un abonnement...</option>
+                        <option>Basic + Tapis Roulant</option>
                         <option>Basic + Coach</option>
                         <option>Basic + Coach + Tapis Roulant</option>
                         <option>Basic</option>
                     </select>
                 </div>
                 
-                <div className='abtInput'>
+                <div className='type-payment-select'>
                     <select 
                         {...register("type_paiement")} 
-                        className='abtInput-text'>
-                        <option selected>Mensuel</option>
+                        className='form-control'>
+                        <option selected>Choisir un paiement...</option>    
+                        <option>Une séance</option>
+                        <option>Mensuel</option>
                         <option>Par 3mois</option>
                         <option>Par 6mois</option>
                         <option>Annuel</option>
                     </select>
                 </div>
-                <div className='abtInput'>
+                <div className='prix-input'>
                     <input 
                         {...register("prix", {required: "Veuillez saisir le prix"})}
                         type='number' 
-                        placeholder='Prix à payer' 
-                        className='abtInput-text' />
+                        placeholder='Saisir le prix à payer...' 
+                        className='form-control' />
                     {errors.prix && <p className='text text-danger mt-2'>{errors.prix.message}</p>}     
                 </div>
                 <div className='checkDate'>
-                    <label for="startDate">Compter à partir de ce jour</label>
+                    <label for="startDate">Commencer la facturation à partir de ce jour ?</label>
                     <input 
                         {...register("dontkeepExpDate")}
                         type='checkbox'  
                         id='startDate'
-                        className='abtInput-text' 
                         {...payments == true ? "" : "disabled"}
                         checked={payments == true ? "false" : "true"}
                         />
@@ -117,10 +119,7 @@ function AddPayment(props) {
                 <div className='abtInput'>             
                 <Button 
                        type='submit' 
-                       variant='success' 
-                       style={{width:"350px", marginTop:"20px"}} 
                        disabled={loading} >
-
                        {
                         loading ?
                                 <div><Spinner animation='border' as='span' size='sm' /><span> Loading...</span></div>

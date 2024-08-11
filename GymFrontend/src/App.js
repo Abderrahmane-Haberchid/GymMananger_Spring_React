@@ -28,6 +28,7 @@ function App() {
   const [saleDeleted, setSaleDeleted] = useState(false)
   const [productDeleted, setProductDeleted] = useState(false)
   const [membreDeleted, setMembreDeleted] = useState(false)
+  
 
   return (
 <>
@@ -51,7 +52,7 @@ function App() {
 
     <Router>
 
-      {token === "" ? "" : <Sidebar/>}
+      {token?.length > 0 ? <Sidebar/> : ""}
     
     <div className='app'>
       <Routes>
@@ -61,16 +62,15 @@ function App() {
           <Route path='/register' element={<Register/>} />
         </Route>
 
-        <Route element={<PrivateRoutes />} >
-              <Route path='/' element={<Home/>} />
-              <Route path='/gym-dashboard' element={<Home/>} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/statistiques" element={<Statis />} />
-              <Route path="/membres" element={<Membres />} />
-              <Route path="/supplements" element={<Supplements />} />
-              <Route path="/sales" element={<Sales />} />
-              <Route path="/admin" element={<Admin />} />
-        </Route> 
+        
+              <Route path='/' element={ <PrivateRoutes> <Home/> </PrivateRoutes>} />
+              <Route path="/home" element={<PrivateRoutes> <Home/> </PrivateRoutes>} />
+              <Route path="/statistiques" element={<PrivateRoutes> <Statis/> </PrivateRoutes>} />
+              <Route path="/membres" element={<PrivateRoutes> <Membres/> </PrivateRoutes>} />
+              <Route path="/supplements" element={<PrivateRoutes> <Supplements/> </PrivateRoutes>} />
+              <Route path="/sales" element={<PrivateRoutes> <Sales/> </PrivateRoutes>} />
+              <Route path="/admin" element={<PrivateRoutes> <Admin/> </PrivateRoutes>} />
+      
         
       </Routes>
       </div>

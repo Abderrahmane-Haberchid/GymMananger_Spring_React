@@ -6,7 +6,7 @@ function CheckRoute() {
     const token = localStorage.getItem("token")
 
   return (
-    token !== "" ? <Navigate to="/home" /> : <Outlet />
+    token?.length > 0 ? <Navigate to="/home" /> : <Outlet />
   )
 }
 

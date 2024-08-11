@@ -9,6 +9,7 @@ import { decodeToken } from 'react-jwt'
 import '../css/supplements.css';
 import SharedState from '../context/MembreContext'
 import Spinner from 'react-bootstrap/Spinner';
+import { Button } from 'react-bootstrap'
 
 function AddProducts(props) {
 
@@ -72,7 +73,7 @@ function AddProducts(props) {
   return (
    
      <Offcanvas {...props} placement='end' scroll="true"  className="offCanvas offCanvas-end"> 
-     <div className='compte-container'>
+     <div className='compte-container' style={{minHeight:'100vh'}}>
          <Offcanvas.Header closeButton>
            <Offcanvas.Title>Ajouter des produits</Offcanvas.Title>
          </Offcanvas.Header>
@@ -159,7 +160,7 @@ function AddProducts(props) {
                     type='number' 
                     className='form-control'
                     id="quantite"
-                    placeholder="1" />
+                    placeholder="0" />
              {errors.quantity && <p className='text text-danger mt-2'>{errors.quantity.message}</p>}       
         </div>
     </div>      
@@ -170,7 +171,7 @@ function AddProducts(props) {
                     type='text' 
                     className='form-control'
                     id="price"
-                    placeholder="770 Dh" />
+                    placeholder="Prix..." />
               {errors.prixAchat && <p className='text text-danger mt-2'>{errors.prixAchat.message}</p>}             
         </div>
         <div className='col'>
@@ -179,13 +180,13 @@ function AddProducts(props) {
                     type='text' 
                     className='form-control'
                     id="price"
-                    placeholder="850 Dh" />
+                    placeholder="Prix..." />
              {errors.prixVente && <p className='text text-danger mt-2'>{errors.prixVente.message}</p>}              
         </div>
     </div>
         <div className='submit-btn mt-4 mb-4'>
-                 <button 
-                        className='btn btn-outline-primary' 
+                 <Button
+                        type='submit'
                         style={{color: "white"}}
                         disabled={loading}>
 
@@ -193,7 +194,7 @@ function AddProducts(props) {
                              <div><Spinner animation="border" size="sm" as="span" /> <span> Loading...</span> </div>
                               : 'Ajouter Produit'
                               }
-                 </button>
+                 </Button>
         </div>
         </form> 
         </div>       

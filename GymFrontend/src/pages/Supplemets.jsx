@@ -5,13 +5,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import AddProduct from '../components/AddProduct';
 import { decodeToken } from 'react-jwt';
 import toast from 'react-hot-toast';
-import TableLoader from '../components/TableLoader'
+import TableLoader from '../components/loaders/TableLoader'
 import DataTable from 'react-data-table-component'        
 import axios from 'axios'
 import SharedState from '../context/MembreContext';
 import deleteIcon from '../img/deleteIcon.png'
 import ModalDeleteProduct from '../modals/ModalDeleteProduct';
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 
 function Supplements() {
 
@@ -336,9 +336,11 @@ const setProductsTable = () => {
     <div className='wrapperS'>
 
     <div className='sup-div'>
-            <button className='btn btn-outline-primary' onClick={handleShow}>
+            <Button 
+               onClick={handleShow}
+               >
                 <i class="fa-solid fa-plus md-3 fa-sm"></i>  Ajouter Produit
-            </button>
+            </Button>
     </div>
     <div className='container-item'>
 

@@ -1,7 +1,8 @@
 import { useState, React, useEffect, useContext } from 'react'
 import axios from 'axios'
+import '../../css/compteModal.css'
 import ProfileContent from './ProfileContent'
-import ActionsContent from './ActionsContent'
+import UpdateMembre from './UpdateMembre'
 import PaymentsContent from './PaymentsContent'
 import AddPayment from './AddPayment'
 import Offcanvas from 'react-bootstrap/Offcanvas'
@@ -12,7 +13,7 @@ import toast from 'react-hot-toast'
 import { ProgressBar, Spinner } from 'react-bootstrap'
 import SharedState from '../../context/MembreContext'
 
-function CompteDetails(props) {
+function CompteModal(props) {
 
     const {membreUpdated, setMembreUpdated} = useContext(SharedState)
 
@@ -72,7 +73,7 @@ function CompteDetails(props) {
                     return {...prevState, pc: eventProgress.progress*100}
                 }),
                 headers: {
-                    //"Content-Type": "multipart/form-data",
+                    "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${token}`
                 }
             }
@@ -117,14 +118,14 @@ function CompteDetails(props) {
 
   return (
 
-     <Offcanvas {...props} placement='end' className="offCanvas offCanvas-end">
+     <Offcanvas {...props} placement='end' className="offCanvas offCanvas-end" style={{overflowY: 'scroll', minHeight:'100vh'}}>
         
      <div className='compte-container'>
 
      {progress.started && <ProgressBar now={progress.pc} label={Math.floor(progress.pc)+'%'} />}
 
          <Offcanvas.Header closeButton>
-           <Offcanvas.Title>Détail Compte</Offcanvas.Title>
+           <Offcanvas.Title>Détail du compte</Offcanvas.Title>
          </Offcanvas.Header>
          
            
@@ -147,7 +148,7 @@ function CompteDetails(props) {
                         <section style={{cursor: "pointer"}}>
                         <div {...getRootProps()} onDrop={handleUpload}>
                             <input {...getInputProps()} />
-                            <p>Drag 'n' drop une image ici ou click pour selectionner</p>
+                            <p>Glisser une image ici ou clicker pour selectionner</p>
                         </div>
                         </section>
                     )}
@@ -165,12 +166,12 @@ function CompteDetails(props) {
                  <Link to="" 
                      className="actions-btn"
                      onClick={changeActions}
-                     >Update
+                     >Modifier
                  </Link>
                  <Link to=""
                      className="payments-btn"
                      onClick={changeAddPayments}
-                     >Paiments
+                     >Payer
                  </Link>
                  <Link to=""
                      className="payments-btn"
@@ -182,7 +183,7 @@ function CompteDetails(props) {
              <hr />
              <div className='compte-container-body'>
                { showProfile && <ProfileContent membreId = {props.idmembre} /> }
-               { showActions && <ActionsContent membreId = {props.idmembre} /> }
+               { showActions && <UpdateMembre membreId = {props.idmembre} /> }
                { showPayments && <PaymentsContent membreId = {props.idmembre} /> }
                { addPayment && <AddPayment membreId = {props.idmembre} /> }
             </div>  
@@ -193,4 +194,4 @@ function CompteDetails(props) {
   )
 }
 
-export default CompteDetails
+export default CompteModal
