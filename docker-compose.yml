@@ -7,11 +7,11 @@ services:
     ports:
       - 5433:5432
     volumes:
-      - /Users/abderahman/Developer/postgres_datapart:/var/lib/postgresql/data
+      - /home/ec2-user/postgres_datapart:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gym_db
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=16022023yousra
+      - POSTGRES_PASSWORD=16022023yousraabdo
       - PGDATA=/var/lib/postgresql/data/pgdata
     platform: linux/amd64
     restart: unless-stopped
@@ -37,9 +37,9 @@ services:
       ports:
         - 8081:8081
       environment:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/gym_db
-        SPRING_DATASOURCE_USERNAME: postgres
-        SPRING_DATASOURCE_PASSWORD: 16022023yousra  
+        SPRING_DATASOURCE_URL_PROD: jdbc:postgresql://database:5432/gym_db
+        SPRING_DATASOURCE_USERNAME_PROD: postgres
+        SPRING_DATASOURCE_PASSWORD_PROD: 16022023yousraabdo
       platform: linux/amd64
       depends_on:
         - database
