@@ -11,7 +11,7 @@ services:
     environment:
       - POSTGRES_DB=gym_db
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=16022023yousraabdo
+      - POSTGRES_PASSWORD=
       - PGDATA=/var/lib/postgresql/data/pgdata
     platform: linux/amd64
     restart: unless-stopped
